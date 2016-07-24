@@ -1,0 +1,64 @@
+.bill-detail{
+    border: solid 1px #a9a9a9;
+    margin: 1rem;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.bill-detail .title{
+    color: #000000;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.bill-detail .bill-detail-top {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cutline {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.bill-detail-middle {
+    margin: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.bill-detail-middle p {
+    margin-bottom: 1rem;
+    color: #9c9c9c;
+    font-weight: 600;
+}
+
+.bill-detail-middle .prod-name {
+    font-size: 1.2rem;
+    color: #000000;
+    font-weight: 600;
+}
+
+.bill-detail-middle .prod-price{
+    color: #E95E50;
+}
+
+.bill-detail-middle .bid-time {
+    color: #545454;
+}
+
+.ui-page-theme-a .bid-history-btn{
+    width: 35.5%;
+    color: #fff;
+    background-color: #E95E50;
+}
+
+.btn-container {
+    margin: 1rem;
+}
+
+#confirm-btn {
+    background-color: #E95E50;
+    color: #fff;
+}

@@ -1,0 +1,62 @@
+%{
+business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+<head>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/new_css/fill-personal-info.css'}"/>
+</head>
+#{extends 'common/frontMain.html' /}
+#{set title:currBackstageSet.seoTitle +' | 我的账户 | 完善个人信息' /}
+<div id="main">
+    <hr class="top-cutting-line" size="3"/>
+    <div class="crumbs-container">
+        <div class="crumbs">首页>完善个人信息</div>
+    </div>
+    <div class="main-top">
+        <div class="main-top-content">
+            <div>
+                #{ifErrors}
+                    #{errors}
+                        #{if error.key=="info"}
+                            <img src="/public/images/new/gray_tick.png" class="float-left"/>
+                            <span class="float-left">${error.message()}</span>
+                        #{/if}
+                        #{else}
+                            <li>${error.message()}</li>
+                        #{/else}
+                    #{/errors}
+                #{/ifErrors}
+
+            </div>
+        </div>
+        <hr class="bottom-line" size="1"/>
+    </div>
+    <div class="main-middle">
+    #{form @front.account.AccountHome.saveMyInfo(), id:'detailForm',class:'detail-form'}
+
+        <p class="title">完善个人信息</p>
+
+        <p>注：身份信息直接影响交易操作，请如实填写</p>
+
+        <div class="field">
+            <label>*真实姓名：&nbsp;</label>
+            <input type="text" id="realityName" name="realityName" placeholder="请输入您的姓名"/>
+        </div>
+        <div class="field">
+            <label>*身份证号：&nbsp;</label>
+            <input type="text" id="idNumber" name="idNumber" placeholder="请输入您的身份证号"/>
+        </div>
+        <div class="field">
+            <label>*电子邮箱：&nbsp;</label>
+            <input type="text" id="email" name="email" placeholder="请输入您的电子邮箱"/>
+        </div>
+        <p>您还不是汇付天下会员，完善个人信息后开通会员资金托管：</p>
+
+        <div class="clearfix">
+            <input class="submit-btn float-right" type="submit" value="保存并去开通"/>
+        </div>
+        <div class="redirect clearfix">
+            <span class="float-right">暂不开通会员，<a>直接跳过</a></span>
+        </div>
+    #{/form}
+    </div>
+</div>

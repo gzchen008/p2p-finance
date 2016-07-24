@@ -1,0 +1,81 @@
+#{extends 'mobile/common/frmMain.html' /}
+#{set title:'财富'/}
+
+<div class="ui-content">
+<div class="ui-block-a ui-header pp-hd-wd">
+        <div class="ui-block-a"><div class="ui-body pp-hd-pd">待收收益(元)</div></div>
+        <div class="ui-block-r"><div class="ui-body"><a id="tradelist" href="javascript:void(0);">交易记录</a></div></div>
+    <div class="ui-block-a"><div class="pp-ta-nu"><em>${accountInfo?.repayment_invests?.format('###,##0.00')}</em></div></div>
+    <div class="pp-cl-bt"></div>
+    <div>
+   <ul class="pp-hd-wd pp-ul-pd">
+       <li>财富总额<sub>(元)</sub></li>
+       <li class="pb-li-rh"><dd>累计收益<sub>(元)</sub></dd></li>
+       <li><em>${(accountInfo?.user_account+accountInfo?.receive_amount)?.format('###,##0.00')}</em></li>
+       <li class="pb-li-rh"><dd><em>${accountInfo?.accumulative_invests?.format('###,##0.00')}</em></dd></li>
+   </ul>
+    </div>
+</div>
+
+</div>
+    <div class="pp-hd-wd ui-grid-a pp-md-div"  style="border-width:2px 0px; border-style:solid; border-color: #dfdede;">
+        <div id="receive_amount" class="ui-block-b ui-block-e pp-icon-pos">
+            <dd>待收金额<sub>(元)</sub></dd>
+            <dd><em>${accountInfo?.receive_amount?.format('###,##0.00')}</em></dd>
+        </div>
+        <div id="freeze" class="ui-block-b ui-block-e pp-da-lb pp-icon-pos">
+            <dd>冻结金额<sub>(元)</sub></dd>
+            <dd><em>${accountInfo?.freeze?.format('###,##0.00')}</em></dd>
+        </div>
+
+    </div>
+<div class="pp-hd-wd ui-grid-a pp-md-div">
+    <div class="ui-block-b ui-block-e">
+        <dd>可用余额<sub>(元)</sub></dd>
+        <dd><em>${(accountInfo?.user_account-accountInfo?.freeze)?.format('###,##0.00')}</em></dd>
+    </div>
+    <div class="ui-block-b ui-block-e pp-btn-rt">
+        <button class="ui-btn ui-btn-inline pp-bt-ft pp-bt-bk_1" id="rechargeBtn" data-inline="true">充值</button>
+        <button class="ui-btn ui-btn-inline pp-bt-ft pp-bt-bk_2" id="enchashBtn" data-inline="true">取现</button>
+    </div>
+
+</div>
+<div class="pp-div-ps">
+   <table class="pp-tb-wd" style="table-layout:fixed;">
+       <thead><tr><th>产品名</th><th>投资金额(元)</th><th>待收利益(元)</th><th>到期时间</th></tr></thead>
+       <tbody>
+       #{list items:bills, as:'bid'}
+       <tr><td><a id="product${bid_index}">${bid?.title}</a></td><td>${(bid?.receive_corpus).format('###,###,###,###,##0.00')}</td><td>${(bid?.income_amounts-bid?.receive_corpus).format('###,###,###,###,##0.00')}</td><td>${bid?.repayment_time.format('yyyy-MM-dd')}</td></tr>
+<!--
+       <tr><td colspan="4" id="d_product${bid_index}" class="pp-pop-width"><div >
+       ${bid?.bidStatus}
+       </div></td></tr>
+-->
+       #{/list}
+       </tbody>
+   </table>
+</div>
+<script>
+    $(function() {
+        $("#receive_amount").click(function(){
+            window.location.href="@{mobile.TradeController.remainMoney()}";
+        });
+        $("#freeze").click(function(){
+            window.location.href="@{mobile.TradeController.tradeList()}";
+        });
+        $("#tradelist").click(function(){
+            window.location.href="@{mobile.TradeController.tradeHistory()}";
+        });
+        $("#rechargeBtn").click(function(){
+            window.location.href="/mobile/account/recharge";
+        });
+        $("#enchashBtn").click(function(){
+            window.location.href="/mobile/account/enchash";
+        });
+    })
+
+</script>
+
+
+
+

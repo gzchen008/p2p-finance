@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="apple-mobile-web-app-capable" content="no"/>
+    <meta http-equiv='x-dns-prefetch-control' content='on'>
+
+   <title>充值</title>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile.theme-1.4.3.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/product.css'}"/>
+
+
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/jweixin-1.0.0.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/sha.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/sign.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/weixin.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/defaultshare.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+</head>
+<body>
+    <div class="ui-content rh_mg" data-role="content ">
+        <p>可用余额(元):</p>
+        <p><em>${paramJson?.balance?.format('###,##0.00')}</em></p>
+        <p>您准投资(元):<em>${paramJson?.investAmount}</em></p>
+
+    </div>
+
+    <form method="post" id="submit" data-ajax="false" action="/mobile/account/rechargeConfirm">
+        <div class="rh_cm_dv">
+            <label><strong>充值金额</strong></label>
+            <input type="tel" class="mobile_login_shurk" data-role="none" id="recharge" name="money" placeholder="请输入充值金额" >
+        </div>
+        <div class="ui-content">
+
+            <button class="rh_cm_bt" data-role="button">确定充值</button>
+
+            <p>充值后可用余额为<em><span id="allAmount">${paramJson?.balance?.format('###,##0.00')}</span></em>元</p>
+        </div>
+    </form>
+
+    <div class="ui-content">
+        <p>每个用户只能绑定一张银行卡作为快捷支付,一旦绑卡后也只能提现到该快捷卡</p>
+        <p class="rh_cm_pg"></p>
+        <p>为保障您账户资金的安全,如需换帮其他银行卡,需审核您的材料,请联系金豆荚客服400-728-0153,提供相关资料</p>
+    </div>
+</body>
+</html>
+
+<script>
+    $("#recharge").keyup(function(){
+        var money = $("#recharge").val();
+
+        $("#allAmount").html(Number(money) + Number(${paramJson?.balance}));
+    });
+</script>

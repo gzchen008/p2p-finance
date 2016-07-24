@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>ladding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}" />
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+</head>
+<body>
+<button id="login" data-role="button">登录</button>
+<button id="register" data-role="button">注册</button>
+<script>
+
+        function getCookie(name)
+        {
+            var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+            if(arr=document.cookie.match(reg))
+
+                return unescape(arr[2]);
+            else
+                return null;
+        }
+        var existToken =getCookie("SPSP_SESSION");
+
+
+
+    function inWeixin(){
+        var ua = navigator.userAgent.toLowerCase();
+        if(/MicroMessenger/ig.test(ua)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+        if(!existToken){
+            if(inWeixin()){
+
+            }
+        }
+    $("#login").click(function(){
+
+        window.location="/mobile/login";
+    })
+    $("#register").click(function(){
+        window.location="/mobile/register";
+    })
+</script>
+</body>
+</html>

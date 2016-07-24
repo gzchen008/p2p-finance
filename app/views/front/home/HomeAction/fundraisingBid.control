@@ -1,0 +1,49 @@
+<div class="item">
+    <div class="top">
+        <a href="@{front.invest.InvestAction.invest(bid?.id)}" target="_blank"><p>${bid?.title}</p></a>
+        <span class="income-rate">预期年化</span>
+        <div class="rate">
+            <span>${bid?.apr}</span>
+            <label>%</label>
+        </div>
+        #{if bid?.is_hot}
+            <div class="new_icon"></div>
+        #{/if}
+        <div class="prod-type-layout gong-icon"></div>
+    </div>
+    <div class="middle">
+        <p class="amount">融资金额：<span>${bid?.amount?.format('###,##0.00')}</span>元</p>
+        <div class="progress-bar">
+            #{if bid?.status == 1 || bid?.status == 2 }
+                <div class="progress-ing">&nbsp;</div>
+            #{/if}
+            #{if bid?.status == 4}
+                <div class="progress-finished">&nbsp;</div>
+            #{/if}
+        </div>
+        <div class="progress-detail clearfix">
+            <p class="float-left">已融资<span>${bid?.loan_schedule}%</span></p>
+            <p class="float-right">剩余融资：<span>#{format money:(bid?.amount-bid?.has_invested_amount)}#{/format}元</span></p>
+        </div>
+        <div class="item-require">
+            <table>
+                <tr>
+                    <td>
+                        <p>起购金额</p>
+                        <p class="number">${bid.min_invest_amount.format('###,##0.00')}元</p>
+                    </td>
+                    <td class="cutline">
+                        <p>项目期限</p>
+                        <p class="number">
+                            ${bid?.period?.formatPeriod(bid?.period_unit)}
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="bottom clearfix">
+        <button class="bids-btn" onClick="window.open('@{front.invest.InvestAction.invest(bid?.id)}')" target="_blank">  立即投标
+        </button>
+    </div>
+</div>

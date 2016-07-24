@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>待收金额</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}" />
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+</head>
+
+<body>
+
+
+
+<div data-role="page" id="index">
+
+
+    <div data-role="content " >
+        <div class="tl_hd_po">
+            <h3>待收金额(元)</h3>
+            <h1><span class="bp_font_red">${totalRemain.format('###,###,###,###,##0.00')}</span></h1>
+        </div>
+
+    </div>
+    <div class="tl_hd_bd">
+        <ul class="tl_title_cn">
+            <li>
+                到期时间
+            </li>
+            <li>
+                本金
+            </li>
+            <li>
+                预估收益
+            </li>
+        </ul>
+    </div>
+#{if billInvestView?.size==0}
+<p>
+    没有记录!
+</p>
+#{/if}
+#{else}
+#{list items:billInvestView, as:'bid'}
+    <div data-role="content tl_cn_pd" >
+
+        <ul class="tl_cn_cn">
+            <li>
+            ${bid?.title}
+            </li>
+
+        </ul>
+        <div class="clear_float"></div>
+            <ul class="tl_cn_cn">
+                <li>
+                ${bid?.repayment_time.format('yyyy-MM-dd')}
+                </li>
+                <li>
+                ${bid?.receive_corpus?.format('###,###,###,###,##0.00')}
+                </li>
+                <li>
+                ${(bid?.income_amounts-bid?.receive_corpus).format('###,###,###,###,##0.00')}
+                </li>
+            </ul>
+    </div>
+    <div class="clear_float"></div>
+    <hr class="tl_hr_bk">
+#{/list}
+#{/else}
+
+
+</div>
+
+
+
+</body>
+</html>

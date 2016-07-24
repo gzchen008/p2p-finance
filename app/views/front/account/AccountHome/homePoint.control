@@ -1,0 +1,20 @@
+<div class="xf_mem_xxhelp">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%" class="xf_mem_acc_wxtshi">
+								<tbody>
+									<tr>
+										<td valign="middle"><span class="xf_mem_wxts_td">温馨提示：</span></td>
+									  	<td><a href="@{front.account.Message.systemMsgs()}" target="_blank">未读站内信<span class="xf_mem_wxts_sz">【${unReadMsgCount}】</span></a></td>
+									  	<!--<td><a href="@{front.account.accountHome.myLoanBills()}" target="_blank">未处理借款账单<span class="xf_mem_wxts_sz">【${warmPrompt?.untreatedBillsCount}】</span></a></td> -->
+									  	<td><a href="@{front.account.InvestAccount.investBills()}" target="_blank">未处理理财账单<span class="xf_mem_wxts_sz">【${warmPrompt?.untreatedInvestBillsCount}】</span></a></td>
+									  	<!-- <td><a href="@{front.account.accountHome.auditingLoanBids()}" target="_blank">待审核借款标<span class="xf_mem_wxts_sz">【${warmPrompt?.auditingCount}】</span></a></td> -->
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<!--<td align="left" valign="middle"><a href="@{front.account.accountHome.repaymentBids()}" target="_blank">还款中借款标<span class="xf_mem_wxts_sz">【${warmPrompt?.repaymentingCount}】</span></a></td>-->
+									  	<td><a href="@{front.account.InvestAccount.repayingInvestBid()}" target="_blank">收款中理财标<span class="xf_mem_wxts_sz">【${warmPrompt?.receivableInvestBidsCount}】</span></a></td>
+									  	<!--<td><a href="@{front.account.accountHome.myLoanBills()}" target="_blank">逾期借款账单<span class="xf_mem_wxts_sz">【${warmPrompt?.overdueBillsCount}】</span></a></td>-->
+									  	<!--<td><a href="@{front.account.AccountHome.auditMaterialsIPS()}" target="_blank">须上传的审核资料<span class="xf_mem_wxts_sz">【${warmPrompt?.lackSuditItemCount}】</span></a></td>-->
+									</tr>
+								</tbody>
+							</table>
+						</div>

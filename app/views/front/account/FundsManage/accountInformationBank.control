@@ -1,0 +1,112 @@
+<div class="xf_zqzr_znx_window" id="xf_mem_zjyhzh_window">
+	<div class="xf_wyjkwszl_4_windowInner xf_hmd_sqtx_window">
+		<div class="xf_wyjkfb_4_windowClose" id="closeBank"></div>
+		<div class="xf_wyjkfb_4_windowColName" id="changeFont">
+			编辑银行账号
+		</div>
+		<div class="xf_zqzr_znx_windowCot xf_zqzr_zhxx_windowCot">
+			<table border="0" cellpadding="0" cellspacing="0" width="465" class="xf_zqzr_znx_teot xf_zqzr_sqtx_teot">
+				<tr>
+				<td align="right" valign="top">
+						<span class="xf_zqzr_znx_title">银行名称：</span>
+					</td>
+					<td>
+						<input class="xf_memvip_input" type="text" id="bankName"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" valign="top">
+						<span class="xf_zqzr_znx_title">账&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
+					</td>
+					<td>
+						<input class="xf_memvip_input" type="text" id="bankNumber"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<span class="xf_zqzr_znx_title">收&nbsp;款&nbsp;人： </span>
+					</td>
+					<td>
+						<input class="xf_memvip_input" type="text" id="receiver"/>
+						<input  type="hidden" id="bank">
+						<input  type="hidden" id="flag">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="xf_zqzr_znx_title">&nbsp;</span>
+					</td>
+					<td class="xf_zqzr_znx_title_td xf_zqzr_znx_title_tdtcc">
+						<a class="xf_con_inputfbjk" onClick="sure()">确 定</a>
+						<a class="xf_con_inputfbqux" onClick="cancle()">取 消</a>
+						
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+      $("#closeBank").click(function(){
+           $("#xf_mem_zjyhzh_window").hide();
+      });
+      
+      function sure(){
+          if($("#bankName").val() == ''){
+              alert("银行名称不能为空");
+              return;
+          }
+          
+          if($("#bankNumber").val() == ''){
+              alert("账号不能为空");
+              return;
+          }
+          
+          if($("#receiver").val() == ''){
+              alert("收款人不能为空");
+              return;
+          }
+          
+          var reg = /^\d{19}|\d{16}|\d{22}$/g;   // 以数字开头，总共16，19或者22位
+				
+					if( !reg.test($("#bankNumber").val())){
+					   alert("银行账号格式错误，应该是16,19或者22位数字！");
+					   return;
+					}
+      
+	      var value = $("#flag").val();
+	      if(value == 1){
+	           var addBank = #{jsAction @addBank(':addBankName', ':addAccount', ':addAccountName')/}
+			   $.post(addBank({addBankName:encodeURI($("#bankName").val()), addAccount:encodeURI($("#bankNumber").val()), addAccountName:encodeURI($("#receiver").val())}),function(data){
+			   var arr=eval(data);
+			   
+			   if(arr.error.code < 0){
+			       alert(arr.error.msg);
+			       return;
+			   }
+			   
+	           alert(arr.error.msg);
+	           $("#xf_mem_zjyhzh_window").hide();
+	           location.reload();
+	           });
+			   
+	      }else{
+	           var editBank = #{jsAction @editBank(':eidtAccountId', ':eidtBankName', ':eidtAccount', ':eidtAccountName')/}
+			   $.post(editBank({eidtAccountId:encodeURI($("#bank").val()), eidtBankName:encodeURI($("#bankName").val()), eidtAccount:encodeURI($("#bankNumber").val()), eidtAccountName:encodeURI($("#receiver").val())}),function(data){
+			   var arr=eval(data);
+			   
+			   if(arr.error.code < 0){
+			       alert(arr.error.msg);
+			       return;
+			   }
+	           alert(arr.error.msg);
+	           $("#xf_mem_zjyhzh_window").hide();
+	           location.reload();
+	       });
+	      }
+     }
+      
+      function cancle(){
+           $("#xf_mem_zjyhzh_window").hide();
+      }
+</script>

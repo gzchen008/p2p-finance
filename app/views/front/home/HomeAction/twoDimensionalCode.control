@@ -1,0 +1,26 @@
+                <div id="twoDimensionalCode">
+                    <div class="twoDimensionalCode-title">
+                        下载手机客户端
+                    </div>
+                    <div class="twoDimensionalCode-container">
+                        <div class="code-image"></div>
+                    </div>
+                    <div class="mobile-icon-container">
+                        <table>
+                            <tr>
+                                <td class="split-line">
+                                    <div>
+                                        <img src="public/images/new/iphone.png" width="40" height="40" alt="">
+                                        <p>APP Store</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <img src="public/images/new/android.png" width="40" height="40" alt="">
+                                        <p>Android</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>

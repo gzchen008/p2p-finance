@@ -1,0 +1,37 @@
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+#{extends 'common/frontMain.html' /}
+#{set title:currBackstageSet.seoTitle +' | 我的账户 | 我的账户首页' /}
+<!-- 内容区域 start -->
+<div class="xf_con_box">
+	<div class="xf_con_mem_nav"></div>
+	<!-- 左边导航区域 -->
+	#{include "front/account/AccountHome/homeLeft.control"/}
+	<!-- 右侧内容区域 -->
+	<div class="xf_mem_Account">
+		<h3 class="xf_mem_accout_title">账户总览</h3>
+		<div class="xf_mem_accout_cont clr">
+			#{include "front/account/AccountHome/homePhoto.control"/}
+			#{include "front/account/AccountHome/homeInfo.control"/}
+			<div class="clear"></div>
+			<!-- 温馨提示 -->
+			#{include "front/account/AccountHome/homePoint.control"/}
+		</div>
+	</div>
+	<!-- 账户总揽-->
+	#{include "front/account/AccountHome/homeView.control"/}
+	<!-- 转让和借款标详情 -->
+	<!--
+	#{include "front/account/AccountHome/homeRecommendation.control"/}
+	#{include "front/account/AccountHome/homeAssistant.control"/}
+	-->
+	#{include 'common/acitveEmail.control'/}
+	<!-- 清除浮动 -->
+	<div class="clear"></div>
+</div>
+<!-- 内容区域 end -->
+<!-- vip弹出层  -->
+#{include "front/account/AccountHome/homeVipApply.control"/}
+#{include "front/account/AccountHome/homeVipContent.control"/}
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_usr.js'}"></script>

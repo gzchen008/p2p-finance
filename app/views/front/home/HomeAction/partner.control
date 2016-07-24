@@ -1,0 +1,13 @@
+<div class="partner clearfix">
+    <p>合作伙伴</p>
+    <div>
+        #{list items:adsPartner,as:'adsPartner'}
+            <a href="${adsPartner?.url}" target="_blank">
+                #{img src:"${adsPartner?.imageFileName}",	alt:""}#{/img}
+            </a>
+        #{/list}
+    </div>
+    <div style="margin: 0 auto;">
+        <a href="@{front.help.HelpCenterAction.partner(-1008)}">查看全部保障机构</a>
+    </div>
+</div>

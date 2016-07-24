@@ -1,0 +1,60 @@
+ %{
+  business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+ <div class="xf_about_box">
+	<div class="xf_about_contet">
+		#{if mediaReportNews != null && mediaReportNews.size > 0}
+			<ul>
+			     #{list mediaReportNews}
+			     	<li><a href="${_?.content}" target="_blank">${_?.title}</a></li>
+			     #{/list}
+			</ul>
+		#{/if}
+		#{elseif latestNews != null && latestNews.size > 0}
+        	 <ul>
+				 #{list latestNews}
+					<li><a href="@{front.home.HomeAction.newsDetail(_?.id)}" target="_blank">${_?.title}</li>
+				 #{/list}
+			</ul>
+		#{/elseif}
+		#{elseif contentList != null && contentList.size > 0}
+		<ul class="xf_about_gltdul">
+			#{list contentList}
+				<li>			  		
+			  		<div class="xf_about_gltd_r">
+			  			
+			  			<div class="xf_about_gltd_rcon">
+			  				${_?.raw()}
+			  			</div>
+			  		</div>
+			  	</li>	
+			#{/list}
+		</ul>
+		#{/elseif}
+		#{elseif content == null}
+			暂无
+		#{/elseif}
+		#{else}
+			${content.raw()}
+		#{/else}					
+	</div>
+	<div class="clr">
+		<div class="xf_about_contet_l">
+			<span class="xf_about_contet_sz">${investData[0]}</span>投资人已加入${currBackstageSet?.platformName}
+		</div>
+		<div class="xf_about_contet_r">
+			<span class="xf_about_contet_sz2">
+			￥#{format money:investData[1]}#{/format}
+			
+			</span>投资额已交易成功
+		</div>
+	</div>
+</div>
+<!-- 清除浮动 -->
+<div class="clear"></div>
+	
+ <script>
+	$(function(){
+			$("#companyDescription").addClass("xf_con_wyjk_leftliisshow");
+	})
+</script>			

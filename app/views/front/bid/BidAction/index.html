@@ -1,0 +1,143 @@
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+#{extends 'common/frontMain.html' /} 
+#{set title:currBackstageSet.seoTitle +'|我要借款  '/}
+<div class="xf_c_wyjk_1_wyjk">
+	<!--我要借款内容区开始-->
+	<div class="xf_c_wyjk_1_wyjkWrap">
+		<!-- 借款流程/他在理财广告 -->
+		<div class="xf_c_wyjk_1_jklc">
+			#{include 'front/bid/BidAction/indexProcess.control'/}
+		</div>
+		<div class="xf_c_wyjk_2_jkcp">
+			<!--借款产品 start-->
+			<div class="xf_c_wyjk_2_jkcpHeader">
+				<span class="xf_c_wyjk_2_jkcpTitle">借款产品</span>
+			</div>
+			<div class="xf_c_wyjk_2_jkcpContent">
+				<!-- 借款产品 -->
+				#{include 'front/bid/BidAction/indexProduct.control'/}
+				<div class="clear"></div>
+			</div>
+			<!--借款产品 ends-->
+		</div>
+	</div>
+	<!--我要借款内容区结束-->
+</div>
+<!-- 最新满标 -->
+<div class="xf_c_idx_10_zxmbWrap" id="showFull">
+	<!--最新满标 start-->
+	<div class="xf_c_idx_10_header">
+		<span class="xf_c_idx_10_title" >最新满标</span>
+		<div class="xf_c_idx_4_news xf_c_two_news" id="FontScroll">
+			<ul>
+				#{list bids}
+				<li>
+				<a href="@{front.invest.investAction.invest(_?.id)}" target="_blank">
+				<span class="xf_c_idx_4_mebersNews">最新理财资讯：</span>
+				会员  ${_?.userName?.asterisk()},${_?.time?.format('yyyy-MM-dd HH:mm:ss')}发布了借款金额￥${_?.amount},年息${_?.apr}%募集中...
+				</a>
+				</li>
+				#{/list}
+			</ul>
+		</div>
+	</div>
+	<div class="xf_c_idx_10_zxmbContent" id="zxmbContent">
+		<!-- 最新满标分页查询页面 -->
+	</div>
+</div>	
+#{if code == -1}
+	#{include 'front/bid/BidAction/login.control'/}
+#{/if}
+#{elseif code == -2}
+	#{include 'front/bid/BidAction/acitveEmail.control'/}
+#{/elseif}
+#{elseif code == -3}
+	#{include 'front/bid/BidAction/addBaseInfo.html'/}
+#{/elseif}
+<script type="text/javascript">
+<!--
+	$(function(){	
+		fullbid(1);
+		
+		/* 自动投标签约 */
+		var code = ${code};
+		if (code == -5 && confirm("秒还借款满标后一秒钟系统会自动将借款金额还给投资人，是否确定发布秒还借款，如确定请先签约自动还款。")) {
+			window.open("@{front.account.PaymentAction.repaymentSigning()}");
+		}
+	});
+	
+	/* 最新满标 */
+	function fullbid(nowPage){
+		var action = #{jsAction @front.bid.bidAction.fullBid(':nowPage') /};
+		$.get(action({nowPage:nowPage}), function(data) {
+			if(data == "")
+				$("#showFull").hide();
+			else
+				$("#zxmbContent").html(data);
+		});
+	}
+	
+	
+	
+	(function($){
+	    $.fn.FontScroll = function(options){
+	        var d = {time: 3000,s: 'fontColor',num: 1}
+	        var o = $.extend(d,options);
+	        
+
+	        this.children('ul').addClass('line');
+	        this.children('ul').attr("style",'margin-top:0');
+	        var _con = $('.line').eq(0);
+	        var _conH = _con.height(); //滚动总高度
+	        var _conChildH = _con.children().eq(0).height();//一次滚动高度
+	        var _temp = _conChildH;  //临时变量
+	        var _time = d.time;  //滚动间隔
+	        var _s = d.s;  //滚动间隔
+
+
+	        _con.clone().insertAfter(_con);//初始化克隆
+
+	        //样式控制
+	        var num = d.num;
+	        var _p = this.find('li');
+	        var allNum = _p.length;
+
+	        _p.eq(num).addClass(_s);
+
+
+	        var timeID = setInterval(Up,_time);
+			this.hover(function(){clearInterval(timeID)},function(){timeID = setInterval(Up,_time);});
+
+	        function Up(){
+	        
+	            _con.animate({marginTop: '-'+_conChildH});
+	            //样式控制
+	            _p.removeClass(_s);
+	            num += 1;
+	            _p.eq(num).addClass(_s);
+	            
+	            if(_conH == _conChildH){
+	                _con.animate({marginTop: '-'+_conChildH},"normal",over);
+	            } else {
+	                _conChildH += _temp;
+	            }
+	        }
+	        function over(){
+	       
+	            _con.attr("style",'margin-top:0');
+	            _conChildH = _temp;
+	            num = 1;
+	            _p.removeClass(_s);
+	            _p.eq(num).addClass(_s);
+	        }
+	        
+	        
+	    }
+	})(jQuery);
+	
+	$('#FontScroll').FontScroll({time: 2000,num: 1});
+//-->
+</script>
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_bid.js'}"></script>

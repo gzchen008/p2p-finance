@@ -1,0 +1,73 @@
+    <!-- 内容区域 -->
+    <div class="xn_c_contentwarp">
+        <div class="xf_h_cwarp">
+            <div class="xf_h_tnews">
+                当前系统有 : 
+                <span class="xf_h_tnlbox"><span class="xf_h_tnl">${onlineUserNum}</span>个会员正在平台进行使用操作</span>
+                <span class="xf_h_tnlbox"><span class="xf_h_tnl">${supervisor?.onlineSupperSupervisorNum}</span> 个超级管理员正在进行管理操作</span>
+                <span class="xf_h_tnlbox"><span class="xf_h_tnl">${supervisor?.onlineNormalSupervisorNum}</span>个普通管理员正在进行管理操作</span>
+            </div>
+            <div class="xf_operators">
+                <h3>平台运营数据</h3>
+                <ul>
+                    <li>
+                        <div class="xf_da_date">
+                            <span class="xf_da_digital">${totalBidCount}</span>
+                            <span class="xf_da_unit">个</span>
+                        </div>
+                        <div class="xf_da_title_1">共发布借款标</div>
+                    </li>
+                    <li>
+                        <div class="xf_da_date">
+                            <span class="xf_da_digi_j">￥</span>
+                            <span class="xf_da_digital">
+                                #{if totalBidDealAmount > 100000000}
+                            		#{format money:totalBidDealAmount}#{/format}
+                            	#{/if}
+                            	#{else}
+                            		  ${totalBidDealAmount?.format('###,##0.00')}
+                            	#{/else}
+                           
+                            </span>
+                            <span class="xf_da_unit">元</span>
+                        </div>
+                        <div class="xf_da_title_2">合计交易</div>
+                    </li>
+                    <li class="home_zj_xg">
+                        &nbsp;
+                    </li>
+                    <li>
+                        <div class="xf_da_date">
+                            <span class="xf_da_digital">${totalInvestCount}</span>
+                            <span class="xf_da_unit">个</span>
+                        </div>
+                        <div class="xf_da_title_3">共产生理财交易</div>
+                    </li>
+                    <li>
+                        <div class="xf_da_date">
+                            <span class="xf_da_digi_j">￥</span>
+                            <span class="xf_da_digital">
+                            	#{if totalInvestDealAmount > 100000000}
+                            		#{format money:totalInvestDealAmount}#{/format}
+                            	#{/if}
+                            	#{else}
+                            		 ${totalInvestDealAmount?.format('###,##0.00')}
+                            	#{/else}
+                            </span>
+                            <span class="xf_da_unit">元</span>
+                        </div>
+                        <div class="xf_da_title_4">合计交易</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="xf_memlist">
+                <ul>
+                    <li>今日新注册会员：<span class="xf_mem_order">${todayRegisterUserCount}</span>个</li>
+                    <li>今日新增借款标申请：<span class="xf_mem_order">${todayBidCount}</span>个</li>
+                    <li>共发布资讯：<span class="xf_mem_order">${totalNewsCount}</span>条</li>
+                    <li>共有注册会员：<span class="xf_mem_order">${totalRegisterUserCount}</span>位</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 内容区域end -->

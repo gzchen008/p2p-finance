@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>请求乾多多接口</title>
+  </head>
+  <body>
+	<form id="form1" name="form1" action="${args.SubmitURL}" method="post">
+		#{list items:args.keySet(), as:'key'}
+			<input id="${key}" name="${key}" value="${args.get(key).raw()}" type="hidden" width="800"/><br>
+		#{/list}
+	</form>
+	
+	<script type="text/javascript">
+    	document.getElementById("form1").submit();
+    </script>
+</body>
+</html>

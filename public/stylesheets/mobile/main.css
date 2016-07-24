@@ -1,0 +1,614 @@
+table.gridtable {
+    font-family: verdana, arial, sans-serif;
+    font-size: 11px;
+    color: #333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+    width: 270px;
+}
+table.gridtable th {
+    text-align: center;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #dedede;
+}
+.btn-lg{
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px;
+}
+table.gridtable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #ffffff;
+}
+div.attention-class {
+    text-align: left;
+    color: rgb(123, 22, 22);
+    font-size: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+button {
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e74c3c), to(#e74c3c)) !important;
+    background-color: #e74c3c !important;
+    background-image: linear-gradient(to bottom, #e74c3c, #e74c3c) !important;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+html {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+}
+q, blockquote {
+    quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+    content: "";
+    content: none;
+}
+img {
+    width: 100%;
+    height: 5%;
+}
+img.activity-btn {
+    float: left;
+    padding-left: 8%;
+    padding-bottom: 20px;
+    width: 70%;
+    height: 40%;
+}
+div.activity-title {
+    font-weight: 900;
+    font-size: 14px;
+}
+div.activity-text {
+    text-align: left;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-right: 30px;
+    font-weight: 500;
+    line-height: 13pt;
+    font-family: st;
+}
+div.activity-inner-text {
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+div.activity-btn-div {
+    margin-top: 60px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+div.activity-one-btn-div {
+    margin-bottom: 30px;
+    margin-left: 100px;
+    margin-top: 30px;
+    margin-right: 100px;
+}
+div.activity-rule {
+    margin-top: 50px;
+    margin-left: 230px;
+    font-weight: 300;
+    color: red;
+}
+
+#reg > #top {
+    margin-top: 0px;
+    padding-top: 0px;
+    background-color: #e54d42;
+    color: white;
+    height: 40px;
+    text-align: center;
+}
+#reg > #top > p {
+    margin-top: 0px;
+    padding-top: 0px;
+    font-size: 26px;
+    font-weight: 100;
+}
+
+
+#reg > #bottom > p {
+    text-align: center;
+}
+
+.activity-ol {
+    list-style-type: decimal;
+    margin-left: 15px;
+    margin-top: 10px;
+    font-size: 1.1em
+}
+.activity-table {
+    margin-top: 15px;
+}
+.activity-inner-goden {
+    margin-top: 5px;
+}
+.activity-inner-text-goden {
+    margin-top: 10px;
+}
+.activity-inner-text-role {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.activity-head {
+    margin-top: 2px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 20px;
+}
+a img {
+    border: none;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+* {
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+}
+body {
+    font: 12px Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: #444;
+}
+.mymargin {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.margin-bottom{
+    margin-bottom:20px;
+}
+.content {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #fff;
+}
+@media screen and (max-width: 480px) {
+    .content {
+        font-size: 14px;
+    }
+}
+.true, .false {
+    display: inline-block;
+}
+.true {
+    color: #00c30e;
+}
+.false {
+    color: #d10013;
+}
+.bannerImg{
+    height: 160px;
+    height: 18em;
+ }
+.display-hidden{
+    display: none;
+}
+hr {
+    border: 0;
+    background: #ddd;
+    height: 1px;
+    margin: 10px 0;
+}
+.btn-right{
+    width:73%;
+    margin-left:20px!important
+}
+h1 {
+    color: #000;
+    font-size: 24px;
+}
+div[class*="attr"] {
+    padding: 3px 0;
+}
+div[class*="attr"] .true {
+    display: none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 1.3 / 1), only screen and (min-resolution: 125dpi), only screen and (min-resolution: 1.3dppx) {
+    div.attr-hdpi .true {
+        display: inline-block;
+    }
+    div.attr-hdpi .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    div.attr-ipad .true {
+        display: inline-block;
+    }
+    div.attr-ipad .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) {
+    div.attr-ipad-retina .true {
+        display: inline-block;
+    }
+    div.attr-ipad-retina .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1) {
+    div.attr-iphone3 .true {
+        display: inline-block;
+    }
+    div.attr-iphone3 .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape) {
+    div.attr-iphone3-landscape .true {
+        display: inline-block;
+    }
+    div.attr-iphone3-landscape .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1) and (orientation: portrait) {
+    div.attr-iphone3-portrait .true {
+        display: inline-block;
+    }
+    div.attr-iphone3-portrait .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2 / 3) {
+    div.attr-iphone4 .true {
+        display: inline-block;
+    }
+    div.attr-iphone4 .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2 / 3) and (orientation: landscape) {
+    div.attr-iphone4-landscape .true {
+        display: inline-block;
+    }
+    div.attr-iphone4-landscape .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2 / 3) and (orientation: portrait) {
+    div.attr-iphone4-portrait .true {
+        display: inline-block;
+    }
+    div.attr-iphone4-portrait .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40 / 71) {
+    div.attr-iphone5 .true {
+        display: inline-block;
+    }
+    div.attr-iphone5 .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40 / 71) and (orientation: landscape) {
+    div.attr-iphone5-landscape .true {
+        display: inline-block;
+    }
+    div.attr-iphone5-landscape .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40 / 71) and (orientation: portrait) {
+    div.attr-iphone5-portrait .true {
+        display: inline-block;
+    }
+    div.attr-iphone5-portrait .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) {
+    div.attr-iphone6 .true {
+        display: inline-block;
+    }
+    div.attr-iphone6 .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape) {
+    div.attr-iphone6-landscape .true {
+        display: inline-block;
+    }
+    div.attr-iphone6-landscape .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+    div.attr-iphone6-portrait .true {
+        display: inline-block;
+    }
+    div.attr-iphone6-portrait .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) {
+    div.attr-iphone6p .true {
+        display: inline-block;
+    }
+    div.attr-iphone6p .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
+    div.attr-iphone6p-landscape .true {
+        display: inline-block;
+    }
+    div.attr-iphone6p-landscape .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+    div.attr-iphone6p-portrait .true {
+        display: inline-block;
+    }
+    div.attr-iphone6p-portrait .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+    div.attr-ipad-landscape .true {
+        display: inline-block;
+    }
+    div.attr-ipad-landscape .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+    div.attr-ipad-portrait .true {
+        display: inline-block;
+    }
+    div.attr-ipad-portrait .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape) {
+    div.attr-ipad-retina-landscape .true {
+        display: inline-block;
+    }
+    div.attr-ipad-retina-landscape .false {
+        display: none;
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+    div.attr-ipad-retina-portrait .true {
+        display: inline-block;
+    }
+    div.attr-ipad-retina-portrait .false {
+        display: none;
+    }
+}
+div.attr-max-width span[class*="max-width"] {
+    display: inline-block;
+    padding-right: 5px;
+    color: #bbb;
+}
+@media screen and (max-width: 320px) {
+    div.attr-max-width span.max-width-320 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-width: 480px) {
+    div.attr-max-width span.max-width-480 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-width: 768px) {
+    div.attr-max-width span.max-width-768 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-width: 1024px) {
+    div.attr-max-width span.max-width-1024 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-width: 1200px) {
+    div.attr-max-width span.max-width-1200 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-width: 1400px) {
+    div.attr-max-width span.max-width-1400 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-width: 1600px) {
+    div.attr-max-width span.max-width-1600 {
+        color: #00c30e;
+    }
+}
+div.attr-min-width span[class*="min-width"] {
+    display: inline-block;
+    padding-right: 5px;
+    color: #bbb;
+}
+@media screen and (min-width: 320px) {
+    div.attr-min-width span.min-width-320 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-width: 480px) {
+    div.attr-min-width span.min-width-480 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-width: 768px) {
+    div.attr-min-width span.min-width-768 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-width: 1024px) {
+    div.attr-min-width span.min-width-1024 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-width: 1200px) {
+    div.attr-min-width span.min-width-1200 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-width: 1400px) {
+    div.attr-min-width span.min-width-1400 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-width: 1600px) {
+    div.attr-min-width span.min-width-1600 {
+        color: #00c30e;
+    }
+}
+div.attr-min-screen-height span[class*="min-screen-heigh"] {
+    display: inline-block;
+    padding-right: 5px;
+    color: #bbb;
+}
+@media screen and (min-height: 320px) {
+    div.attr-min-screen-height span.min-screen-height-320 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-height: 480px) {
+    div.attr-min-screen-height span.min-screen-height-480 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-height: 768px) {
+    div.attr-min-screen-height span.min-screen-height-768 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-height: 1024px) {
+    div.attr-min-screen-height span.min-screen-height-1024 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-height: 1200px) {
+    div.attr-min-screen-height span.min-screen-height-1200 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-height: 1400px) {
+    div.attr-min-screen-height span.min-screen-height-1400 {
+        color: #00c30e;
+    }
+}
+@media screen and (min-height: 1600px) {
+    div.attr-min-screen-height span.min-screen-height-1600 {
+        color: #00c30e;
+    }
+}
+div.attr-max-screen-height span[class*="max-screen-heigh"] {
+    display: inline-block;
+    padding-right: 5px;
+    color: #bbb;
+}
+@media screen and (max-height: 320px) {
+    div.attr-max-screen-height span.max-screen-height-320 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-height: 480px) {
+    div.attr-max-screen-height span.max-screen-height-480 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-height: 768px) {
+    div.attr-max-screen-height span.max-screen-height-768 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-height: 1024px) {
+    div.attr-max-screen-height span.max-screen-height-1024 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-height: 1200px) {
+    div.attr-max-screen-height span.max-screen-height-1200 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-height: 1400px) {
+    div.attr-max-screen-height span.max-screen-height-1400 {
+        color: #00c30e;
+    }
+}
+@media screen and (max-height: 1600px) {
+    div.attr-max-screen-height span.max-screen-height-1600 {
+        color: #00c30e;
+    }
+}
+#purchase_btn {
+    margin: 10px;
+}
+.hide {
+    display: none;
+}
+.error-pos{
+    font-size: 0.5em;
+    margin-left: 10%;
+}
+
+
+.download-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px;
+    color: #fff;
+    border-color: #2e6da4;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border: 1px solid transparent;
+    background-color: #e74c3c !important;
+    background-image: linear-gradient(to bottom, #e74c3c, #e74c3c) !important;
+    overflow: visible;
+
+}
+
+

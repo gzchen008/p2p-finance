@@ -1,0 +1,43 @@
+<div class="item">
+    <div class="top">
+        <a href="@{front.invest.InvestAction.invest(bid?.id)}" target="_blank"><p>${bid?.title}</p></a>
+        <span class="income-rate">预期年化</span>
+        <div class="rate">
+            <span>${bid?.apr}</span>
+            <label>%</label>
+        </div>
+        #{if bid?.is_hot}
+            <div class="new_icon"></div>
+        #{/if}
+        <div class="prod-type-layout gong-icon"></div>
+    </div>
+    <div class="middle">
+        <p class="amount">融资金额：<span>${bid?.amount?.format('###,##0.00')}</span>元</p>
+        <div class="progress-bar">
+            <div class="sellout-icon"></div>
+            <div class="progress-finished">&nbsp;</div>
+        </div>
+        <div class="progress-detail clearfix">
+            <p>融资成功</p>
+        </div>
+        <div class="item-require">
+            <table>
+                <tr>
+                    <td>
+                        <p>起购金额</p>
+                        <p class="number">${bid.min_invest_amount.format('###,##0.00')}元</p>
+                    </td>
+                    <td class="cutline">
+                        <p>项目期限</p>
+                        <p class="number">
+                            ${bid?.period?.formatPeriod(bid?.period_unit)}
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="bottom clearfix">
+       <a class="text-panel" target="_blank" href="@{front.invest.InvestAction.invest(bid?.id)}">已售完，点击查看详情</a>
+    </div>
+</div>

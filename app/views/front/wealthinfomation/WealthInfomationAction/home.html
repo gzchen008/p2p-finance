@@ -1,0 +1,10 @@
+#{extends 'common/frontMain.html' /}
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+#{set title:currBackstageSet.seoTitle+'|财富资讯' /}
+<!--财富信息内容-->
+#{include 'front/wealthinfomation/WealthInfomationAction/homeWealthInfomationAction.html'/} 
+<!--财富工具箱-->
+#{include 'front/wealthinfomation/WealthInfomationAction/homeTools.html'/}
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_wealth.js'}"></script>

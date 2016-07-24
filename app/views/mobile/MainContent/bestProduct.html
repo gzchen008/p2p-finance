@@ -1,0 +1,74 @@
+#{extends 'mobile/common/frmMain.html' /}
+#{set title:'金品' /}
+<div id="demo1" class="slideBox">
+    <ul class="items">
+    #{list items:message?.list,as:'list'}
+        <li><a href=${list?.url} target="_blank" title="这里是测试标题一"><img alt="图像" class="banner_image_width" src=${list?.image}></a></li>
+    #{/list}
+    </ul>
+</div>
+
+<div class="clear"></div>
+#{if bid!=null}
+    <div role="main" class="ui-content bt-pd-padding">
+        <div id="biddetail">
+        <h3>${bid?.title}</h3>
+              <p class="bp_font_p">预期年化收益</p>
+                 <dd class="bp_font_apr">${bid?.apr}<sub class="bp-sb">%</sub></dd>
+        <dt class="">投资1万元每天可赚取<sapn class="bp_font_red">${(bid?.apr * 100 /365).format('##,###,##0.00')}</sapn>元</dt>
+        <div class="bp_productListBox">
+            <div class="bp_bp_productList_l">
+                <canvas id="bp_first_pro" data-id=${bid?.id} width="54" height="54">您的浏览器不支持HTML5 canvas，请换用现代浏览器。</canvas>
+            </div>
+            <div class="bp_bp_productList_r">
+                <ul class="bp_ul">
+                    <li><sapn class="bp_font_red">${bid?.min_invest_amount}</sapn>元起购  期限<sapn class="bp_font_red">${bid?.period}</sapn>#{if bid?.period_unit == 0}个月#{/if} #{if bid?.period_unit == 1}天#{/if} #{if bid?.period_unit == -1}年#{/if} </li>
+                    <li>剩余可投<sapn  id="invest_money" class="bp_font_red">${(bid?.amount-bid?.has_invested_amount).format('###,###,###,###,##0.00')}</sapn>元</li>
+                </ul>
+            </div>
+        </div>
+             #{if bid?.time }
+            <button class="ui-btn ui-corner-all bp_bt_color" id="confirmInvestBtn">立刻投标</button>
+            #{/if}
+            #{else}
+                <input id="countdownTime" type="hidden" value="${bid?.investExpireTime?.format('yyyy/MM/dd HH:mm:ss')}"></input>
+                <div class="ui-grid-a">距离购买结束：
+                    <span id="day"></span>天
+                    <span id="hours"></span>小时
+                    <span id="minutes"></span>分
+                    <span id="seconds"></span>秒
+                </div>
+            #{/else}
+        </div>
+            <div class="bp_sec_icon">
+              <img  src="@{'/public/images/h5icon/safe.png'}">
+                <span class="bp_fix_font">中信银行全程保证资金安全</span>
+            </div>
+    </div><!-- /content -->
+#{/if}
+
+<script>
+    var banner_height=screen.height/24*7 > 220 ? 220 : screen.height/24*7;
+
+    $("#demo1").slideBox(
+            {
+                hideClickBar :false,
+                height:banner_height,
+                hideBottomBar :false
+
+            });
+
+    $('img').css('height',banner_height);
+    $('img').css('width',"100%");
+    $("#demo1").css("height",$('img').css('height'));
+
+//    *********投资比例图*******************
+    var invest='${bid?.has_invested_amount}';
+    var amonut='${bid?.amount}'
+    var   percent=invest/amonut;
+    drawPercent_small("bp_first_pro",percent,0.85,0.85);
+    
+
+    showTime($("#countdownTime"), $("#day"),$("#hours"), $("#minutes"), $("#seconds"));
+
+</script>

@@ -1,0 +1,190 @@
+#{extends 'common/supervisor.html' /}
+#{set title:'交易掉单' /}
+<div class="xn_c_contentwarp">
+  <div class="xn_c_contentlist">
+    #{include 'supervisor/financeManager/common/financeManageLeft.control'/}
+		<div class="xn_c_content">
+		  <div class="xf_ht_tablelist">
+		    <!-- 搜索 -->
+		    #{form @supervisor.financeManager.PlatformAccountManager.ipsDetails(), id:'form'}
+		    <div class="xf_ht_search_inon">
+		      <div class="xf_ht_search_r">
+		        <div class="xf_ht_search_xl">
+		          <span class="search_timesp">会员名：</span>
+		          <input name="userName" type="text" class="search_w" id="userName" value="${page.conditions?.userName}" />
+		        </div>
+		        <div class="xf_ht_search_xl">
+		          <span class="search_timesp">订单号：</span>
+		          <input name="merBillNo" type="text" class="search_w" id="merBillNo" value="${page.conditions?.merBillNo}" />
+		        </div>
+		        <div class="xf_ht_search_xl">
+				      <select name="type" class="xfht_t_j_td_1">
+		            <option value="0">全部</option>
+		            <option value="8" #{if page?.conditions?.type == 8} selected="selected" #{/if}>充值</option>
+		            <option value="13" #{if page?.conditions?.type == 13} selected="selected" #{/if}>提现</option>
+		            <option value="2" #{if page?.conditions?.type == 2} selected="selected" #{/if}>发标</option>
+		            <option value="3" #{if page?.conditions?.type == 3} selected="selected" #{/if}>投标</option>
+		            <option value="91" #{if page?.conditions?.type == 91} selected="selected" #{/if}>转账(放款)</option>
+		            <option value="94" #{if page?.conditions?.type == 94} selected="selected" #{/if}>转账(债权转让)</option>
+		            <option value="5" #{if page?.conditions?.type == 5} selected="selected" #{/if}>债权转让</option>
+		            <option value="10" #{if page?.conditions?.type == 10} selected="selected" #{/if}>还款</option>
+		          </select>
+				    </div>
+		        <div class="xf_ht_search_xl">
+				      <select name="status" class="xfht_t_j_td_1">
+		            <option value="0">全部</option>
+		            <option value="1" #{if page?.conditions?.status == 1} selected="selected" #{/if}>成功</option>
+		            <option value="2" #{if page?.conditions?.status == 2} selected="selected" #{/if}>失败</option>
+		            <option value="10" #{if page?.conditions?.status == 10} selected="selected" #{/if}>待解冻</option>
+		            <option value="11" #{if page?.conditions?.status == 11} selected="selected" #{/if}>已解冻</option>
+		          </select>
+				    </div>
+		        <div class="xf_ht_search_xl">
+		          <span class="search_timesp">交易时间：</span>
+		          <input name="beginTime" type="text" id="startDate" class="search_time" onclick="laydate()" style="cursor: pointer" value='${page?.conditions?.beginTime?.format("yyyy-MM-dd")}' />
+		          <span class="search_timesp">--</span>
+		          <input name="endTime" type="text" id="endDate" class="search_time" onclick="laydate()" style="cursor: pointer" value='${page?.conditions?.endTime?.format("yyyy-MM-dd")}' />
+		        </div>
+		        <div class="xf_ht_search_xl">
+		          <input type="submit" class="search_button" value="搜索" />
+		        </div>
+		      </div>
+		    </div>
+		    #{/form}
+		    <!-- 列表内容 -->
+		    <div class="xn_c_content_top">
+		      #{table class:"xn_c_content_list",cellspacing:"0",cellpadding:"0",border:"0",tr_class_odd:"xn_tr_bj"}
+		        #{tr}
+		          #{th}序号#{/th}
+		          #{th}订单号#{/th}
+		          #{th}会员名#{/th}
+		          #{th}交易时间#{/th}
+		          #{th}交易类型#{/th}
+		          #{th}交易状态#{/th}
+		          #{th}备注#{/th}
+		          #{th}操作#{/th}
+		        #{/tr}
+		        #{list page?.page}
+		        #{tr tr_index:_index}
+		          #{td}${(page?.currPage - 1) * page?.pageSize + _index}#{/td}
+		          #{td}${_?.mer_bill_no}#{/td}
+		          #{td}${_?.user_name}#{/td}
+		          #{td}${_?.time?.format("yyyy-MM-dd HH:mm")}#{/td}
+		          #{td}
+		          #{if _?.type == 8}
+		          充值
+		          #{/if}
+		          #{elseif _?.type == 13}
+		          提现
+		          #{/elseif}
+		          #{elseif _?.type == 2}
+		          发标
+		          #{/elseif}
+		          #{elseif _?.type == 3}
+		          投标
+		          #{/elseif}
+		          #{elseif _?.type == 91}
+		          转账(放款)
+		          #{/elseif}
+		          #{elseif _?.type == 94}
+		          转账(债权转让)
+		          #{/elseif}
+		          #{elseif _?.type == 5}
+		          债权转让
+		          #{/elseif}
+		          #{elseif _?.type == 10}
+		          还款
+		          #{/elseif}
+		          #{/td}
+		          #{td}
+		          #{if _?.status == 1}
+		          成功
+		          #{/if}
+		          #{elseif _?.status == 2}
+		          失败
+		          #{/elseif}
+		          #{elseif _?.status == 10}
+		         待解冻
+		          #{/elseif}
+		          #{elseif _?.status == 11}
+		          已解冻
+		          #{/elseif}
+		          #{/td}
+		          #{td}${_?.memo}#{/td}
+		          #{td}
+		          #{if _?.status == 1 || _?.status == 11}
+		          ---
+		          #{/if}
+		          #{elseif _?.status == 2}
+		          <a href="javascript:void(0)" onClick="repair('${_?.mer_bill_no}', '${_?.type}');" class="xf_ta_onclick">补单</a>
+		          #{/elseif}
+		          #{elseif _?.type == 3 && isWS}
+		          	<a href="javascript:void(0)" onClick="unfreezeWS('${_?.mer_bill_no}');" class="xf_ta_onclick">解冻</a>
+		          #{/elseif}
+		          #{elseif _?.type == 3 && !isWS}
+		          	<a href="javascript:void(0)" onClick="unfreezePOST();" class="xf_ta_onclick">解冻</a>
+			        #{form @front.account.PaymentAction.unfreezeInvestAmount(), id:'unfreeze_form'}
+			          <input name="merBillNo" type="hidden" id="merBillNo" value="${_?.mer_bill_no}" />
+			        #{/form}
+		          #{/elseif}
+		          #{/td}
+		        #{/tr}
+		        #{/list}
+		      #{/table}
+		    </div>
+		    <!-- 列表底部 -->
+		    <div class="xn_c_content_bottom">
+		      <div class="page_warp">
+		        #{page currPage:page?.currPage,pageSize:page?.pageSize,totalCount:page?.totalCount,theme:1,style:4}userName=${page?.conditions?.userName}&merBillNo=${page?.conditions?.merBillNo}&type=${page?.conditions?.type}&status=${page?.conditions?.status}&beginTime=${page?.conditions?.beginTime?.format("yyyy-MM-dd")}&endTime=${page?.conditions?.endTime?.format("yyyy-MM-dd")}
+		        #{/page}
+		      </div>
+		    </div>
+		  </div>
+		</div>
+  </div>
+</div> 
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_mg_bill.js'}"></script>
+<script>
+	$(function(){
+		//高亮显示
+		showHighLight(4,4,26);
+	})
+	
+	function repair(merBillNo, type) {
+	  $.ajax({
+		  url : "@{supervisor.financeManager.PlatformAccountManager.ipsRepair()}",
+		  type : "POST",
+		  data : {
+		    "merBillNo" : merBillNo,
+		    "type" : type
+		  },
+		  success : function(data) {
+		  	alert(data.msg);
+		  	if (data.code >= 0) {
+					location.reload();
+				}
+		  }
+	  });
+	}
+	
+	function unfreezeWS(merBillNo) {
+		  alert("hh");
+	  $.ajax({
+		  url : "@{front.account.PaymentAction.unfreezeInvestAmountWS()}",
+		  type : "POST",
+		  data : {
+		    "merBillNo" : merBillNo
+		  },
+		  success : function(data) {
+		  	alert(data.msg);
+		  	if (data.code >= 0) {
+					location.reload();
+				}
+		  }
+	  });
+	}
+	
+	function unfreezePOST() {
+		document.getElementById("unfreeze_form").submit();
+	}
+</script>

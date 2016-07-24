@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>开通账户</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}"/>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/common.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/mobileCommon.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/verification.js'}"></script>
+
+</head>
+
+<body>
+<div data-role="page" id="index">
+    <div class="ui-content oa_ft">
+        <p>注:身份信息直接影响交易操作,请如实填写</p>
+
+    </div>
+    <form method="post" id="submit" data-ajax="false" action="/mobile/account/saveUser">
+        <div class="ui-content oa_sy">
+        <span><s>*</s>真实姓名</span><input type="text" id="realName" name="realName" placeholder="请输入真实姓名" class="oa_ip_na" data-role="none" value="${flash?.realName}"/>
+        </div>
+        <div class="ui-content oa_sy">
+            <span><s>*</s>身份证号</span><input type="text" id="cardId" name="cardId" placeholder="请输入身份证号" class="oa_ip_na" data-role="none" value="${flash?.cardId}"/>
+        </div>
+        <div class="ui-content oa_sy">
+            <span><s>*</s>电子邮件</span><input type="text" id="email" name="email" placeholder="请输入电子邮件地址" class="oa_ip_na" data-role="none" value="${flash?.email}"/>
+        </div>
+        <a class="ui-btn ui-corner-all ui-shadow ui-btn-b oa_btn_bk"  type="submit" onclick="saveAcct()">完 成</a>
+    </form>
+
+    <p class="oa_ft_p">暂不开通会员,<a id="bestProduct" href="../MainContent/bestProduct.html" href="javascript:void(0);">直接跳过</a></p>
+    <div class="oa_er_bk">
+    <div class="oa_error">
+        <h3>错误提示</h3>
+        <p class="error_content" id="error_content"></p>
+        <button data-role="button" id="close" class="os_cf" onclick="closeErrorTips();">确定</button>
+    </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        var error = '${flash?.error}';
+        if (error == null || error == undefined || error == '') {
+            $(".oa_er_bk").hide();
+        }else{
+            $(".oa_er_bk").show();
+            $("#error_content").text(error);
+        }
+    });
+
+    $("#bestProduct").click(function(){
+        window.location.href="/mobile/content/bestProduct"
+    });
+
+    function saveAcct(){
+        var realName = veriUserName($("#realName").val());
+        if (realName != true) {
+            $(".oa_er_bk").show();
+            $("#error_content").text(realName);
+            return;
+        }
+
+        var cardId = veriIdentity($("#cardId").val());
+        if (cardId != true) {
+            $(".oa_er_bk").show();
+            $("#error_content").text(cardId);
+            return;
+        }
+
+        var email = veriEmail($("#email").val());
+        if (email != true) {
+            $(".oa_er_bk").show();
+            $("#error_content").text(email);
+            return;
+        }
+
+        $("#submit").submit();
+    };
+
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<div class="info-panel-container info-panel-gap float-right clearfix">
+    <div class="title-header clearfix">
+        <span class="title-name float-left">最新动态</span>
+        <span class="more-info float-right"><a  href="@{front.home.HomeAction.aboutUs(-1010)}" target="_blank">更多</a></span>
+    </div>
+    <div class="info-list">
+        <ul>
+            #{list items:latestNews , as:'latestNew'}
+                <li>
+                    <a class="news-title" href="@{front.home.HomeAction.newsDetail(latestNew?.id)}" target="_blank">${latestNew?.title}</a>
+                    <span class="publish-date">${latestNew.time?.format('yyyy-MM-dd')}</span>
+                </li>
+            #{/list}
+        </ul>
+    </div>
+</div>

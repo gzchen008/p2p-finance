@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>landing page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/landing-page.css'}" />
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/mobile/landingpage.js'}"></script>
+</head>
+<body>
+    <header>
+        <div class="adv_banner clearfix" id="banner">
+            <!--首页图片轮换添加div层(其它内容是原来的)-->
+            <div class="scroll-box">
+                <!--banner start-->
+                <ul class="banul" id="banul">
+                    <li>
+                        <a style="cursor: default;">
+                            <img src="@{'/public/images/front_ad_1.png'}" alt="广告" onerror="this.src='/public/images/default.png'"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="cursor: default;">
+                            <img src="@{'/public/images/front_ad_2.png'}" alt="广告" onerror="this.src='/public/images/default.png'"/>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a style="cursor: default;">
+                            <img src="@{'/public/images/front_ad_3.png'}" alt="广告" onerror="this.src='/public/images/default.png'"/>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a style="cursor: default;">
+                            <img src="@{'/public/images/front_ad_4.png'}" alt="广告" onerror="this.src='/public/images/default.png'"/>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a style="cursor: default;" >
+                            <img src="@{'/public/images/front_ad_5.png'}" alt="广告" onerror="this.src='/public/images/default.png'"/>
+                        </a>
+                    </li>
+                </ul>
+                <!--banner end-->
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="advantage">
+            <header>
+                加薪猫理财有什么优势？
+            </header>
+            <div class="first">
+                <i class="diamond_icon"></i>
+                <div class="info">
+                    <p class="info-header">稀缺之选</p>
+                    <p class="detail">甄选顶级投资项目</p>
+                    <p class="detail">提供行业最前段顶级投资项目</p>
+                </div>
+            </div>
+            <div class="second">
+                <i class="guard_icon"></i>
+                <div class="info">
+                    <p class="info-header">信任之选</p>
+                    <p class="detail">中伦律所提供常年法律顾问</p>
+                    <p class="detail">中信银行360度资金监管</p>
+                </div>
+            </div>
+            <div class="third">
+                <i class="rocket_icon"></i>
+                <div class="info">
+                    <p class="info-header">财富之选</p>
+                    <p class="detail">平均年化收益12%</p>
+                    <p class="detail">银行活期的35倍，宝宝类的3倍</p>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <header>
+                加薪猫理财有什么好产品？
+            </header>
+            <div class="new-user-info"></div>
+            <div class="good-bid-info"></div>
+        </div>
+        <br>
+        <br>
+    </main>
+    <footer>
+        <div class="float-login">
+            <div class="register-btn">
+                <a>5秒立即完成注册</a>
+            </div>
+            <p>已有账号？<a class="login-btn">立即登录</a></p>
+        </div>
+    </footer>
+</body>
+</html>

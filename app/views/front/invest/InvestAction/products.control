@@ -1,0 +1,56 @@
+%{
+	java.util.Date currentDate = utils.DateUtil.currentDate();
+}%
+#{list items:pageBean.page, as:'bid'}
+
+<div class="prod-item clearfix">
+	<div class="title">
+		#{img src:"${bid.small_image_filename}"}#{/img}
+		<a class="name"<a href="@{invest(bid.id)}" target="_blank">${bid.title}</a>
+	</div>
+	<div class="detail-info">
+		<ul>
+			<li class="first-col">
+				<div>年化收益率 : <span class="highlight">${bid.apr}%</span></div>
+				<div class="second-row">起投金额 : <span >${bid.min_invest_amount?.format('###,##0.00')}</span>元</div>
+			</li>
+			<li class="second-col">
+				<div>项目期限 : <span>${bid?.period.formatPeriod(bid.period_unit)}</span></div>
+				<div class="second-row">融资规模 : <span>${(bid.amount/10000).format('###,##0.00')}</span>万元</div>
+			</li>
+			<li class="third-col">
+				<div>还款方式 : <span>${bid.repay_name}</span></div>
+				<div class="second-row">剩余可投金额 : <span>${(bid.amount-bid.has_invested_amount).format('###,##0.00')}</span>元</div>
+			</li>
+			<li class="fourth-col">
+				<div>项目进度 : <span>${bid.loan_schedule}%</span></div>
+				<div class="progress-container second-row">
+					<div class="progress-bar">
+						<div class="progress-ing">&nbsp;</div>
+					</div>
+				</div>
+			</li>
+			<li class="fifth-col">
+                #{if bid?.statusType == 2}
+                	#{if bid.time > currentDate}
+                		<div class="bt-countdown">${bid.time-currentDate}后起投</div>
+                	#{/if}
+                	#{elseif bid.amount == bid.has_invested_amount}
+                		<div class="bt-return-ing"><a class="bids-btn" href="@{invest(bid?.id)}" target="_blank">已售完...</a></div>
+                	#{/elseif}
+                	#{else}
+                		<div class="bids-btn"><a class="bids-btn" href="@{invest(bid?.id)}" target="_blank">立即投标</a></div>
+                	#{/else}
+                #{/if}
+                #{if bid?.statusType == 4}
+					 <div class="bt-return-ing"><a class="bids-btn" href="@{invest(bid?.id)}" target="_blank">还款中...</a></div>
+				#{/if}
+                #{if bid?.statusType == 5}
+					 <div class="bt-return-ing"><a class="bids-btn" href="@{invest(bid?.id)}" target="_blank">已还款...</a></div>
+				#{/if}
+
+			</li>
+		</ul>
+	</div>
+</div>
+#{/list}

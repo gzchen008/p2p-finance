@@ -1,0 +1,161 @@
+#main {
+    background-color: #F8F8F8;
+    padding-bottom: 4%;
+}
+
+.top-cutting-line{
+    border-color: red;
+    background-color: red;
+}
+
+.register-container {
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 4%;
+    border: solid 1px #ececec;
+    background-color: #FFFFFF;
+}
+
+.register-container .header {
+    line-height: 40px;
+    border-bottom: solid 1px #ececec;
+}
+
+.header a{
+    font-size: 0.8em;
+    color: #36C4EA;
+}
+
+.company-name {
+    font-weight: bold;
+    margin-left: 10px;
+
+}
+
+.note {
+    margin-left: 10px;
+    font-size: 0.8em;
+}
+
+.body {
+    width:  90%;
+    margin: 40px auto;
+}
+
+.body .advertisement{
+    background-image: url("../../images/new/advistment.png");
+    width: 410px;
+    height: 410px;
+    float: left;
+}
+
+
+.body .form {
+    float: left;
+    margin-left: 5%;
+    border: solid 1px #ececec;
+}
+
+.form .tab {
+    width: 350px;
+}
+
+.tab .selected-tab {
+    border-bottom: solid 5px #CB2901;
+    width: 100%;
+}
+
+.tab li {
+    float: left;
+    width: 49.6%;
+    border-bottom: solid 1px #ececec;
+    text-align: center;
+}
+
+.cutline{
+    border-left: solid 1px #ececec;
+}
+
+
+.tab li button {
+    background-color: #fff;
+    border: none;
+    border-bottom: solid 1px #ececec;
+    height: 2.9em;
+    line-height:  3em;
+}
+
+.form div {
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.form label {
+    display: inline-block;
+    text-align: right;
+    font-weight: bold;
+}
+
+.form input{
+    margin-left: 20px;
+    line-height: 2.5em;
+    border: solid 1px #d9d9d9;
+    height: 2.5em;
+    width: 220px;
+}
+
+.form .save-user-name {
+    width: 240px;
+    margin-left: 65px;
+}
+
+.save-user-name .check-box {
+    width: 15px;
+    float: left;
+    margin-top: -6px;
+}
+
+.save-user-name span {
+    float: left;
+}
+
+.save-user-name a {
+    float: right;
+    color: #36C4EA;
+}
+
+.form .submit-btn-container {
+    margin-top:-20px;
+}
+
+.submit-btn-container .submit-btn{
+    width: 220px;
+    margin-left: 65px;
+    background-color: #CB2901;
+    color: #FFFFFF;
+    height: 40px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.form .free-register{
+    width: 285px;
+    margin-top: -10px;
+}
+
+.free-register a {
+    float: right;
+    color:#ff7b00;
+}
+
+.form .partner {
+    margin: 0;
+    padding: 0;
+    margin-top: -20px;
+    border-top: solid 1px #ececec;
+}
+
+.partner p {
+    margin: 15px;
+}

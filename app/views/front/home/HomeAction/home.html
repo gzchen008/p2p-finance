@@ -1,0 +1,34 @@
+%{
+business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+<head>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/new_css/home.css'}" />
+    <script type="text/javascript" src="@{'/public/javascripts/new/home.js'}"></script>
+</head>
+#{extends 'common/frontMain.html' /}
+#{set title:currBackstageSet.seoTitle /}
+
+#{include "front/home/HomeAction/banner.html"/}
+
+<div id="main">
+    <div class="main-top">
+        #{include "front/home/HomeAction/records.control"/}
+        #{include "front/home/HomeAction/announcement.control"/}
+    </div>
+    <div class="main-middle">
+        <div id="prodList">
+            #{include "front/home/HomeAction/products.control"/}
+        </div>
+    </div>
+    <div id="main-bottom">
+        <div class="info-panel clearfix">
+            #{include "front/home/HomeAction/media.control"/}
+            #{include "front/home/HomeAction/news.control"/}
+        </div>
+        #{include "front/home/HomeAction/partner.control"/}
+        <div class = "float-div">
+            #{include "front/home/HomeAction/twoDimensionalCode.control"/}
+            #{include "front/home/HomeAction/toolbar.control"/}
+        </div>
+    </div>
+</div>

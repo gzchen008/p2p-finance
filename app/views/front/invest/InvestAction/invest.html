@@ -1,0 +1,384 @@
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+<head>
+  <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/xfback.css'}" />
+</head>
+#{extends 'common/frontMain.html' /} 
+#{set title:currBackstageSet.seoTitle +' | '+bid?.title +'借款标详情'/}
+<!-- 内容区域 start -->
+<div class="xf_con_box">
+	<input id="ips_enable" type="hidden" value="${ipsEnable}" />
+	<div class="xf_con_wyjk_nav">
+		<a href="@{investHome()}">我要理财</a>
+		<span class="sf_con_wyjk_gtnav">&gt;</span>
+		<span class="sf_con_wyjk_dq">${bid?.title}</span>
+	</div>
+	<!-- 借款详细区域 -->
+	<div class="xf_wylc_view_content content_view clr">
+	<!-- 发标用户个人信息 -->
+	#{include 'front/invest/InvestAction/investBidUserInfo.control' /}
+	<!-- 借款标信息 -->
+	#{include 'front/invest/InvestAction/investBidInfo.control' /}
+	<!-- 确认投标栏 -->
+	#{include 'front/invest/InvestAction/investConfirm.control' /}
+
+	</div>
+	<!-- 借款标详情  投标记录   借款标提问记录-->
+	#{include 'front/invest/InvestAction/investBidDetails.control' /}
+	
+	#{if bid?.amount > bid?.hasInvestedAmount && bid?.status > 0}
+	<!-- 我要投标 -->
+	<!--  
+	#{form @front.invest.investAction.confirmInvestBottom(bid?.sign,uuid), method:'POST', id:'confirmInvestBottom'}
+	<div class="xf_wylc_fbjkb clr">
+		<div class="xf_wylc_fbjkb_l">
+			<ul class="xf_wylc_fbjkb_ull_other clr">
+				<li >借款标状态：${bid?.strStatus}</li>
+				#{if  bid?.minInvestAmount > 0}
+				<li>最低投标金额：${bid?.minAllowInvestAmount?.format('###,##0.00')}元</li>
+				<li>我要投标
+				<input type="text" class="xf_wylc_tbje" style="width:60px;" id="investAmountBottom" name="investAmountBottom" />元
+				</li>
+				#{if bid?.product?.isDealPassword == true}	
+				   
+				     <li>交易密码：<input type="password" class="xf_wylc_tbje" id="dealpwdBottom" name="dealpwdBottom" onMouseOver="checkDelPwd();"> </li>
+			        #{if user != null && user.payPassword == null}
+			        <a href="@{front.account.BasicInformation.modifyPassword()}">您未设置交易密码！点击此处设置交易密码</a>
+			        #{/if}
+			    #{/if}
+				#{/if}
+				#{else}
+			<li>最多可购买份数：${((bid?.amount-bid?.hasInvestedAmount)/bid?.averageInvestAmount)?.format('0')}份</li>	
+			<li>我要投标：
+			<input class="xf_wylc_tbje" type="button" style="width:24px;" value="-" id="plusBottom"/>
+			<input type="text" class="xf_wylc_tbje" style="width:60px;" id="investAmountBottom" name="investAmountBottom" value="1">
+			 <input class="xf_wylc_tbje" type="button" style="width:24px;" value="+"  id="addBottom"/>份<br /> </li>
+			
+			#{if bid?.product?.isDealPassword == true}	
+				
+					<li>交易密码：<input type="password" class="xf_wylc_tbje" id="dealpwdBottom" name="dealpwdBottom" onMouseOver="checkDelPwd();"></li>
+					#{if user != null && user.payPassword == null}
+			        <a href="@{front.account.BasicInformation.modifyPassword()}" class="xf_ta_onclick">您未设置交易密码！点击此处设置交易密码</a>
+			        #{/if}
+			#{/if}
+			#{/else}
+			</ul>
+		</div>
+		<div class="xf_wylc_fbjkb_r">
+		#{if bid?.status > 0 && bid?.status < 3 && bid?.amount > bid?.hasInvestedAmount}
+			<a class="xf_con_inputfbjk xf_con_inputfbjk_show" onclick="investNow();">确认投标</a>
+		#{/if}
+		</div>
+	</div>
+	#{/form}
+	-->
+	#{/if}
+</div>
+<!-- 内容区域 end -->
+
+<!-- 确认投标 -->
+#{if flag}
+
+<div class="xf_wyjkfb_4_window" id="xf_wyjkfb_4_window" >
+	<div class="xf_wyjkfb_4_windowInner xf_wylcfb_4_windowInner">
+		<div class="xf_wyjkfb_4_windowClose"></div>
+		<div class="xf_wyjkfb_4_windowColName">投标成功 !</div>
+		<div class="xf_wyjkfb_4_windowCot">
+			<div class="xf_wyjkfb_4_windowCol">
+				借款标编号： <span class="xf_wyjkfb_4_windowNo">${bid?.no} </span>
+			</div>
+			<div class="xf_wyjkfb_4_windowCol">
+				<div class="xf_wyjkfb_4_windowTitle">借款标标题：</div>
+				<div class="xf_wyjkfb_4_windowText" id="xf_wyjkfb_4_windowText">
+					<p>${bid?.title}</p>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="xf_wyjkfb_4_windowCol">
+				投标金额：<span class="xf_wyjkfb_4_windowNum">
+				${flash?.amount}
+				</span> 元
+			</div>
+			<div class="xf_wyjkfb_4_windowCol">借款金额：${bid?.amount?.format('###,##0.00')}
+				元&nbsp;&nbsp;年利率：${bid?.apr}%</div>
+			<div class="xf_wyjkfb_4_windowCol">还款方式：${bid?.repayment?.name}&nbsp;&nbsp;&nbsp;&nbsp;
+			
+			借款期限：${bid?.period}
+				${bid?.strPeriodUnit}			
+			</div>
+			<div class="xf_wyjkfb_4_windowCol">
+				当前进度：<span class="xf_c_idx_4_proWrap"><span
+					class="xf_c_idx_4_proPer" id="loanSchedulexx" >${bid?.loanSchedule}%</span> </span>
+			</div>
+			<div class="xf_wyjkfb_4_windowCol xf_wyjkfb_4_windowont">温馨提示：满标后审核借款人资料，审核通过后开始放款。</div>
+		</div>
+	</div>
+</div>
+#{/if}
+
+ 
+
+
+
+<script type="text/javascript">
+
+
+	showTime();
+				
+	 function showTime(){
+				 
+				    var endTime =" ${bid?.investExpireTime?.format('yyyy/MM/dd HH:mm:ss')}";
+				      
+				     time_end = new Date(endTime);//结束的时间
+				      
+			          var tt = time_end.getTime();
+				      var now = new Date().getTime();
+		              var cha = tt-now;
+		              var SysSecond=parseInt(cha);
+				 
+				 	 if (SysSecond > 0) { 
+				 	 
+   	                  int_day=Math.floor(SysSecond/86400000);
+                      SysSecond-=int_day*86400000;
+                      int_hour=Math.floor(SysSecond/3600000);
+                      SysSecond-=int_hour*3600000;
+                      int_minute=Math.floor(SysSecond/60000);
+                      SysSecond-=int_minute*60000;
+                      int_second=Math.floor(SysSecond/1000);
+            
+                    if(int_hour<10){
+             	       int_hour="0"+int_hour;
+			          }
+			 
+                   if(int_minute<10){
+           		       int_minute="0"+int_minute;
+		              }
+		     
+       		       if (int_second<10){
+            	      int_second="0"+int_second;
+                       }
+             
+  			       $("#day").html(int_day);
+  			       $("#hours").html(int_hour);
+  			       $("#minutes").html(int_minute);
+  			       $("#seconds").html(int_second);
+  		       }else{
+  		       
+  		       	   $("#day").html("00");
+  			       $("#hours").html("00");
+  			       $("#minutes").html("00");
+  			       $("#seconds").html("00");
+  		       }
+			setTimeout('showTime()',1000); 
+	     }
+
+		$(function(){	
+			$("a").limit();
+			$("#xf_wyjkfb_4_window").center();
+
+			$(".xf_wyjkfb_4_windowClose,#xf_wyjkfb_4_windowCancle,#xf_con_inputfbqux").click(function(){				
+				$("#xf_wyjkfb_4_window").hide(500);
+			});
+
+			
+			
+			//竞拍成功
+			$("#xf_zqzrtb_4_window").center();
+
+			$("#xf_con_inputfbjk").click(function(){				
+				$("#xf_wyjkfb_4_window").hide("fast",function(){
+					$("#xf_wyjkfb_4_window").show();
+					
+				});
+			});
+			$(".xf_zqzr_4_windowClose").click(function(){
+				$("#xf_zqzrtb_4_window").hide();
+			});
+		});
+		
+		
+	</script>
+	
+	<script>
+		
+		$(function(){
+			
+			$("#addBottom").click(function(){	
+				var investAmount = $("#investAmountBottom").val();
+				var patrn=/^([1-9]\d*)$/; 
+				var patrn1=/^([0-9]\d*)$/;
+			    var flag = patrn1.exec(investAmount);
+			    var copys = ${bid?.amount - bid?.hasInvestedAmount}/${bid?.averageInvestAmount};
+				if(!flag){
+					alert("请您输入正整数！");
+				 	return;
+		        }
+					
+			    $("#investAmountBottom").val(parseInt($("#investAmountBottom").val())+1);//加	
+			    if($("#investAmountBottom").val() > copys){
+			    	$("#investAmountBottom").val(copys);
+			    }
+			});
+			
+			$("#plusBottom").click(function(){
+				var investAmount = $("#investAmountBottom").val();
+				var patrn=/^([1-9]\d*)$/;
+			    var flag = patrn.exec(investAmount);
+				if(!flag){
+					alert("对不起！请您输入正整数！");
+				 	return;
+		         }		
+			    $("#investAmountBottom").val(parseInt($("#investAmountBottom").val())-1);//减
+			    if($("#investAmountBottom").val() <= 1){
+			    	$("#investAmountBottom").val(1);
+			    }	
+			});
+			 
+			$("#confirmInvestBottom").keydown(function(e){
+			  if(e.keyCode == 13){
+				  investNow();
+				  
+				  return false;
+			  }
+			});
+
+		})
+	</script>
+
+<!-- *{登录弹框层}* -->	
+#{include 'front/invest/InvestAction/login.control'/}		
+	
+ *{激活弹框层}* 
+#{include 'front/invest/InvestAction/activeEmail.control'/}	
+	
+<script>
+
+
+  function investNow(){
+		var listAction = #{jsAction @checkUserStatus() /};
+		$.post(listAction(), function(data) {
+			switch(data.status * 1){
+			    case 1:
+			    	 confirmInvestBottom();  
+				break;
+				/* 未登录 */
+				case -1: 
+					showDiv($("#xf_logintcc_box"));
+					 return;
+				/* 未激活 */
+				case -2: 
+					if (${ipsEnable}) {
+						window.location.href="@{front.account.CheckAction.approve}";
+						return;
+					}
+						
+					$("#userName1").html(data.userName);
+					$("#userName2").html(data.userName);
+					$("#email").html(data.email);
+					showDiv($("#active"));
+					return;
+
+				 case -3: 
+					confirmInvestBottom();  
+					break;
+
+				
+			}
+		});	
+
+	 }
+
+
+
+
+	
+	function confirmInvestBottom(){
+		
+		var investAmount = $("#investAmountBottom").val();
+		
+		var minInvestAmount = ${bid?.minAllowInvestAmount};
+		var maxInvestAmount = ${bid?.amount - bid?.hasInvestedAmount};
+		var averageInvestAmount = ${bid?.averageInvestAmount};
+		
+		var patrn=/^([1-9]\d*)$/; 
+		var flag = patrn.exec(investAmount);
+		
+		var isDealPassword = ${bid?.product?.isDealPassword};
+		
+		if( isDealPassword == true){
+			if($("#dealpwdBottom").val().replace(/\s+/g,"") == "" || null ==$("#dealpwdBottom").val().replace(/\s+/g,"")){
+				alert("对不起！请输入交易密码！");
+				return;
+			}
+		}
+		
+		
+		if(minInvestAmount > 0){
+			
+			if(investAmount == "" || investAmount == null){
+			    alert("对不起！投标金额不能为空！");
+			    return;
+		    }
+		    if(!flag){
+				alert("对不起！请您输入正整数！");
+			 	return;
+		   }
+			if(investAmount < minInvestAmount){
+				alert("对不起！您的投标金额少于最低投标金额！");
+				return;
+			}
+			if(investAmount > maxInvestAmount){
+				alert("对不起！您的投标金额超过了剩余投标金额！");
+				return;
+			}
+		}
+		
+		if(averageInvestAmount > 0){
+			var maxInvestcopys = ${bid?.amount - bid?.hasInvestedAmount}/${bid?.averageInvestAmount};
+			
+			if(investAmount.replace(/\s+/g,"")== "" || null == investAmount.replace(/\s+/g,"")){
+			    alert("对不起！投标份数不能为空！");
+			    return;
+		    }
+		    if(!flag){
+				alert("对不起！请您输入正确格式的数字！");
+				return;
+		    }
+			if(investAmount <= 0){
+				alert("对不起！您的投标份数不能小于0！");
+			    return;
+			}
+			if(investAmount > maxInvestcopys){
+				alert("对不起！您最多只能投"+maxInvestcopys+"份!");
+			    return;
+			}
+		}
+		
+		$("#confirmInvestBottom").submit();
+	}
+	
+	$(function(){
+		$("#loanSchedulexx").css({"width":${bid?.loanSchedule}});
+		
+		var code = "${flash?.code}";
+		if (code == "-999") {
+			alert("${flash?.msg}");
+			window.open("@{front.account.FundsManage.recharge()}");
+		}
+	})
+
+	function checkDelPwd(){
+		var str = "请输入交易密码";
+		#{if bid?.product?.isDealPassword == true}	
+		
+			#{if user != null && user.payPassword == null}
+			 str = "您还未设置交易密码,请设置交易密码";
+        	#{/if}
+		#{/if}
+
+		$("#dealpwdBottom").attr("title",str);
+	}
+
+</script>
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_invest.js'}"></script>

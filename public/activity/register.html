@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>开户送金豆啦！</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link rel="stylesheet" href="../stylesheets/reset.css" />
+    <link rel="stylesheet" href="../stylesheets/activity/register.css"/>
+    <script type="text/javascript" src="../javascripts/jquery-2.0.js"></script>
+    <script type="text/javascript" src="../javascripts/jquery.tmpl.min.js"></script>
+
+    <!--
+    <link rel="stylesheet" href="../../../public/stylesheets/reset.css"/>
+    <link rel="stylesheet" href="../../../public/stylesheets/activity/register.css"/>
+    <script type="text/javascript" src="../../../public/javascripts/jquery-2.0.js"></script>
+    <script type="text/javascript" src="../../../public/javascripts/jquery.tmpl.min.js"></script>
+    -->
+
+    <script id="broadcastInfoTmpl" type="text/x-jquery-tmpl">
+        <ul class="float-left">
+            {{if registerList.length != 0}}
+                {{each registerList}}
+                    {{if $value != null}}
+                        <li>${$value}</li>
+                    {{/if}}
+                {{/each}}
+            {{/if}}
+        </ul>
+        {{if rewardList.length != 0}}
+            <ul class="float-right">
+                    {{each rewardList}}
+                        {{if $index==0 && $value != null}}
+                            ${$value}
+                        {{else $index!=0 && $value != null}}
+                            <li class="draw">${$value}</li>
+                        {{/if}}
+                    {{/each}}
+            </ul>
+        {{/if}}
+
+    </script>
+    <script type="text/javascript" src="../javascripts/activity/register.js"></script>
+    <!--
+    <script type="text/javascript" src="../../../public/javascripts/activity/register.js"></script>
+    -->
+</head>
+<body>
+<div class="banner">
+    <img src="../../../public/images/activity/banner.png" width="100%" height="100%" alt="">
+</div>
+<div class="main-container">
+    <div>
+        <a id="registerBtn" class="register-btn" href="javascript:void(0);"><em>我要注册</em></a>
+    </div>
+    <div class="link-div">
+        <a href="javascript:void(0);" class="register-new-customer-link">如何开户</a>
+        <a href="javascript:void(0);" class="security-link">安全保障</a>
+    </div>
+    <div class="content">
+        <div class="clearfix">
+            <em class="title float-left">活动播报</em>
+        </div>
+        <hr>
+        <div id="broadcast" class="clearfix list">
+        </div>
+        <div class="clearfix">
+            <em class="title float-left">活动说明</em>
+            <em class="title float-right">客服电话 ： 400-728-0153</em>
+        </div>
+        <hr>
+        <div class="activity-info">
+            <p>
+                1、活动期间，新用户在金豆荚完成开户，送500金豆。
+            </p>
+
+            <p>
+                金豆价值为：100个金豆=1元人民币，您可下载金豆荚APP(请到“APPstore，百度手机助手，应用宝，豌豆荚等”应用市场下载金豆荚APP)并在“财富”中查看您的金豆奖励。
+            </p>
+
+            <p>
+                2、每周将从新用户中随机抽取2名幸运用户，各奖励Apple Watch（运动版）一个。请在奖励公告后一周内联系客服领取奖品，逾期视为放弃。
+            </p>
+
+            <p>
+                3、若有冒（盗）用他人信息，或恶意骗取活动奖励，金豆荚有权取消奖励或冻结账户，情节严重者将移交司法机关处理。
+            </p>
+
+            <p>
+                4、金豆荚保留活动最终解释权。
+            </p>
+            <p>
+                5、活动时间：4月27日-5月27日。
+            </p>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+    </div>
+</div>
+<div></div>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?9701b6606693a3cf913335f643f60490";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<script>window._bd_share_config = {
+    "common": {
+        "bdSnsKey": {},
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": "",
+        "bdStyle": "0",
+        "bdSize": "32"
+    },
+    "slide": { "bdImg": "0", "bdPos": "right", "bdTop": "250"},
+    "image": {"viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16"},
+    "selectShare": {"bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]}
+};
+with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+
+
+</body>
+</html>

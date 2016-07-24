@@ -1,0 +1,40 @@
+#{extends 'common/supervisor.html' /}
+#{set title:'微信送红包记录' /}
+<div class="xn_c_contentwarp">
+    <div class="xn_c_contentlist">
+    #{include '/supervisor/activity/activityLeft.control'/}
+        <div class="xn_c_content">
+            <div class="xf_ht_tablelist">
+                    <div class="xn_c_content_top">
+                    #{table class:"xn_c_content_list",cellspacing:"0",cellpadding:"0",border:"0",tr_class_odd:"xn_tr_bj"}
+                        #{tr}
+                            #{td}红包订单号#{/td}
+                            #{td}openid#{/td}
+                            #{td}领取金额#{/td}
+                            #{td}领取时间#{/td}
+                            #{td}领取结果#{/td}
+                            #{td}返回信息#{/td}
+                        #{/tr}
+                        #{if billVos?.isEmpty()}
+                            #{tr}
+                                #{td}没有数据#{/td}
+                            #{/tr}
+                        #{/if}
+                        #{else }
+                            #{list items:billVos, as:'billVo'}
+                                #{tr}
+                                    #{td}${billVo.billNo}#{/td}
+                                    #{td}${billVo.openId}#{/td}
+                                    #{td}${billVo.amount}#{/td}
+                                    #{td}${billVo.addTime}#{/td}
+                                    #{td}${billVo.returnCode}#{/td}
+                                    #{td}${billVo.returnMessage}#{/td}
+                                #{/tr}
+                            #{/list}
+                        #{/else}
+                    #{/table}
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+
+<div class="xf_con_mem_nav"></div>
+<!-- 左边导航区域 -->
+<div class="xf_con_wyjk_left">
+	<h2 class="xf_con_mem_lefth2">
+		${parent?.name}
+	</h2>
+	<ul class="xf_con_wyjk_leftul xf_con_suba_leftul" id="gywm">
+		<li id="aboutUs-1004">
+			<a class="xf_mem_l_title" href="@{front.home.HomeAction.aboutUs(-1004)}">${types?.get(0)?.name}</a><a class="xf_mem_r_more xf_mem_r_ishot2"></a>
+		</li>
+		<li id="aboutUs-1005">
+			<a class="xf_mem_l_title" href="@{front.home.HomeAction.aboutUs(-1005)}">${types?.get(1)?.name}</a><a class="xf_mem_r_more xf_mem_r_ishot2"></a>
+		</li>
+		<li id="aboutUs-1007">
+			<a class="xf_mem_l_title" href="@{front.home.HomeAction.aboutUs(-1007)}">${types?.get(3)?.name}</a><a class="xf_mem_r_more xf_mem_r_ishot2"></a>
+		</li>
+		<li id="aboutUs-1008">
+			<a class="xf_mem_l_title" href="@{front.help.HelpCenterAction.partner()}">${types?.get(4)?.name}</a><a class="xf_mem_r_more xf_mem_r_ishot2"></a>
+		</li>
+		#{if types?.size >= 6 }
+		<li id="aboutUs-1009">
+			<a class="xf_mem_l_title" href="@{front.home.HomeAction.aboutUs(-1009)}">${types?.get(5)?.name}</a><a class="xf_mem_r_more xf_mem_r_ishot2"></a>
+		</li>
+		#{/if}
+		#{if types?.size >= 7 }
+            <li id="aboutUs-1010">
+                <a class="xf_mem_l_title" href="@{front.home.HomeAction.aboutUs(-1010)}">${types?.get(6)?.name}</a><a class="xf_mem_r_more xf_mem_r_ishot2"></a>
+            </li>
+		#{/if}
+
+	</ul>
+</div>
+
+<script type="text/javascript">
+<!--
+		$(function(){
+			var id = ${id} +"";
+			if (id != "") {
+                $("#aboutUs" + id).addClass("xf_con_wyjk_leftliisshow");
+			}
+		});
+
+//-->
+</script>

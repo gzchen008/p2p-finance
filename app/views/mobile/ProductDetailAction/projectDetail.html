@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>项目详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}" />
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+</head>
+<body>
+
+<div data-role="page" id="bind_swipe">
+
+    <div data-role="navbar" >
+      <ul>
+          <li><a href="#" id="detailtwo" class="ui-btn-active">项目详情</a></li>
+          <li><a href="#" id="fundSecurity" >资金安全</a></li>
+          <li><a href="#" id="bidrecords" >投标记录</a></li>
+          <li><a href="#" id="returnMode">收益方式</a></li>
+      </ul>
+    </div>
+
+<div style="background:#EDEDED" data-theme="a"><strong >&nbsp;项目相关信息</strong></div>
+  <div data-role="content" >
+    #{if jsonMap?.project_introduction!=null }
+        #{if jsonMap?.project_introduction.length()>100 }
+	        <div  id="smallContent" style="display:block">
+		        <p>${jsonMap?.project_introduction_short}</p>
+		        <p align="right"><a style="text-decoration:none" href="javascript:" onclick="document.getElementById('fullContent').style.display=(document.getElementById('fullContent').style.display=='none')?'':'none';document.getElementById('smallContent').style.display=(document.getElementById('smallContent').style.display=='none')?'':'none'" > 更多 </a></p>
+	        </div>
+	        <div  id="fullContent" style="display:none;">
+	            <p>${jsonMap?.project_introduction}</p>
+		        <p align="right"><a style="text-decoration:none" href="javascript:" onclick="document.getElementById('fullContent').style.display=(document.getElementById('fullContent').style.display=='none')?'':'none';document.getElementById('smallContent').style.display=(document.getElementById('smallContent').style.display=='none')?'':'none'" > 收起 </a></p>
+	        </div>
+        #{/if}
+        #{else }
+            <div  id="fullContent">
+                <p>${jsonMap?.project_introduction}</p>
+            </div>
+        #{/else}
+
+    #{/if}
+ </div>
+#{if jsonMap?.bidType == 0}
+<div style="background:#EDEDED" ><strong >&nbsp;借款人信息</strong></div>
+  <div data-role="content">
+
+      <div class="ui-grid-a">
+          <div class="ui-block-a" ><span><strong>姓名:</strong> ${jsonMap?.realityName}</span></div>
+          <div class="ui-block-b" ><span><strong>性别：</strong> ${jsonMap?.sex}</span></div>
+          <br><br>
+          <div class="ui-block-a" ><span><strong>身份证号:</strong> ${jsonMap?.idNumber}</span></div>
+          <div class="ui-block-b" ><span><strong>户口所在地</strong>：${jsonMap?.cityName}</span></div>
+          <br><br>
+          <div class="ui-block-a" ><span><strong>婚姻状态:</strong> ${jsonMap?.maritalName}</span></div>
+          <div class="ui-block-b" ><span><strong>文化程度：</strong> ${jsonMap?.educationName}</span></div>
+          <br><br>
+          <div class="ui-block-a" ><span><strong>购房情况:</strong> ${jsonMap?.houseName}</span></div>
+          <div class="ui-block-b" ><span><strong>购车情况：</strong> ${jsonMap?.carName}</span></div>
+          <br>
+      </div>
+      <div >
+          <p>借款人<strong>${jsonMap?.realityName}</strong> 个人信息<br>
+              &nbsp;&nbsp; ${jsonMap?.personInfo}
+        </p>
+      </div>
+  </div>
+#{/if}
+#{if jsonMap?.bidType == 1}
+<div style="background:#EDEDED" ><strong >&nbsp;机构借款信息</strong></div>
+<div data-role="content">
+    <p>${jsonMap?.company_info}</p>
+</div>
+#{/if}
+<input type="hidden" value="${jsonMap?.borrowId}" id="bid_Id">
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+        $("#bind_swipe").bind("swipeleft",function(){
+            window.location.href="/mobile/product/returnMode?borrowId="+$("#bid_Id").val();
+        });
+        $("#bind_swipe").bind("swiperight",function(){
+            window.location.href="/mobile/product/fundSecurity?borrowId="+$("#bid_Id").val();
+        })
+    });
+    $("#bidrecords").click(function(){
+        window.location.href="/mobile/product/bidRecords?bidId="+$("#bid_Id").val();
+    });
+    $("#detailtwo").click(function(){
+        window.location.href="/mobile/product/detailtwo?borrowId="+$("#bid_Id").val();
+    });
+    $("#fundSecurity").click(function(){
+        window.location.href="/mobile/product/fundSecurity?borrowId="+$("#bid_Id").val();
+    });
+    $("#returnMode").click(function(){
+        window.location.href="/mobile/product/returnMode?borrowId="+$("#bid_Id").val();
+    });
+</script>

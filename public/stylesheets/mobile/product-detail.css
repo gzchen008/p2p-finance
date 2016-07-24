@@ -1,0 +1,94 @@
+header {
+    margin: 1rem;
+}
+
+.top {
+}
+
+.top h6 {
+    color: #868989;
+}
+
+.interest-rate {
+    color : #FF412D;
+}
+
+.interest-rate div {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    line-height: 3.5rem;
+}
+
+.interest-rate .number {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.bid-money {
+    margin-top: 2rem;
+}
+
+.bid-money h6{
+    text-align: right;
+}
+
+.bid-money div {
+    font-size: 1.3rem;
+}
+
+.middle {
+    color: #868989;
+    margin-top: 0.5rem;
+}
+
+.middle div{
+    font-size: 1.2rem;
+}
+
+.cutline {
+    border: solid 1px #e6e6e6;
+    margin: 0.8rem 0;
+}
+
+.bottom {
+    color: #868989;
+    margin-bottom: 1rem;
+}
+
+.bottom .countdown-for-start-time {
+    border-radius: 5px;
+    background-color: #FF9C28;
+    color:#fff;
+    padding: 0.2rem 0.5rem;
+}
+
+.bottom .money {
+    color: #EE897F;
+}
+
+
+main{
+    border-top: solid 1px silver;
+}
+
+main .tab-container {
+    background-color: #f7f7f7;
+}
+
+main .tab {
+    color: #979797;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.tab li {
+    float: left;
+    padding-bottom: 0.3rem;
+    margin: 0.5rem 0.7rem;
+}
+
+.tab .selected {
+    color: #E85343;
+    border-bottom: solid 0.2rem #E85343;
+}

@@ -1,0 +1,68 @@
+#{extends 'common/supervisor.html' /}
+#{set title:'微信送红包详情页面' /}
+<div class="xn_c_contentwarp">
+    <div class="xn_c_contentlist">
+    #{include '/supervisor/activity/activityLeft.control'/}
+        <div class="xn_c_content">
+            <div class="xf_content_add">
+            #{ifErrors}
+                <ul>
+                    #{errors}
+                        <li>${error.message()}</li>
+                    #{/errors}
+                </ul>
+            #{/ifErrors}
+            #{form @supervisor.activity.RedPacketController.save(), id:'redPacketForm'}
+                <table class="xf_ht_memcz_table">
+                    <input type="hidden" name="id" value="${redPacketVo?.getId()}"/>
+                    <!--必填-->
+                    <tr>
+                        <td><label>活动名称：</label></td>
+                        <td><input type="text" name="actName" value="${redPacketVo?.getActName()}"/></td>
+                        <td><label>活动内容：</label></td>
+                        <td><input type="text" name="content" value="${redPacketVo?.getContent()}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>红包总金额：</label></td>
+                        <td><input type="text" name="total" value="${redPacketVo?.getTotal()}"/></td>
+                        <td><label>发送总人数：</label></td>
+                        <td><input type="text" name="totalNum" value="${redPacketVo?.getTotalNum()}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>红包最小值：</label></td>
+                        <td><input type="text" name="minValue" value="${redPacketVo?.getMinValue()}"/></td>
+                        <td><label>红包最大值：</label></td>
+                        <td><input type="text" name="maxValue" value="${redPacketVo?.getMaxValue()}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>领取次数：</label></td>
+                        <td><input type="text" name="couple" value="${redPacketVo?.getCouple()}"/></td>
+                        <td><label>状态：</label></td>
+                        <td><input type="text" name="status" value="${redPacketVo?.getStatus()}"/></td>
+                    </tr>
+                    <!-- 非必填-->
+
+                    <tr>
+                        <td><label>logo：</label></td>
+                        <td><input type="text" name="logoImgUrl" value="${redPacketVo?.getLogoImgUrl()}"/></td>
+                        <td><label>分享图片链接：</label></td>
+                        <td><input type="text" name="shareImgUrl" value="${redPacketVo?.getShareImgUrl()}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>祝福语：</label></td>
+                        <td><input type="text" name="wishing" value="${redPacketVo?.getWishing()}"/></td>
+                        <td><label>备注：</label></td>
+                        <td><input type="text" name="remark" value="${redPacketVo?.getRemark()}"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="right">
+                            <button type="submit">确定</button>
+                            <a href="@{supervisor.activity.RedPacketController.index()}">取消</a>
+                        </td>
+                    </tr>
+                </table>
+            #{/form}
+            </div>
+        </div>
+    </div>
+</div>

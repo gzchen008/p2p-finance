@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="telephone=no" name="format-detection" />
+    <meta http-equiv='x-dns-prefetch-control' content='on'>
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="red" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile.theme-1.4.3.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/product.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/product-list.css'}" />
+    <script>
+        baseUrl = '${fpHots}';
+    </script>
+
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.tmpl.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/jweixin-1.0.0.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/button.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/sha.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/sign.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/weixin.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/defaultshare.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/hammer.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.sliderBox.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/drawCanvas.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.lazyload.min.js'}"></script>
+</head>
+
+<body>
+
+
+#{doLayout /}
+
+<div class="ui-grid-d center foot_pos">
+    <!--
+    <div class="ui-block-a">
+        <a id="menu_One" href="#" data-role="button" data-bind="nav_bar"
+                               class="ui-shadow  fm_mgpd ui-btn-inline fm_border" data-icon="home-unselected"
+                               data-iconpos="top">金品</a>
+    </div>
+    -->
+    <div class="ui-block-a ">
+        <a id="menu_One" href="#" data-role="button" data-bind="nav_bar"
+                                class="ui-shadow  fm_mgpd ui-btn-inline fm_border " data-icon="list-unselected"
+                                data-iconpos="top">产品列表</a>
+    </div>
+    <div class="ui-block-b ">
+        <a id="menu_Two" href="#" data-bind="nav_bar" data-role="button"
+                                class="ui-shadow  fm_mgpd ui-btn-inline fm_border" data-icon="gold-unselected"
+                                data-iconpos="top">我的资产</a>
+    </div>
+
+    <div class="ui-block-c ">
+        <a id="menu_Three" href="#" data-bind="nav_bar" data-role="button"
+                                data-icon="more-unselected" data-iconpos="top"
+                                class=" ui-shadow  fm_mgpd ui-btn-inline fm_border">设置</a>
+
+    </div>
+
+</div>
+
+
+    <script>
+        var url=window.location.href;
+        if(url.indexOf("content/bestProduct")>-1){
+
+            $("#menu_One").removeClass("ui-icon-home-unselected");
+            $("#menu_One").addClass("ui-icon-home-selected");
+            $("#menu_One").attr("data-icon","home-selected");
+        }
+        if(url.indexOf("content/moneyMatters")>-1){
+
+            $("#menu_Two").removeClass("ui-icon-list-unselected");
+            $("#menu_Two").addClass("ui-icon-list-selected");
+            $("#menu_Two").attr("data-icon","list-selected");
+        }
+        if(url.indexOf("content/property")>-1){
+
+            $("#menu_Three").removeClass("ui-icon-gold-unselected");
+            $("#menu_Three").addClass("ui-icon-gold-selected");
+            $("#menu_Three").attr("data-icon","gold-selected");
+        }
+        if(url.indexOf("content/me")>-1){
+            $("#menu_Four").removeClass("ui-icon-more-unselected");
+            $("#menu_Four").addClass("ui-icon-more-selected");
+            $("#menu_Four").attr("data-icon","more-selected");
+        }
+        $("#menu_One").click(function(){
+            window.location.href="@{mobile.MainContent.bestProduct()}"
+        });
+        $("#menu_Two").click(function(){
+            window.location.href="@{mobile.MainContent.moneyMatters()}"
+
+        });
+        $("#menu_Three").click(function(){
+            window.location.href="@{mobile.MainContent.property()}"
+        });
+        $("#menu_Four").click(function(){
+            window.location.href="@{mobile.MainContent.me()}"
+        });
+
+    </script>
+
+</body>
+</html>

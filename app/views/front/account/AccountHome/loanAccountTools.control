@@ -1,0 +1,63 @@
+<div class="xf_mem_Account xf_mem_passage">
+					<h3 class="xf_mem_accout_title">财富工具箱</h3>
+					<ul class="xf_wylc_cfgjContent xf_memsuba_cfgjContent">
+						<li>
+							<a class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxXyjs">	
+								</div>
+								<div class="xf_c_idx_9_cfgjxTitleWrap">
+									信用计算
+								</div>
+							</a>
+						</li>
+						<!--
+						<li>
+							<a href="@{front.home.homeAction.wealthToolkit(2)}" class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxImglvjs">	
+								</div>
+								<div class="xf_c_idx_9_cfgjxTitlelvjs">
+									还款计算器
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="@{front.home.homeAction.wealthToolkit(3)}" class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxImgWrap">	
+								</div>
+								<div class="xf_c_idx_9_cfgjxTitleWrap">
+									净值计算器
+								</div>
+							</a>
+						</li>
+						-->
+						<li>
+							<a href="@{front.home.homeAction.wealthToolkit(4)}" class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxImgjzjsq">	
+								</div>
+								<div class="xf_c_idx_9_cfgjxTitlejzjsq">
+									收益计算器
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxSfrz">	
+								</div>
+								<div class="xf_c_idx_9_cfgjxTitleWrap">
+									服务手续费
+								</div>
+							</a>
+						</li>
+						<!--
+						<li>
+							<a href="@{front.home.homeAction.wealthToolkit(6)}" class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxcejk">	
+								</div>
+								<div class="xf_c_idx_9_cfgjxTitleWrap">
+									超额借款
+								</div>
+							</a>
+						</li>
+						-->
+					</ul>
+				</div>

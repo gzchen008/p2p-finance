@@ -1,0 +1,74 @@
+#{extends 'mobile/common/frmMain.html' /}
+#{set title:'我' /}
+
+
+<style>
+    .ui-grid-b {
+        background-color: lightgray;
+        height: 90px;
+    }
+</style>
+
+<div>
+    <div class="ui-grid-b">
+        <br>
+    #{if user?.name!=null }
+        <div class="ui-block-a"><span> <a href="#"><img src="@{'/public/images/h5icon/user_img.png'}"></a></span></div>
+        <br>
+
+        <div class="ui-block-b"><p>${user?.realityName}</p>
+
+            <p>${user?.name}</p></div>
+    #{/if}
+    #{else}
+        <div class="ui-block-a"><span> <a href="#"><img src="@{'/public/images/h5icon/user_img.png'}"></a></span></div>
+        <div data-role="controlgroup" data-type="horizontal">
+            <a href="#" id="me_login" data-role="button">登录</a>
+            <a href="#" id="me_register" data-role="button">注册</a>
+        </div>
+
+    #{/else}
+    </div>
+</div>
+<div data-role="content">
+    <ul data-role="listview">
+        <li><a href="#" id="accountsafe"><img src="@{'/public/images/h5icon/safe_ensure.png'}" alt="账户与安全"
+                                              class="ui-li-icon">账户与安全</a></li>
+        <li><a href="#"><img src="@{'/public/images/h5icon/red_bag.png'}" alt="红包" class="ui-li-icon">红包</a></li>
+        <li><a href="#" id="safety"><img src="@{'/public/images/h5icon/safety.png'}" alt="安全保障" class="ui-li-icon">安全保障</a>
+        </li>
+        <li><a href="#" id="aboutOur"><img src="@{'/public/images/h5icon/51jdj_log.png'}" alt="关于金豆荚"
+                                           class="ui-li-icon">关于金豆荚</a></li>
+        <li><a href="#" id="share_friend"><img src="@{'/public/images/h5icon/invite_img.png'}" alt="邀请好友"
+                                               class="ui-li-icon">邀请好友</a></li>
+        <input id="share_mobile" type="hidden" value="${user?.recommend_user_code}">
+    </ul>
+</div>
+<script>
+    $("#aboutOur").click(function () {
+        window.location.href = "/mobile/me/aboutOur"
+    });
+    $("#safety").click(function () {
+        window.location.href = "/mobile/me/safety"
+    });
+    $("#me_login").click(function () {
+        window.location.href = "/mobile/login"
+    });
+    $("#me_register").click(function () {
+        window.location.href = "/mobile/register"
+    });
+    $("#share_friend").click(function () {
+        window.location.href = "https://api-2.sunlights.me/share/qrredirect.html?mobile=" + $("#share_mobile").val()
+    });
+    $("#accountsafe").click(function () {
+        window.location.href = "/mobile/me/accountsafe"
+    });
+
+</script>
+
+
+
+
+
+
+

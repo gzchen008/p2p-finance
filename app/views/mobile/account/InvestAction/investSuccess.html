@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>购买成功</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/bid-success.css'}"/>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+</head>
+<body>
+    <div data-role="page" id="bidSuccess">
+        <div class="bill-detail">
+            <div class="bill-detail-top">
+                <span class="ds_sp title"><label class="ds_lb_bm"></label>购买成功</span></p>
+            </div>
+            <hr size="1" class="cutline"/>
+            <div class="bill-detail-middle">
+                <p>
+                    购买产品：<span class="prod-name">${paramsJson?.pBidTitle}</span>
+                </p>
+                <p>
+                    购买金额：<span class="prod-price"><em>${paramsJson?.pTrdAmt}</em>元</span>
+                </p>
+                <p>
+                    交易时间：<span class="bid-time">${paramsJson?.pTrdTime}</span>
+                </p>
+            </div>
+        </div>
+        <div class="btn-container clearfix" >
+            <a id="moneyMatters" href="#" class="ui-btn ui-btn-inline ui-corner-all bid-history-btn float-left">投标记录</a>
+            <a id="property" href="#" class="ui-btn ui-btn-inline ui-corner-all arrange-finance-btn float-left">理&nbsp;&nbsp;财</a>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    $("#moneyMatters").click(function(){
+         window.location.href="/mobile/content/tradeHistory";
+    });
+    $("#property").click(function(){
+        window.location.href="/mobile/content/moneyMatters";
+    });
+</script>

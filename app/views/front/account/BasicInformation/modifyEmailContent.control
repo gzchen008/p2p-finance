@@ -1,0 +1,62 @@
+				<div class="xf_mem_Account xf_mem_shzdjkb_box" id="divHidden">
+				<div class="xf_mem_shzdjkb_box_tcc">遮盖层</div>
+					<h3 class="xf_mem_accout_title">修改安全邮箱</h3>
+					<!-- 修改安全邮箱 -->
+					<div class="xf_xgaq_email">
+						<!-- 已经激活 -->
+						<div class="xf_xgaq_email_one">
+							<div class="xf_xgaq_email_onebox">
+								安全邮箱：<span class="xf_xgaq_email_yx">${user?.email}</span> 
+								<span class="xf_xgaq_email_yx2">
+									#{if user.isEmailVerified}已激活
+								</span>
+								</div>
+								<div class="xf_xgaq_email_inputgo">
+									<a class="xf_con_inputfbjk" id="update">修 改</a>
+								</div>
+								#{/if}
+								#{else}
+									未激活
+								   </span>
+								   <div class="xf_xgaq_email_inputgo">
+									<a class="xf_con_inputfbjk" id="activeEmailS">点击激活</a>
+								</div>
+								</div>
+								#{/else}
+								
+						</div>
+					</div>
+				</div>
+<script type="text/javascript">
+     $(function(){
+     	  $("#activeEmailS").click(function(){
+             $.ajax({
+					url : "@{front.account.BasicInformation.activeEmail()}",
+					type : "POST",
+					data : {},
+					success : function(data) {
+					if (data[0].code < 0) {
+						alert(data[0].msg);
+		
+						return;
+					}
+					
+					alert(data[0].msg);
+					window.open (data[1]) ;
+					},
+				 	error : function() {
+						alert("对不起，出现错误!");
+				 	}
+				})
+          })	
+     		
+          $("#update").click(function(){
+               showDiv($("#xf_mem_aqwtsz_tc"));
+			   $(".xf_mem_shzdjkb_box_tcc").show();
+		
+			   $(".xf_wyjkfb_4_windowClose").click(function(){
+			   $(this).parents("#xf_mem_aqwtsz_tc").hide(300);
+			}); 
+          })
+     })
+</script>

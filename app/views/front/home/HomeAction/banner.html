@@ -1,0 +1,57 @@
+<!-- 大广告 -->
+<div class="adv_banner" id="banner">
+    <!--首页图片轮换添加div层(其它内容是原来的)-->
+    <div class="scroll-box">
+        <div id="loginForm" class="clearfix home-login-container">
+            <!--
+                <form class="clearfix" >
+                    <input type="text" name="name" placeholder="手机号/用户名" value=""/>
+                    <input type="password" name="password" placeholder="登入密码"/>
+                    <div>
+                        <input id="code" type="text" value="" name="code" style="width: 40%;margin-right: 0;" placeholder="验证码">
+                        <input id="randomID" type="hidden" name="randomID" value="29ce6bd1-d88c-4470-a707-978793114b28">
+                        <img id="img" style="width: 35%; margin-left: 0;margin-top: -5px;" class="xf_login_yzmimg" width="65px" height="29px" onclick="change()" src="/front/account/getImg?id=29ce6bd1-d88c-4470-a707-978793114b28">
+                    </div>
+                    <a class="submit-btn" onclick="login()">登录</a>
+                </form>
+                <div>
+                    <span>
+                        <a href="@{front.account.loginAndRegisterAction.register()}" class="register">立即注册</a>
+                    </span>
+                </div>
+                -->
+            <div class="unregister-form">
+                <p>
+                    安全、稳健、高收益
+                </p>
+                <p>
+                    新注册用户更享好礼
+                </p>
+                <a class="register-btn">10秒免费注册</a>
+                <a href="#" class="login-btn">立即登入</a>
+            </div>
+
+        </div>
+        <!--banner start-->
+        <ul class="banul" id="banul">
+        #{list homeAds}
+            <li>
+                <a style="cursor: default;"
+                    #{if _?.is_link_enabled}
+                        href = "${_?.url}"
+                    #{/if}
+                    #{if _?.target == 1}
+                        target = "_self"
+                    #{/if}
+                    #{else}
+                        target = "_blank"
+                    #{/else}>
+                    #{img src:"${_?.image_filename}",alt:"广告"}#{/img}
+                </a>
+            </li>
+        #{/list}
+
+        </ul>
+        <!--banner end-->
+    </div>
+</div>

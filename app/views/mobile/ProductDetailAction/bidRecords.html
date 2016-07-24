@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html> 
+<head>
+
+    <meta charset="utf-8">
+    <title>投标记录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}" />
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+
+<style>
+.ui-block-a, 
+.ui-block-b, 
+.ui-block-c 
+{
+background-color: lightgray;
+border: 0px solid black;
+height: 30px;
+font-weight: bold;
+text-align: center;
+padding: 5px;
+}
+
+</style>
+</head>
+<body>
+
+<div data-role="page" id="bind_swipe">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#" id="detailtwo" >项目详情</a></li>
+        <li><a href="#" id="fundSecurity">资金安全</a></li>
+        <li><a href="#" id="bidrecords" class="ui-btn-active">投标记录</a></li>
+		<li><a href="#" id="returnMode">收益方式</a></li>
+      </ul>
+    </div>
+ 
+  <div >
+   <div class="ui-grid-b">
+     <div class="ui-block-a"><span>投资人</span></div>
+     <div class="ui-block-b"><span>时间</span></div>
+     <div class="ui-block-c"><span>金额</span></div>
+   </div>
+  </div>
+  <div class="ui-grid-b" >
+   #{list items:pageBean?.page , as: 'records'}
+     <div class="ui-block-a" style="background-color: white;"><span>${records?.name?.substring(0,3)+"****"+records?.name?.substring(7,11)}</span></div>
+     <div class="ui-block-b" style="background-color: white;"><span>${records?.time?.format('yyyy-MM-dd')}</span></div>
+     <div class="ui-block-c" style="background-color: white;"><span>${records?.invest_amount}元</span></div>
+   #{/list}
+   </div>
+    <input type="hidden" value="${bidid}" id="bid_Id">
+
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+        $("#bind_swipe").bind("swipeleft",function(){
+            window.location.href="/mobile/product/fundSecurity?borrowId="+$("#bid_Id").val();
+        });
+        $("#bind_swipe").bind("swiperight",function(){
+            window.location.href="/mobile/product/returnMode?borrowId="+$("#bid_Id").val();
+        })
+    });
+    $("#bidrecords").click(function(){
+        window.location.href="/mobile/product/bidRecords?bidId="+$("#bid_Id").val();
+    });
+    $("#detailtwo").click(function(){
+        window.location.href="/mobile/product/detailtwo?borrowId="+$("#bid_Id").val();
+    });
+    $("#fundSecurity").click(function(){
+        window.location.href="/mobile/product/fundSecurity?borrowId="+$("#bid_Id").val();
+    });
+    $("#returnMode").click(function(){
+        window.location.href="/mobile/product/returnMode?borrowId="+$("#bid_Id").val();
+    });
+</script>

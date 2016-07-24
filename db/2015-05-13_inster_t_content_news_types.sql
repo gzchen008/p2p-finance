@@ -1,0 +1,1 @@
+insert into t_content_news_types (id, parent_id, name, description, _order, status) values (35, 3, '最新动态', '最新动态', 12, true);

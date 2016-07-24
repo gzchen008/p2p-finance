@@ -1,0 +1,41 @@
+#{extends 'common/frontMain.html' /} 
+#{set title:'我的支付账号' /}
+
+%{
+	boolean isLogin = constants.Constants.IS_LOGIN;
+}%
+
+<!-- 内容区域 start -->
+<div class="xf_con_box">
+	<div class="xf_con_mem_nav"></div>
+	<!-- 左边导航区域 -->
+	#{include "front/account/AccountHome/homeLeft.control"/}
+	<!-- 右侧内容区域 -->
+	<div class="xf_mem_Account xf_mem_shzdjkb_box">
+		<h3 class="xf_mem_accout_title">账户托管</h3>
+		<div class="s_tuguan-list clearfix">
+			<dl>
+				<dt><img src="@{'public/images/s_linklogo.png'}" height="61" width="192" /></dt>
+				#{if business.User.currUser().getIpsStatus() != 4}
+				<dd><p>您还没有开通资金托管账户？</p><a href="@{front.account.CheckAction.approve()}">注册我的资金托管账号</a></dd>
+				#{/if}
+				#{else}
+				<dd><p>您已经开通资金托管账户</p></dd>
+				#{if constants.Constants.IS_LOGIN}
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="@{loginAccount()}" target="_blank">登录支付账户</a></p>
+				#{/if}
+				#{/else}
+			</dl>
+		</div>
+	</div>
+	<!-- 清除浮动 -->
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		/* 高亮显示 */
+		showHighLightFront(39);
+		showHighLightFront2(7, 5);
+	});
+</script>

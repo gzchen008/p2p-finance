@@ -1,0 +1,179 @@
+
+/* These code is for header  */
+#header {
+    margin-bottom: 10px;
+}
+#header .top{
+    background-color: #FAFAFA;
+}
+
+#header .top .content {
+    width: 1000px;
+    margin: 0 auto;
+    color: #95A0A8;
+}
+
+.content .announcement{
+    margin-left: 20px;
+}
+
+.content .help-center {
+    margin-left: 20px;
+}
+
+.content .contect-us {
+    margin-left: 20px;
+    position: relative;
+    border: solid 1px #FAFAFA;
+}
+
+.contect-us .contect-us-popup-detail {
+    position: absolute;
+    z-index: 10000;
+    display: none;
+    border: solid 1px #ececec;
+    background-color: #fff ;
+    right: 0px;
+    width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.contect-us:hover .contect-us-popup-detail{
+    display: block;
+}
+
+.contect-us:hover .tag{
+    border: solid 1px #ececec;
+    border-bottom: none;
+}
+
+.contect-us-popup-detail .scan-code {
+    background: url("../../images/new/code-img.png") no-repeat 0px 0px;
+    width: 80px;
+    height: 80px;
+}
+
+.contect-us-popup-detail .right-detail-info{
+    width: 200px;
+}
+
+.contect-us-popup-detail table {
+    width: 100%;
+}
+
+.cutline {
+    border-left: solid 1px #ececec;;
+}
+
+.contect-us-popup-detail .code-img-style {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.contect-us-popup-detail .contect-us-icon {
+}
+
+.contect-us-icon img {
+    margin-left: 10px;
+}
+
+.right-detail-info .work-time {
+    font-size: 0.9em;
+    margin-left: 10px;
+}
+
+.right-detail-info .hotline {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#nav-container {
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+#nav-container .nav {
+    margin-top: 20px;
+}
+
+.nav ul li {
+    font-size: 1.3em;
+    line-height: 2em;
+    float: left;
+    margin-right: 20px;
+}
+
+.nav .highlight-item {
+    color: #FFFFFF;
+    background-color: #af0714;
+    width: 5em;
+    line-height: 2em;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#main {
+}
+
+
+#footer {
+}
+
+#footer .company-info {
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+#footer .company-detail{
+
+}
+
+#footer .company-detail li {
+    float: left;
+    margin-right: 5px;
+    font-size: 0.9em;
+}
+
+.company-detail .site-info {
+    font-size: 0.8em;
+    margin-top: 50px;
+}
+
+.site-info span {
+    margin-right: 30px;
+}
+
+.company-detail p {
+    font-size: 0.8em;
+}
+
+#footer .customer-service{
+    color :#808080;
+    margin-right: 5px;
+}
+
+.security-background {
+    background: #505050;
+}
+
+#footer .security-container {
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-bottom: 21px;
+}
+
+.security-container .copyright {
+    margin-top: 20px;
+}
+
+.security-container .verify-img {
+    margin-top: 20px;
+}
+
+.verify-img img {
+    margin-right: 5px;
+}

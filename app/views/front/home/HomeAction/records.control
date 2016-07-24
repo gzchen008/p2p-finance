@@ -1,0 +1,15 @@
+<div id="records">
+    <table>
+        <tr>
+            <td>
+                <div><div class="user_number_icon"></div>客户数量：<div class="number">${userCount?.format('###,###')}</div></div>
+            </td>
+            <td>
+                <div><div class="trade_volume_icon"></div>累计成交量：${totalVolume?.format('###,###')}万元</div>
+            </td>
+            <td>
+                <div><div class="risk_fund_icon"></div>准备风险金：${loanLossProvision?.format('###,###')}万元</div>
+            </td>
+        </tr>
+    </table>
+</div>

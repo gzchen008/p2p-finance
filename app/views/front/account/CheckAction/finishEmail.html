@@ -1,0 +1,33 @@
+#{extends 'front/account/CheckAction/checkMain.html' /}
+#{set title:'完善邮箱' /}
+  
+<div class="p_zctancbg" style="display: block"></div>
+<div class="p_zctanc3" style="display: block">
+  <div class="p_zctcbox">
+    <div class="p_zctctextimg"><img src="@{'public/images/p_zc000.png'}"></div>
+    #{form @front.account.CheckAction.doFinishEmail(), id:'form'}
+    <div class="p_zctctextword">
+      <table>
+        <tr height="50"><th width="292">邮箱地址：</th><td><input name="email" type="text" value="${flash?.email}"></td></tr>
+      </table>
+      <p><span class="p_zctctishi">请填写正确的邮箱地址。</span></p>
+      #{if flash.error}
+        <p><span class="p_zctctishi" style="color:red">${flash?.error}</span></p>
+      #{/if}
+      <p><a href="#" onclick="submit();" class="p_zctcnext3">下一步</a></p>
+    </div>
+    #{/form}
+    <div class="p_zctcbottom">
+      <p>请注意以下事项</p>
+      <p>1、请填写正确的邮箱地址。</p>
+      <p>2、我们将把激活链接发到您所填写的邮箱中。</p>
+      <p>3、如果您未收到激活链接，请致电${phone}，或咨询客服QQ：${qq1} &nbsp;| &nbsp;${qq2}。</p>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+function submit() {
+  $("#form").submit();
+}
+</script>

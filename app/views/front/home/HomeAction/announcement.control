@@ -1,0 +1,8 @@
+<div id="announcement">
+                <p>
+                    公告：尊敬的用户，金豆荚已经登陆各大应用市场，包括APP STORE,腾讯应用宝，360手机助手，百度手机助手，91手机助手，安卓市场，小米用用商店等等等等等等等等等等等等等等等等等等等等等等
+                </p>
+                <div class="more">
+                    <a	href="@{front.wealthinfomation.WealthInfomationAction.newsList(7)}" target="_blank">更多</a>
+                </div>
+            </div>

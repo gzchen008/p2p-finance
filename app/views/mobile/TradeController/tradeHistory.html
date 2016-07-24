@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>交易记录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}"/>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+</head>
+
+<body>
+
+
+<div data-role="page" id="index">
+    #{if vInvestRecords?.size == 0 && userRechargeDetails?.size == 0 && userRechargeDetails?.size == 0}
+        <p style="text-align: center;"> 暂无任何交易记录!</p>
+        #{/if}
+#{if vInvestRecords?.size > 0}
+#{list items:vInvestRecords, as:'vInvestRecord'}
+    <div data-role="content th_pd">
+
+        <ul class="tl_cn_cn">
+            <li>
+            ${(vInvestRecord?.title)}
+            </li>
+
+        </ul>
+        <div class="clear_float"></div>
+        <ul class="tl_cn_cn">
+            <li>
+                金额
+            </li>
+            <li>
+                时间
+            </li>
+            <li>
+                状态
+            </li>
+            <li>
+            ${(vInvestRecord?.invest_amount).format('###,###,###,###,##0.00')}
+            </li>
+            <li>
+            ${vInvestRecord?.time.format('yyyy-MM-dd')}
+            </li>
+            <li>
+            ${vInvestRecord?.strStatus}
+
+            </li>
+        </ul>
+    </div>
+    <div class="clear_float"></div>
+    <hr class="tl_hr_bk">
+#{/list}
+#{/if}
+#{if userRechargeDetails?.size > 0}
+#{list items:userRechargeDetails, as:'userRechargeDetail'}
+    <div data-role="content th_pd">
+
+        <ul class="tl_cn_cn">
+            <li>
+                充值
+            </li>
+
+        </ul>
+        <div class="clear_float"></div>
+        <ul class="tl_cn_cn">
+            <li>
+                金额
+            </li>
+            <li>
+                时间
+            </li>
+            <li>
+                状态
+            </li>
+            <li>
+            ${userRechargeDetail?.amount.format('###,###,###,###,##0.00')}
+            </li>
+            <li>
+            ${userRechargeDetail?.time.format('yyyy-MM-dd')}
+            </li>
+            <li>
+            #{if userRechargeDetail?.is_completed==true}
+                 成功
+            #{/if}
+                #{if userRechargeDetail?.is_completed==false}
+                    失败
+                #{/if}
+            </li>
+        </ul>
+    </div>
+    <div class="clear_float"></div>
+    <hr class="tl_hr_bk">
+#{/list}
+#{/if}
+#{if withdrawals?.size > 0}
+#{list items:withdrawals, as:'withdrawal'}
+    <div data-role="content th_pd">
+
+        <ul class="tl_cn_cn">
+            <li>
+                提现
+            </li>
+
+        </ul>
+        <div class="clear_float"></div>
+        <ul class="tl_cn_cn">
+            <li>
+                金额
+            </li>
+            <li>
+                时间
+            </li>
+            <li>
+                状态
+            </li>
+            <li>
+            ${withdrawal?.amount.format('###,###,###,###,##0.00')}
+            </li>
+            <li>
+            ${withdrawal?.time.format('yyyy-MM-dd')}
+            </li>
+            <li>
+            #{if withdrawal?.status==0}
+            待审核
+                #{/if}
+                  #{if withdrawal?.status==1}
+                  待付款
+            #{/if}
+                  #{if withdrawal?.status==2}
+                  已付款
+            #{/if}
+                  #{if withdrawal?.status==3}
+                  资金托管提交中
+            #{/if}
+                  #{if withdrawal?.status==4}
+                  资金托管待审核
+            #{/if}
+                  #{if withdrawal?.status==-1}
+                  未通过
+            #{/if}
+                  #{if withdrawal?.status==-2}
+                  提现回退
+            #{/if}
+                     #{if withdrawal?.status==-3}
+                     资金托管失败
+            #{/if}
+            </li>
+        </ul>
+    </div>
+    <div class="clear_float"></div>
+    <hr class="tl_hr_bk">
+#{/list}
+#{/if}
+</div>
+
+
+</body>
+</html>

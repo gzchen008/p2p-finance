@@ -1,0 +1,39 @@
+<div class="xf_mem_Account xf_mem_passage">
+					<h3 class="xf_mem_accout_title">快捷操作</h3>
+					<ul class="xf_mem_passageUL clr">
+						<li>
+							<div class="xf_mem_passageUL_tz"></div>
+							<a href="@{front.invest.InvestAction.investHome()}" class="xf_accout_cont_imginput" target="_blank">我要投资</a>
+						</li>
+						<!--
+						<li>
+							<div class="xf_mem_passageUL_jk"></div>
+							<a href="@{front.bid.bidAction.index()}" class="xf_accout_cont_imginput" target="_blank">我要借款</a>
+						</li>
+						<li>
+							<div class="xf_mem_passageUL_zqzr"></div>
+							<a href="@{front.account.InvestAccount.myDebts()}" class="xf_accout_cont_imginput" target="_blank">债权转让</a>
+						</li>
+						<li>
+							<div class="xf_mem_passageUL_gmzq"></div>
+							<a href="@{front.debt.debtAction.debtHome()}" class="xf_accout_cont_imginput" target="_blank">购买债权</a>
+						</li>
+						-->
+						<li>
+							<div class="xf_mem_passageUL_wycz"></div>
+							<a href="@{front.account.FundsManage.recharge()}" class="xf_accout_cont_imginput" target="_blank">我要充值</a>
+						</li>
+						<li>
+							<div class="xf_mem_passageUL_wyhk"></div>
+							<a href="@{front.account.FundsManage.withdrawal()}" class="xf_accout_cont_imginput" target="_blank">我要取现</a>
+						</li>
+						<li>
+							<div class="xf_mem_passageUL_dsk"></div>
+							<a href="@{front.account.InvestAccount.investBills()}" class="xf_accout_cont_imginput" target="_blank">待收款</a>
+						</li>
+						<li>
+							<div class="xf_mem_passageUL_zjls"></div>
+							<a href="@{front.account.FundsManage.dealRecord()}" class="xf_accout_cont_imginput" target="_blank">资金流水</a>
+						</li>
+					</ul>
+				</div>

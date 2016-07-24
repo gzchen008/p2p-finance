@@ -1,0 +1,145 @@
+%{
+	boolean  ipsEnable = constants.Constants.IPS_ENABLE;
+	boolean debtUse = constants.Constants.DEBT_USE;
+	boolean isMsg = constants.Constants.IS_MSG;
+	business.User currUser = business.User.currUser();
+	String mobile = constants.Constants.BIDS_MOBILE;
+}%
+<div class="xf_con_wyjk_left">
+	<h2 class="xf_con_mem_lefth2">我的账户</h2>
+	<ul class="xf_con_wyjk_leftul xf_con_suba_leftul" id="xf_mem_nav_left">
+		<li id="li_1">
+			<a class="xf_mem_l_title" href="@{front.account.accountHome.home()}"
+				id="lab_1"
+			>账户总览</a>
+			<a id="more_1" class="xf_mem_r_more"></a>
+			<!--
+			<div class="xf_mem_l_title_zhz" id="tg_1">
+				<a id="child1" class="xf_mem_l_title_zhzlist" href="@{front.account.accountHome.myAttentionUser()}">
+				<span class="xf_memsuba_nav">我关注的人</span>
+				</a>
+			</div>
+			-->
+		</li>
+		<li id="li_2" onclick="count();">
+			<a class="xf_mem_l_title" href="@{front.account.Message.systemMsgs()}" id="lab_2">站内信</a>
+			<a id="more_2" class="xf_mem_r_more"></a>
+			<div class="xf_mem_l_title_zhz" id="tg_2">
+				<a id="child2" class="xf_mem_l_title_zhzlist" href="@{front.account.Message.systemMsgs()}"><span class="xf_memsuba_nav">系统消息<span id="unreadSystemMsgCount">#{if unreadSystemMsgCount > -1}【${unreadSystemMsgCount}】#{/if}</span></span></a>
+				<a id="child3" class="xf_mem_l_title_zhzlist" href="@{front.account.Message.inboxMsgs()}"><span class="xf_memsuba_nav">收件箱<span id="unreadInboxMsgCount">#{if unreadInboxMsgCount > -1}【${unreadInboxMsgCount}】#{/if}</span></span></a>
+				<a id="child4" class="xf_mem_l_title_zhzlist" href="@{front.account.Message.outboxMsgs()}"><span class="xf_memsuba_nav">发件箱</span></a>
+				<a id="child5" class="xf_mem_l_title_zhzlist" href="@{front.account.Message.sendMsgInit()}"><span class="xf_memsuba_nav">发站内信</span></a>
+			<!--	<a id="child6" class="xf_mem_l_title_zhzlist" href="@{front.account.Message.bidQuestions()}"><span class="xf_memsuba_nav">借款提问<span id="userBidQuestions">#{if userBidQuestions > -1}【${userBidQuestions}】#{/if}</span></span></a> -->
+			</div>
+		</li>
+		#{if currUser?.name == mobile}
+		<li id="li_3">
+			<a class="xf_mem_l_title" href="@{front.account.accountHome.loanAccount()}"
+			   id="lab_3"
+			>
+				借款子账户
+			</a>
+			<a id="more_3" class="xf_mem_r_more" ></a>
+			<div class="xf_mem_l_title_zhz" id="tg_3">
+				<a id="child7" class="xf_mem_l_title_zhzlist" href="@{front.account.accountHome.loanAccount()}"><span class="xf_memsuba_nav">借款子账户首页</span></a> 
+				<a id="child8" class="xf_mem_l_title_zhzlist" href="@{front.account.accountHome.myLoanBills()}"><span class="xf_memsuba_nav">我的借款账单</span></a>
+				#{if ipsEnable && isMsg}
+				<a id="child40" class="xf_mem_l_title_zhzlist" href="@{front.account.accountHome.waitVerifyBids()}"><span class="xf_memsuba_nav">待验证的借款标</span></a>
+				#{/if}
+				<a id="child9" class="xf_mem_l_title_zhzlist" href="@{front.account.accountHome.auditingLoanBids()}"><span class="xf_memsuba_nav">审核中的借款标</span></a>
+				<a id="child10" class="xf_mem_l_title_zhzlist" href="@{front.account.accountHome.loaningBids()}"><span class="xf_memsuba_nav">募集中的借款标</span></a>
+				<a id="child38" class="xf_mem_l_title_zhzlist" href="@{front.account.AccountHome.readyReleaseBid()}"><span class="xf_memsuba_nav">待放款的借款标</span></a>
+				<a id="child11" class="xf_mem_l_title_zhzlist" href="@{front.account.accountHome.repaymentBids()}"><span class="xf_memsuba_nav">还款中的借款标</span></a>
+				<a id="child12" class="xf_mem_l_title_zhzlist" href="@{front.account.accountHome.successBids()}"><span class="xf_memsuba_nav">已成功的借款标</span></a>
+				<a id="child39" class="xf_mem_l_title_zhzlist" href="@{front.account.accountHome.failBids()}"><span class="xf_memsuba_nav">失败的借款标</span></a>
+				<a id="child13" class="xf_mem_l_title_zhzlist" href="@{front.account.AccountHome.auditMaterialsIPS()}"><span class="xf_memsuba_nav">借款资料审核认证</span></a>
+			</div>
+		</li>
+		#{/if}
+		
+		<li id="li_4">
+			<a class="xf_mem_l_title" href="@{front.account.InvestAccount.investAccount()}"
+			id="lab_4"
+			>理财子账户</a>
+			<a id="more_4" class="xf_mem_r_more"></a>
+			<div class="xf_mem_l_title_zhz" id="tg_4">
+				<a id="child14" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.investAccount()}"><span class="xf_memsuba_nav">子账户首页</span></a>
+				<a id="child15" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.investBills()}"><span class="xf_memsuba_nav">我的理财账单</span></a>
+				<a id="child16" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.investRecord()}"><span class="xf_memsuba_nav">我的投标记录</span></a>
+				<a id="child17" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.loaningInvestBid()}"><span class="xf_memsuba_nav">等待满标的理财标</span></a>
+				<a id="child40" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.readyReleaseBid()}"><span class="xf_memsuba_nav">待放款的理财标</span></a>
+				<a id="child18" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.repayingInvestBid()}"><span class="xf_memsuba_nav">收款中的理财标</span></a>
+				<a id="child19" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.successInvestBid()}"><span class="xf_memsuba_nav">已成功的理财标</span></a>
+			<!--
+				<a id="child23" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.auditmaticInvest()}"><span class="xf_memsuba_nav">投标机器人</span></a>
+				#{if debtUse}
+				<a id="child20" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.myDebts()}"><span class="xf_memsuba_nav">债权转让管理</span></a>
+				#{/if}
+				<a id="child21" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.blackList()}"><span class="xf_memsuba_nav">我的黑名单</span></a>
+				-->
+				<a id="child22" class="xf_mem_l_title_zhzlist" href="@{front.account.InvestAccount.investStatistics()}"><span class="xf_memsuba_nav">理财情况统计表</span></a>
+
+				<a id="child24" class="xf_mem_l_title_zhzlist xf_mem_l_title_alast" href="@{front.account.InvestAccount.attentionBid()}"><span class="xf_memsuba_nav">我的收藏</span></a>
+			</div>
+		</li>
+		<li id="li_5">
+			<a class="xf_mem_l_title" href="@{front.account.FundsManage.accountInformation()}"
+			id="lab_5"
+			>资金管理</a>
+			<a id="more_5" class="xf_mem_r_more"></a>
+			<div class="xf_mem_l_title_zhz" id="tg_5">
+				<a id="child25" class="xf_mem_l_title_zhzlist" href="@{front.account.FundsManage.accountInformation()}"><span class="xf_memsuba_nav">账户信息</span></a>
+				<!-- <a id="child26" class="xf_mem_l_title_zhzlist" href="@{front.account.FundsManage.myCredit()}"><span class="xf_memsuba_nav">我的信用等级</span></a> -->
+				<a id="child27" class="xf_mem_l_title_zhzlist" href="@{front.account.FundsManage.recharge()}"><span class="xf_memsuba_nav">充值</span></a>
+				<a id="child28" class="xf_mem_l_title_zhzlist" href="@{front.account.FundsManage.withdrawal()}"><span class="xf_memsuba_nav">提现</span></a>
+				<a id="child29"class="xf_mem_l_title_zhzlist" href="@{front.account.FundsManage.dealRecord()}"><span class="xf_memsuba_nav">交易记录</span></a>
+				#{if ipsEnable}
+				*{<a id="child38"class="xf_mem_l_title_zhzlist" href="@{front.account.FundsManage.payment()}"><span class="xf_memsuba_nav">资金托管测试</span></a>}*
+				<a id="child39"class="xf_mem_l_title_zhzlist" href="@{front.account.FundsManage.payAccount()}"><span class="xf_memsuba_nav">我的支付账号</span></a>
+				#{/if}
+			</div>
+		</li>
+		<li id="li_6">
+			<a class="xf_mem_l_title" href="@{front.account.basicInformation.basicInformation()}"
+			id="lab_6"
+			>基本设置</a>
+			<a id="more_6" class="xf_mem_r_more"></a>
+			<div class="xf_mem_l_title_zhz" id="tg_6">
+				<a id="child30" class="xf_mem_l_title_zhzlist" href="@{front.account.basicInformation.basicInformation()}"><span class="xf_memsuba_nav">基本资料</span></a>
+				<a id="child31" class="xf_mem_l_title_zhzlist" href="@{front.account.basicInformation.modifyPassword()}"><span class="xf_memsuba_nav">修改密码</span></a>
+				<a id="child32" class="xf_mem_l_title_zhzlist" href="@{front.account.basicInformation.setSafeQuestion()}"><span class="xf_memsuba_nav">安全问题设置</span></a>
+				<a id="child33" class="xf_mem_l_title_zhzlist" href="@{front.account.basicInformation.modifyEmail()}"><span class="xf_memsuba_nav">安全邮箱设置</span></a>
+				#{if !ipsEnable}
+				<a id="child34" class="xf_mem_l_title_zhzlist" href="@{front.account.basicInformation.modifyMobile()}"><span class="xf_memsuba_nav">安全手机设置</span></a>
+				#{/if}
+			</div>
+		</li>
+		<!--
+		<li id="li_7">
+			<a class="xf_mem_l_title" href="@{front.account.spread.spreadLink()}"
+			id="lab_7"
+			>我要推广</a>
+			<a id="more_7" class="xf_mem_r_more"></a>
+			<div class="xf_mem_l_title_zhz" id="tg_7">
+				<a id="child35" class="xf_mem_l_title_zhzlist" href="@{front.account.spread.spreadLink()}"><span class="xf_memsuba_nav">我的推广链接</span></a>
+				<a id="child36" class="xf_mem_l_title_zhzlist" href="@{front.account.spread.spreadUser()}"><span class="xf_memsuba_nav">我成功推广的会员</span></a>
+				<a id="child37" class="xf_mem_l_title_zhzlist" href="@{front.account.spread.spreadIncome()}"><span class="xf_memsuba_nav">我的推广收入</span></a>
+			</div>
+		</li>
+		-->
+	</ul>
+</div>
+
+<script>
+	function count(){
+				var countMessage = #{jsAction @front.account.Message.countMessage()/}
+	      		$.post(countMessage(),function(data){
+    					var unreadSystemMsgCount = data.unreadSystemMsgCount;
+    					var unreadInboxMsgCount = data.unreadInboxMsgCount;
+    					var userBidQuestions = data.userBidQuestions;
+    					$("#unreadSystemMsgCount").html("【"+unreadSystemMsgCount+"】");
+    					$("#unreadInboxMsgCount").html("【"+unreadInboxMsgCount+"】");
+    					$("#userBidQuestions").html("【"+userBidQuestions+"】");
+    	          })
+	}
+</script>

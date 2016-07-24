@@ -1,0 +1,135 @@
+<div class="xf_c_idx_5_aside">
+			<!--侧边栏开始-->
+			<div class="xf_c_idx_5_gfggWrap">
+				<!--官方公告 start-->
+				<div class="xf_c_idx_5_gfggColName">
+					<span>${types?.get(0)?.name}</span> <span class="xf_c_idx_5_gfggMore">
+					<a	href="@{front.wealthinfomation.WealthInfomationAction.newsList(7)}" target="_blank">更多</a>
+					</span>
+				</div>
+				<div class="xf_c_idx_5_gfggTitleWrap">
+					<div class="xf_c_idx_5_gfggTitleView">
+					#{list items:news,as:'news'}
+						#{if news_index == 1}
+						<div class="xf_c_idx_5_gfggTitle">
+							<a href="front/wealthinfomation/newDetails?id=${news?.id}" target="_blank">${news?.title.truncate(0,17)}</a>
+						</div>
+						<div class="xf_c_idx_5_gfggImgWrap">
+							<div class="xf_c_idx_5_gfggImg">
+								#{img src:"${news?.image_filename}",alt:""}#{/img}
+							</div>
+							<div class="xf_c_idx_5_gfggIntroduce">
+								<a href="front/wealthinfomation/newDetails?id=${news?.id}" target="_blank"><p limit="25">${news?.content}</p></a>
+							</div>
+							<div class="clear"></div>
+						</div>
+						#{/if}
+						#{else}
+						<div class="xf_c_idx_5_gfggTitle2">
+							<span class="xf_c_idx_5_gfggTitle2Bg"></span><a href="front/wealthinfomation/newDetails?id=${news?.id}" target="_blank">${news.title}</a>
+						</div>
+						#{/else}
+						#{/list}
+					</div>
+				</div>
+				<!--官方公告 ends-->
+			</div>
+			<div class="xf_c_idx_6_lcfybWrap">
+				<!--理财风云榜 start-->
+				<div class="xf_c_idx_6_lcfybColName">
+					<span>理财风云榜</span> 
+					<span class="xf_c_idx_6_lcfybMore">
+						<a href="@{front.home.HomeAction.moreInvest()}" target="_blank">更多</a>
+					</span>
+				</div>
+				<div class="xf_c_idx_6_lcfyHeader">
+					<ul class="xf_c_idx_6_lcfyHUl">
+						<li class="xf_c_idx_6_lcfyHpm">排名</li>
+						<li class="xf_c_idx_6_lcfyHyhm">用户名</li>
+						<li class="xf_c_idx_6_lcfyHtzje">投资金额</li>
+						<!--<li class="xf_c_idx_6_lcfyHsyl">收益率</li>-->
+					</ul>
+					<ul class="xf_c_idx_6_lcfyData">
+					
+					#{list items:investBillboard,as:'investBillboard'}
+						<li>
+						<span class="xf_c_idx_6_lcfyDpm" style="margin-right:5px;margin-left:-5px;"><span 
+						#{if investBillboard_index == 1}
+						class="xf_c_idx_6_lcfyDTop1"
+						#{/if}
+						#{elseif investBillboard_index == 2}
+						class="xf_c_idx_6_lcfyDTop2"
+						#{/elseif}
+						#{elseif investBillboard_index == 3}
+						class="xf_c_idx_6_lcfyDTop3"
+						#{/elseif}
+						#{else}
+						class="xf_c_idx_6_lcfyDTopRest"
+						#{/else}
+						
+						>${investBillboard_index}</span></span> 
+								
+						<span class="xf_c_idx_6_lcfyDyhm" style="margin-right:6px;margin-left:-5px;">${investBillboard?.name?.substring(0,3)+"******"+investBillboard?.name?.substring(9,11)}</span> 
+						<span class="xf_c_idx_6_lcfyDtzje" style="margin-left:13px;padding-left: 30px; width: 60px;">￥#{format money:investBillboard?.corpus}#{/format}</span>
+							 
+						<!--<span	class="xf_c_idx_6_lcfyDsyl"><span ></span>${(investBillboard?.interest*100/investBillboard?.corpus).format('0.00')}%</span>-->
+								
+						</li>
+					#{/list}
+					</ul>
+				</div>
+				<!--理财风云榜 ends-->
+			</div>
+			<div class="xf_c_idx_9_cfgjxWrap">
+				<!--财富工具箱 start-->
+				<div class="xf_c_idx_9_cfgjxColName">
+					<span>财富工具箱</span>
+				</div>
+				<div class="xf_c_idx_9_cfgjContent">
+					<ul class="xf_c_idx_9_cfgjxUl">
+						<!--
+						<li>
+							<a href="@{wealthToolkit(2)}" class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxImgWrap"></div>
+								<div class="xf_c_idx_9_cfgjxTitleWrap">还款计算器</div>
+							 </a>
+						</li>
+						<li>
+							<a href="@{wealthToolkit(3)}" class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxImgjzjsq"></div>
+								<div class="xf_c_idx_9_cfgjxTitlejzjsq">净值计算器</div> 
+							</a>
+						</li>
+						-->
+						<li>
+							<a href="@{wealthToolkit(4)}" class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxImglvjs"></div>
+								<div class="xf_c_idx_9_cfgjxTitlelvjs">收益计算器</div> 
+							</a>
+						</li>
+						<li>
+							<a class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxXyjs"></div>
+								<div class="xf_c_idx_9_cfgjxTitleWrap">信用计算器</div> 
+							</a>
+						</li>
+						<li>
+							<a class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxSfrz"></div>
+								<div class="xf_c_idx_9_cfgjxTitleWrap">服务手续费</div> 
+							</a>
+						</li>
+						<!--
+						<li>
+							<a href="@{wealthToolkit(6)}" class="xf_c_idx_9_cfgjxItemsWrap" target="_blank">
+								<div class="xf_c_idx_9_cfgjxcejk"></div>
+								<div class="xf_c_idx_9_cfgjxTitleWrap">超额借款</div> 
+							</a>
+						</li>
+						-->
+					</ul>
+				</div>
+				<!--财富工具箱 ends-->
+			</div>
+			<!--侧边栏结束-->
+		</div>

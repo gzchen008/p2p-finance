@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>查看红包</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}" />
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+    <style>
+        .content{
+            position: absolute;
+            top:30%;
+            left:25%;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+<label id="msg"></label>
+</div>
+<script>
+
+var code ='${code}';
+    alert(code=="1");
+    if(code=="1"){
+        window.close();
+    }else{
+        $("#msg").html("红包已发完");
+    }
+
+</script>
+</body>
+</html>

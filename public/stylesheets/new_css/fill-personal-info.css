@@ -1,0 +1,112 @@
+#mian {
+
+}
+
+.top-cutting-line{
+    border-color: red;
+    background-color: red;
+}
+
+#main .crumbs-container {
+    background-color: #f5f5f5;
+}
+
+.crumbs-container .crumbs {
+    width: 1000px;
+    margin: 0 auto;
+    line-height: 2em;
+    color: #8e8e8e;
+}
+
+#main .main-top {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.main-top .main-top-content {
+    font-weight: 100;
+    font-size: 1.4em;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+.main-top-content div {
+    display: inline-block;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.main-top-content div span{
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+
+.bottom-line {
+    border-color: #f8f8f8;
+    background-color: #f8f8f8;
+}
+
+
+#main .main-middle {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.detail-form {
+    width: 350px;
+    margin: 0 auto;
+    margin-top: 5%;
+    position: relative;
+    margin-bottom: 15%;
+}
+
+.detail-form p {
+    color: #bababa;
+    font-size: 0.6em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.detail-form .title {
+    color:#000000;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.detail-form .field {
+    margin: 5px 0;
+}
+
+.field label {
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.field input {
+    line-height: 2em;
+    width: 74%;
+}
+
+.submit-btn {
+    border: none;
+    width: 220px;
+    margin-left: 65px;
+    background-color: #CB2901;
+    color: #FFFFFF;
+    height: 40px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.redirect {
+    color: #bababa;
+    font-size: 0.6em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.redirect a {
+    color: #36C4EA;
+}

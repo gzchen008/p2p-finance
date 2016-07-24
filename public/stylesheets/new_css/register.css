@@ -1,0 +1,121 @@
+#main {
+    background-color: #F8F8F8;
+    padding-bottom: 4%;
+}
+
+.top-cutting-line{
+    border-color: red;
+    background-color: red;
+}
+
+.register-container {
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 4%;
+    border: solid 1px #ececec;
+    background-color: #FFFFFF;
+}
+
+.register-container .header {
+    line-height: 40px;
+    border-bottom: solid 1px #ececec;
+}
+
+.header a{
+    font-size: 0.8em;
+    color: #36C4EA;
+}
+
+.company-name {
+    font-weight: bold;
+    margin-left: 10px;
+
+}
+
+.note {
+    margin-left: 10px;
+    font-size: 0.8em;
+}
+
+.body {
+    width:  90%;
+    margin: 40px auto;
+}
+
+.body .advertisement{
+    background-image: url("../../images/new/advistment.png");
+    width: 410px;
+    height: 410px;
+    float: left;
+}
+
+.body .form {
+    float: left;
+    margin-left: 5%;
+    margin-top: 30px;
+}
+
+.form div {
+    margin-bottom: 30px;
+}
+
+.form label {
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+    font-weight: bold;
+}
+
+.form input{
+    margin-left: 20px;
+    line-height: 2em;
+    border: solid 1px #d9d9d9;
+    height: 2em;
+    width: 220px;
+}
+
+.form .security-code {}
+
+.form .security-code input{
+    margin-left: 20px;
+    line-height: 2em;
+    border: solid 1px #d9d9d9;
+    width: 100px;
+}
+
+.form .security-code a {
+    padding: 6px 8px;
+    background-color: #5b5b5b;
+    margin-left: 10px;
+    color: #fff;
+}
+
+.form .agreed-deal {
+}
+
+.agreed-deal .check-box {
+    width: 15px;
+    margin-left: 125px;
+    vertical-align: middle;
+}
+.agreed-deal span{
+    display: inline-block;
+    line-height: 2em;
+    font-size: 0.8em;
+}
+
+.agreed-deal span a{
+    font-size: 0.8em;
+    color: #36C4EA;
+}
+
+.form .submit-btn{
+    width: 220px;
+    margin-left: 125px;
+    vertical-align: middle;
+    background-color: #CB2901;
+    color: #FFFFFF;
+    height: 40px;
+    font-weight: bold;
+    font-size: 1.1em;
+}

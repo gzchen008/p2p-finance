@@ -1,0 +1,61 @@
+@media screen and (device-width: 768px){
+    .col-ipad-1{
+        width:10%!important;
+    }
+    .col-ipad-2{
+        width:20%!important;
+    }
+
+    .col-ipad-3{
+        width:30%!important;
+    }
+    .col-ipad-4{
+        width:40%!important;
+    }
+    .col-ipad-5{
+        width:50%!important;
+    }
+    .col-ipad-6{
+        width:60%!important;
+    }
+    .col-ipad-7{
+        width:70%!important;
+    }
+    .col-ipad-8{
+        width:80%!important;
+    }
+    .col-ipad-9{
+        width:90%!important;
+    }
+    .col-ipad-10{
+        width:100%!important;
+    }
+  .right-center{
+      text-align: right;
+  }
+    .image-scala{
+        width: 120%;
+        height:10em;
+    }
+    .row-height{
+        height:10em;
+    }
+    ol>li{
+        font-size: 2em;
+        margin-bottom: 0.5em;
+    }
+    .pop-height{
+        height:26em;
+    }
+
+    .pop-pos{
+        position: absolute;
+        top:30%;
+        left:15%;
+        width:65%;
+        height:55%;
+        padding: 7%;
+    }
+}
+
+

@@ -1,0 +1,160 @@
+.content-container {
+    background-color: #fff;
+}
+
+.productInfo {
+    padding: 1.5rem;
+    border-bottom: solid 1px #BBBBBB;
+}
+
+.productInfo li {
+    float: left;
+    margin-top: 0.8rem;
+    margin-right: 4rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #5c5c5c;
+}
+
+.productInfo li span {
+    color: #E74C3C;
+}
+
+.account-info {
+    margin: 1.5rem;
+    font-weight: 600;
+    color: #5c5c5c;
+}
+
+.account-info .account-balance {}
+
+.account-info span {
+    color: #E74C3C;
+}
+
+.account-balance p {
+    display: inline-block;
+}
+
+.account-balance a {
+    margin-left: 3.5rem;
+    color: #ffa000;
+}
+
+.btn-container {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.btn-container input{
+    line-height: 2.5rem;
+}
+
+#allInBtn {
+    position: absolute;
+    top:0.25rem;
+    right: 0.3rem;
+    background-color: #E74C3C;
+    padding: 0.8em 1.5em;
+    color: #fff;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    font-family: Georgia, serif;
+}
+
+.predict-price {
+    margin-top: 1rem;
+}
+
+#bidBtn {
+    background-color: #E74C3C;
+    color: #fff;
+}
+
+
+
+.agree{
+    text-align: center;
+    font-size: 12px;
+    padding: 5px 0 0 15px;
+    color: #666;
+}
+.checkboxFive{
+    width: 10px;
+    position: relative;
+}
+.checkboxFive input[type=checkbox]:checked + label:after{
+    opacity: 1;
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 4px;
+    background: transparent;
+    top: 3px;
+    left: 2px;
+    border: 3px solid #fff;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.checkboxFive label{
+    cursor: pointer;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0px;
+    left: 0;
+    background: rgb(0,149,255);
+    border: 2px solid rgb(40, 146, 226);
+    border-radius: 10px;
+}
+.checkboxFive label::after{
+    opacity: 1;
+    cursor: pointer;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: -2px;
+    left: -2px;
+    background: #fff;
+    border: 2px solid rgb(0,149,255);
+    border-radius: 5px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+input[id=agreeTerms] {
+    visibility: hidden;
+}
+
+.checkboxFive label:after{
+    opacity: 0.2;
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 4px;
+    background: transparent;
+    top: 3px;
+    left: 2px;
+    border: 3px solid #fff;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.security {
+    position: fixed;
+    bottom: 1em;
+    left: 25%;
+}

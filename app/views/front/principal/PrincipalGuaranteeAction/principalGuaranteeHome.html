@@ -1,0 +1,19 @@
+#{extends 'common/frontMain.html' /} 
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+#{set title:currBackstageSet.seoTitle+'|本金保障' /}
+#{include "front/principal/PrincipalGuaranteeAction/principalGuaranteeHomephoto.control"/}
+<!--什么是《 本金保障计划 》？-->
+#{include "front/principal/PrincipalGuaranteeAction/principalGuaranteeHomePrincipalPlan.control"/}
+<!--本金保障规则-->
+#{include "front/principal/PrincipalGuaranteeAction/principalGuaranteeHomerule.control"/}
+<!--赔付流程-->
+#{include "front/principal/PrincipalGuaranteeAction/principalGuaranteeHomepPayoutProcess.control"/}
+<!--投资攻略三部曲-->
+#{include "front/principal/PrincipalGuaranteeAction/principalGuaranteeHomeInvestmentStrategy.control"/}
+<!--本金保障常见问题-->
+#{include "front/principal/PrincipalGuaranteeAction/principalGuaranteeHomeCommonQuestions.control"/}
+<!-- 财富理财说明 -->
+
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_principal.js'}"></script>

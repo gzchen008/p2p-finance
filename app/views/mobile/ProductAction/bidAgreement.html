@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>理财合同范本</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/agreement.css'}">
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+    <script type="text/javascript">
+        var URL = {
+            investAgreementUrl: "/mobile/product/getAgreementContent"
+        };
+
+        var Utils = (function ($) {
+            var sendRequest = function (type, param, url, callbackFunc) {
+                return $.ajax({
+                    type: type,
+                    data : param,
+                    url: url,
+                    async: false,
+                    success: function (result) {
+                        if (result && result != "") {
+                            callbackFunc(result);
+                        }
+                        else {
+                            alert("后台出错");
+                        }
+                    },
+                    error : function (result) {
+                    }
+                });
+            };
+            return {
+                sendRequest : sendRequest
+            };
+        })(jQuery);
+
+        var Service = (function () {
+            var getAgreementContent= function (params, callbackFunc) {
+                Utils.sendRequest("GET", params, URL.investAgreementUrl, callbackFunc);
+            };
+
+            return {
+                getAgreementContent : getAgreementContent
+            };
+        })();
+
+
+        var Contorller = (function () {
+            var showAgreement = function () {
+                var param = {
+                    sign : '${sign}',
+                    type : 1
+                };
+                Service.getAgreementContent(param, function (result) {
+                    if (result) {
+                        $("body").html(result);
+                    }
+                });
+            };
+
+            var init = function () {
+                showAgreement ();
+            };
+            return {
+                init: init
+            };
+        })();
+
+        $(document).ready(function() {
+            Contorller.init();
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

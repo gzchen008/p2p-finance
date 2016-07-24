@@ -1,0 +1,256 @@
+@charset "utf-8";
+/* CSS Document */
+.productListBox{
+    padding:0 7px 0 7px;
+    overflow:hidden;
+}
+.productListBox:active{
+    background:#cfcfcf;
+}
+.productListBox .productBox_l{
+    width:65%;
+    float:left;
+}
+.productListBox .productBox_r{
+    float:right;
+    width:35%;
+    text-align: center;
+}
+.productListBox .productBox_r canvas{
+    margin-top:10px;
+    margin-left:5px;
+}
+.productListBox .titleBox{
+    width:100%;
+    float:left;
+}
+.productListBox .titleBox .title{
+    width:100%;
+    float:left;
+    overflow:hidden;
+    text-align:left;
+}
+.productListBox .titleBox .title h1{
+    font-size:1.1rem;
+    color:#666;
+    font-weight:bold;
+    line-height:2.6rem;
+    display:inline-block;
+}
+.productListBox .titleBox .title .secure{
+    display:inline-block;
+    color:#f79100;
+    font-weight:bold;
+    line-height:1.2rem;
+    padding:0 1%;
+    font-size:0.9rem;
+    border-radius:3px;
+    border:1px solid #f79100;
+    margin-left:3%;
+    vertical-align:top;
+    margin-top:6px;
+}
+.advantage p{
+    width:100%;
+    overflow:hidden;
+    text-align:left;
+    color:#999;
+    border-top:1px solid #e6e6e6;
+    padding-top:5px;
+    font-size:12px;
+}
+.span_orangeDot{
+    width:32%;
+    overflow:hidden;
+    text-align:center;
+    color:#666;
+    display:inline-block;
+}
+.span_orangeDot img{
+    width:7px;
+    margin-right:3px;
+}
+.span_orangeDot em{
+    margin-left:12px;
+}
+.productListBox .titleBox .title p span{
+    font-size:0.6rem;
+    color:#aaa;
+    padding-left:12px;
+}
+.productListBox .titleBox .percentShow{
+    width:80px;
+    height:80px;
+    float:right;
+}
+.productListBox .table{
+    width:100%;
+    float:left;
+    padding-bottom:0px;
+}
+.productListBox .table table{
+    width:100%;
+    text-align:left;
+}
+
+.productListBox .table center{
+    text-align:center;
+}
+.productListBox .table table thead{
+    line-height:20px;
+}
+.productListBox .table table tbody{
+    color:#999;
+    font-size:1rem;
+    line-height:2rem;
+}
+.productListBox .table table thead{
+
+}
+.productListBox .table table thead th{
+    font-size:1.4rem;
+    font-weight:100;
+    line-height:2rem;
+}
+.productListBox .table table thead th:last-child{
+    border:none;
+}
+.productListBox .table table .second-column{
+    text-align: center;
+}
+.productListBox .table table tbody tr td{
+
+}
+.productListBox .table table tbody tr td:last-child{
+    border:none;
+}
+.productListBox .table table .data_percent{
+    font-size:2.8rem;
+    color:#D23131;
+    font-weight:bold;
+}
+.productListBox .table table .tag_percent{
+    font-size:1.6rem;
+    color:#D23131;
+    font-weight:bold;
+}
+.productListBox .table table .data_time,.productListBox .table table .data_money{
+    font-size:2.2rem;
+    color:#666;
+}
+.productListBox .table table .tag_time,.productListBox .table table .tag_money{
+    font-size:1.2rem;
+    color:#666;
+}
+.productListBox_font_apr{
+    font-size: 4rem;
+    color:red;
+    font-weight: bold;
+}
+.white_box_pdr {
+    background-color: #fff;
+    padding: 0px;
+    border-radius: 0px;
+    overflow: hidden;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+
+
+
+
+
+.productDetail_div {
+    background-color: #fff;
+    padding: 0px;
+    border-radius: 0px;
+    overflow: hidden;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px;
+    margin-left: 0.9rem;
+
+    background:#fff url(/public/images/ad.png) no-repeat 99% 2px;
+    background-size:34px;
+    height: 55%;
+
+}
+.productDetail_msg{
+    width: 100%;
+    height: 6rem;
+    padding-top: 20px;
+}
+.progress_back{
+    background-color: red;
+    height:0.8em;
+}
+.productDetail_profit{
+    margin-top:1.5rem;
+    width: 33.33%;
+    float: left;
+    font-size:1.3rem;
+}
+.productDetail_profit_front{
+    font-size: 2.3rem;
+    color:red;
+}
+
+.productDetail_refund{
+    margin-top:0.7rem;
+    width: 33.33%;
+    float: left;
+    text-align: right;
+}
+.productDetail_refund_font{
+    float: left;
+    width: 66.66%;
+    margin-top:22px;
+    font-size: 1.1rem;
+}
+.productDetail_refund_font ul li{
+    float: left;
+}
+.fundraising_progressbar{
+    /*width:92%;*/
+    /*margin-top: 15px;*/
+    /*color: red;*/
+    /*height: 1em;*/
+    margin: 0 auto;
+    border-radius: 5px;
+    height: 0.8em;
+    width: 90%;
+    background-color: #E5E5E5;
+    position: relative;
+}
+.fundraising_grid{
+    width:92%;
+    margin-top: 9px;
+    margin-bottom: 5px;
+}
+.sellout_progressbar{
+    width:92%;
+    margin-top: 15px;
+    color: red;
+    height: 1.2em;
+}
+.productDetail_bids{
+    margin-top:3rem;
+    width: 30%;
+    float: left;
+    font-size:1.3rem;
+}
+.productDetail_activity{
+    margin-top: 0.5rem;
+    font-size:1rem;
+    text-align: center;
+    color: gray;
+}
+.productDetail_ref a{
+    text-align: left;
+}
+.productDetail_ref span{
+    text-align: left;
+    margin-left: 0.9rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}

@@ -1,0 +1,206 @@
+#{form @createMProduct(mproduct), method:'POST', id:'createMProduct'}
+	<div class="xf_c_wyjkfb_3_jbxxWrap">
+		<!--1/填写基本信息 start-->
+		<div class="xf_c_wyjkfb_3_jbxxColName">
+			<span class="xf_c_wyjkfb_3_jbxxColbg">1/</span><span>填写基本信息</span>
+		</div>
+		<div class="xf_c_wyjkfb_3_jbxxCont">
+			
+			<div class="xf_c_wyjkfb_3_jbxxColunm">
+			<div class="xf_c_wyjkfb_3_jbxxColunm">
+				<div class="xf_c_wyjkfb_3_jbxxTitle_M">
+					产品简称：
+				</div>
+				<div class="xf_c_wyjkfb_3_jbxxText">
+					<div>
+						<input type="text" class="xf_c_wyjkfb_3_jbxxTitle_MInp" id="name" name="mproduct.name" />
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			
+			<div class="xf_c_wyjkfb_3_jbxxColunm">
+				<div class="xf_c_wyjkfb_3_jbxxTitle_M">
+					项目名称：
+				</div>
+				<div class="xf_c_wyjkfb_3_jbxxText">
+					<input type="text" class="xf_c_wyjkfb_3_nllInp" id="project_name" name="mproduct.project_name" />
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+			
+			<div class="xf_c_wyjkfb_3_jbxxColunm">
+				<div class="xf_c_wyjkfb_3_jbxxTitle_M">
+					项目编码：
+				</div>
+				<div class="xf_c_wyjkfb_3_jbxxText">
+					<input type="text" class="xf_c_wyjkfb_3_nllInp" id="project_code" name="mproduct.project_code" />
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="xf_c_wyjkfb_3_jbxxTitle_M">
+					产品主类型：
+				</div>
+				<div class="xf_c_wyjkfb_3_jbxxText">
+					<select class="xf_c_wyjkfb_3_jkytSel" name="mproduct.main_type.id" id="main_type_id">
+						<option value="0">
+							请选择
+						</option>
+						#{list mainTypes}
+							<option value="${_?.id}" 
+								#{if mproduct?.main_type?.id == _?.id}
+									selected="selected"
+								#{/if}
+							>
+							${_?.name}
+							</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="xf_c_wyjkfb_3_jbxxColunm">
+				<div class="xf_c_wyjkfb_3_jbxxTitle_M">
+					产品子类型：
+				</div>
+				<div class="xf_c_wyjkfb_3_jbxxText">
+					<select class="xf_c_wyjkfb_3_jkytSel" name="mproduct.sub_type.id" id="sub_type_id">
+						<option value="0">
+							请选择
+						</option>
+					</select>
+					</select>
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="xf_c_wyjkfb_3_jbxxColunm">
+				<div class="xf_c_wyjkfb_3_jbxxTitle_M">
+					项目融资总额：
+				</div>
+				<div class="xf_c_wyjkfb_3_jbxxText">
+					<span class="xf_c_wyjkfb_3_jkjeInp">
+						<input type="text" name=mproduct.total_amount id="total_amount" onkeyup="value=value.replace(/[^\d]/g,'')" />
+						 元
+					 </span>
+					<span class="xf_c_wyjkfb_3_jkjeTips">
+						总金额(请输入正整数!)
+					</span>
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+			
+			<div class="xf_c_wyjkfb_3_jbxxColunm">
+				<div class="xf_c_wyjkfb_3_jbxxTitle_M">
+					项目融资方：
+				</div>
+				<div class="xf_c_wyjkfb_3_jbxxText">
+					<input type="text" class="xf_c_wyjkfb_3_nllInp" id="loaner_name" name="mproduct.loaner_name" />
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+		</div>
+		<!--1/填写基本信息 ends-->
+	</div>
+	
+	
+	<div class="xf_c_wyjkfb_3_jkxqWrap">
+		<!--2/描述借款详情 start-->
+		<div class="xf_c_wyjkfb_3_jbxxColName">
+			<span class="xf_c_wyjkfb_3_jbxxColbg">2/</span><span>项目简述</span>
+		</div>
+		<div class="xf_c_wyjkfb_3_jkxqCont">
+		
+		<div class="xf_c_wyjkfb_3_jkxqIntro">
+				<textarea cols="115" rows="5" name="mproduct.project_introduction" id="project_introduction">${flash?.project_introduction}</textarea>
+				<br />
+				<span class="xf_c_wyjkfb_3_jkxqIntroTips">请对项目进行简单说明。</span>
+			</div>
+		</div>	
+			
+			
+		<div class="xf_c_wyjkfb_3_jbxxColName">
+			<span class="xf_c_wyjkfb_3_jbxxColbg">3/</span><span>项目详情</span>
+		</div>
+		<div class="xf_c_wyjkfb_3_jkxqCont">
+		
+		<div class="xf_c_wyjkfb_3_jkxqIntro">
+				<textarea cols="115" rows="5" name="mproduct.project_detail" id="project_detail">${flash?.project_detail}</textarea>
+				<br />
+				<span class="xf_c_wyjkfb_3_jkxqIntroTips">请对项目进行详细说明。</span>
+			</div>
+		</div>
+		
+		<div class="xf_c_wyjkfb_3_jbxxColName">
+			<span class="xf_c_wyjkfb_3_jbxxColbg">4/</span><span>项目资金用途</span>
+		</div>
+		<div class="xf_c_wyjkfb_3_jkxqCont">
+		
+		<div class="xf_c_wyjkfb_3_jkxqIntro">
+				<textarea cols="115" rows="5" name="mproduct.capital_usage" id="capital_usage">${flash?.capital_usage}</textarea>
+				<br />
+				<span class="xf_c_wyjkfb_3_jkxqIntroTips">请对项目资金用途进行详细说明。</span>
+			</div>
+		</div>
+		
+		<div class="xf_c_wyjkfb_3_jbxxColName">
+			<span class="xf_c_wyjkfb_3_jbxxColbg">5/</span><span>还款来源</span>
+		</div>
+		<div class="xf_c_wyjkfb_3_jkxqCont">
+		
+		<div class="xf_c_wyjkfb_3_jkxqIntro">
+			<textarea cols="115" rows="5" name="mproduct.repayment_res" id="repayment_res">${flash?.repayment_res}</textarea> 
+				<br />
+			</div>
+		</div>
+		
+			<div class="xf_c_wyjkfb_3_jbxxColName">
+			<span class="xf_c_wyjkfb_3_jbxxColbg">6/</span><span>主要风控条款</span>
+		</div>
+		<div class="xf_c_wyjkfb_3_jkxqCont">
+		
+		<div class="xf_c_wyjkfb_3_jkxqIntro">
+			<textarea cols="115" rows="5" name="mproduct.risk_control" id="risk_control">${flash?.risk_control}</textarea> 
+				<br />
+			</div>
+		</div>
+		
+		<div class="xf_c_wyjkfb_3_jbxxColName">
+			<span class="xf_c_wyjkfb_3_jbxxColbg">7/</span><span>安全保障</span>
+		</div>
+		<div class="xf_c_wyjkfb_3_jkxqCont">
+		
+			<div class="xf_c_wyjkfb_3_jkxqIntro">
+		 	<textarea cols="115" rows="5" name="mproduct.security_guarantee" id="security_guarantee">${flash?.security_guarantee}</textarea> 
+				<br />
+			</div>
+		</div>
+		
+		<!--2/描述借款详情 ends-->
+	</div>
+
+	<div class="xf_c_wyjkfb_3_submitWrap">
+		<input type="submit" value="提交发布" class="xf_c_wyjkfb_3_submiBtn" id="xf_c_wyjkfb_3_submiBtn" />
+	</div>
+	#{/form}
+</form>
+
+<script type="text/javascript">
+
+		/* 借款期限动态下拉 */
+		$("#main_type_id").change(function(){
+			var subType = $('#sub_type_id');
+			var mainTypeId = $("#main_type_id").val();
+			
+			subType.removeAttr('disabled').empty();
+			#{list subTypes}
+				var mainId = ${_?.mainId} ;
+				if (mainId == mainTypeId)
+					subType.append('<option value="${_?.id}" #{if mproduct?.sub_type?.id == _?.id} selected="selected" #{/if} > ${_?.name} </option>');
+			#{/list}
+		});
+</script>

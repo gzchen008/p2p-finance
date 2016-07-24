@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>投标</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/product-bid.css'}"/>
+    <script type="text/javascript" src="@{'/public/javascripts/verification.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/mobile/product-bid.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/mobileCommon.js'}"></script>
+
+
+    <script type="text/javascript">
+        var bid = {
+            id  : '${bid?.id}',
+            apr : '${bid?.apr}',
+            period : '${bid?.period}',
+            periodUnit : '${bid?.periodUnit}',
+            repayType : '${bid?.repayment.id}',
+            bonus : '${bid?.bonus}'
+        }
+    </script>
+
+</head>
+<body>
+    <div data-role="page" id="productBid">
+        <div class="content-container">
+            <div class="productInfo clearfix">
+                <h4>${bid?.title}</h4>
+                <div class="">
+                    <ul>
+                        <li>年化收益: <span>${bid?.apr}%</span></li>
+                        <li>期限：<span>${bid?.period}</span>天</li>
+                        <li>剩余可投：<span>${map?.availavleInvestedAmount}</span>元</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="account-info">
+                <form method="post" id="submit" data-ajax="false" action="/mobile/account/confirmInvest">
+                    <input type="hidden" name="uuid" value="${map?.uuid}" id="uuid">
+                    <input type="hidden" name="sign" value="${map?.sign}" id="sign">
+                    <input type="hidden" name="bidId" value="${bid?.id}" id="bidId">
+                    <input type="hidden" name="userId" value="${map?.userId}" id="userId">
+
+                    <div class="account-balance">
+                        <p>可用余额：<span>${map?.currentUser?.balance?.format('###,##0.00')}</span>元</p>
+                    </div>
+                    <div class="btn-container clearfix">
+                        <input type="text" class="input-click"  name="investAmount" id="bidAmount" placeholder="至少投${bid?.minInvestAmount?.format('###,##0.00')}元"  maxlength="11" autocomplete="off" >
+                        <a id="allInBtn" >全投</a>
+                    </div>
+                    <p class="predict-price">
+                        预计收益&nbsp;<span id="showPredictPrice">0.00</span>元
+                    </p>
+                    <div>
+                        <a class="ui-btn ui-corner-all" type="submit" id="bidBtn" onclick="confirmInvest();">立即投标</a>
+                    </div>
+                </form>
+            </div>
+            <div class="agree" >
+                <label style=" position:relative; top:1px; display:inline-block"  data-role="none">
+                    <div class="checkboxFive">
+                        <input type="checkbox" value="1"  data-role="none" id="agreeTerms" checked="" name="">
+                        <label for="agreeTerms"  data-role="none" id="tep"></label>
+                    </div>
+                </label>
+                <label for="agreeTerms" style="margin-left:5px;display:inline-block;font-size: 13px">我已经阅读并同意<a href="javascript:void (0);" id="agreementLinkBtn" onclick="pact()" class="fg-cblue" target="_self">《投资理财服务协议》</a></label>
+            </div>
+
+            <div class="oa_er_bk">
+                <div class="oa_error">
+                    <h3>错误提示</h3>
+                    <p class="error_content" id="error_content"></p>
+                    <button data-role="button" id="close" class="os_cf" onclick="closeErrorTips();">确定</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="security">
+        账户资金安全由中信银行全程监管
+    </div>
+</body>
+</html>
+
+<script >
+    $(document).ready(function(){
+        var error = '${flash?.error}';
+        if (error == null || error == undefined || error == '') {
+            $(".oa_er_bk").hide();
+        }else{
+            $(".oa_er_bk").show();
+            $("#error_content").text(error);
+        }
+    });
+
+    function confirmInvest(){
+        var verifyMinAmount = verificationMinAmount($("#bidAmount").val(), '${bid?.minInvestAmount}', '${map?.availavleInvestedAmount}');
+
+        if(verifyMinAmount != true){
+            $(".oa_er_bk").show();
+            $("#error_content").text(verifyMinAmount);
+            return;
+        }
+
+        $("#submit").submit();
+    };
+
+    $("#allInBtn").on("click", function () {
+        try {
+            Contorller.predictPrice();
+            $.ajax({
+                type: "GET",
+                url: "/mobile/account/allInvest",
+                data: {"bidId": '${bid?.id}', "userId": '${map?.userId}'},
+                success: function (data) {
+                    if ('0514' == data.message.code) {
+                        $("#bidAmount").val(data.value);
+                    }
+                },
+                error : function(XMLHttpRequest) {
+                    $(".oa_er_bk").show();
+                    $("#error_content").text("网络错误，请稍后再试",XMLHttpRequest)
+                }
+            });
+        }catch(err){
+            showErr(err);
+        }
+    });
+
+    function pact(){
+        var type = 1;
+        var sign = '${bid?.id}';
+        window.location.href = "/mobile/product/bidAgreement?sign=" + sign + '&type=' + type;
+    }
+</script>

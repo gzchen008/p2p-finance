@@ -1,0 +1,230 @@
+/* advertisement banner */
+.adv_banner {
+    height: 7rem;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+.adv_banner ul {
+    height: 9rem;
+    position: absolute;
+    width: 50000px;
+}
+
+.adv_banner .btnBg {
+    background: none repeat scroll 0 0 #000;
+    bottom: 0;
+    height: 20px;
+    left: 0;
+    position: absolute;
+}
+
+.adv_banner .btn {
+    bottom: 10px;
+    height: 10px;
+    padding: 5px 10px;
+    position: absolute;
+    text-align: center;
+}
+
+.adv_banner .btn span {
+    background: url("../../images/index_bg.png") no-repeat scroll -438px -7px rgba(0, 0, 0, 0);
+    cursor: pointer;
+    display: inline-block;
+    height: 15px;
+    margin-left: 5px;
+    width: 15px;
+}
+.adv_banner .btn span.active {
+    background: url("../../images/index_bg.png") no-repeat scroll -455px -6px rgba(0, 0, 0, 0);
+    height: 16px;
+    width: 15px;
+}
+
+.scroll-box {
+    height: 356px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.banul li {
+    float: left;
+    height: 362px;
+    width: auto;
+}
+
+.banul {
+    height: 362px;
+    width: auto;
+}
+
+
+
+/*      loading part        */
+.loading-container {
+    position: absolute;
+    z-index:  0;
+    text-align: center;
+
+}
+
+.loading-icon {
+    content: url("../../images/mobile/loading_icon.gif");
+    margin: 0 auto;
+}
+
+/*      product list       */
+#productListContainer {
+}
+
+.product-new-bid-icon {
+    content: url("../../images/mobile/new_user.png");
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.product-status-presell {
+    content: url("../../images/mobile/icon_presell.png");
+    width: 70%;
+    height: 70%;
+    margin-top:-0.8rem;
+}
+
+.product-status-bid {
+    content: url("../../images/mobile/icon_bid.png");
+    width: 70%;
+    height: 70%;
+    margin-top:-0.8rem;
+}
+
+.product-status-repay-ing {
+    content: url("../../images/mobile/icon_repay_ing.png");
+    width: 70%;
+    height: 70%;
+    margin-top:-0.8rem;
+}
+
+.product-status-finish-repay {
+    content: url("../../images/mobile/icon_finish_repay.png");
+    width: 70%;
+    height: 70%;
+    margin-top:-0.8rem;
+}
+
+#main{
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+}
+
+#main .item {
+    color: #707070;
+    font-weight: 500;
+    position: relative;
+    padding:0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: solid 1px ;
+}
+
+.item .prodName {
+}
+
+.item .prod-details-container {
+    display:-moz-box;
+    display:-webkit-box;
+    display:box;
+    margin-top: 0.5rem;
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+.prod-details-container .section1 {
+    color: #FF3824;
+    -moz-box-flex:1;
+    -webkit-box-flex:1;
+    box-flex:1;
+    width: 20%;
+}
+
+.section1 span {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.prod-details-container .section2 {
+    -moz-box-flex:2;
+    -webkit-box-flex:2;
+    box-flex:2;
+    margin-left: 1rem;
+    width: 30%;
+    line-height: 2.25rem;
+}
+
+.prod-details-container .section3 {
+    -moz-box-flex:3;
+    -webkit-box-flex:3;
+    box-flex:3;
+    margin-left: 1rem;
+    width: 35%;
+    line-height: 2.25rem;
+}
+
+.prod-details-container .section4 {
+    -moz-box-flex:4;
+    -webkit-box-flex:4;
+    box-flex:4;
+    margin-left: 1rem;
+}
+
+.interest-rate span {
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.item .item-bottom {
+    display:-moz-box;
+    display:-webkit-box;
+    display:box;
+    -moz-box-orient:horizontal;
+    -webkit-box-orient:horizontal;
+    box-orient:horizontal;
+    width: 100%;
+    font-size: 0.7rem;
+}
+.item-bottom .time {
+    -moz-box-flex:1;
+    -webkit-box-flex:1;
+    box-flex:1
+}
+
+.item-bottom .space {
+    -moz-box-flex:2;
+    -webkit-box-flex:2;
+    box-flex:2;
+    width: 1rem;
+}
+
+.item-bottom .display-bid-money {
+    -moz-box-flex:3;
+    -webkit-box-flex:3;
+    box-flex:3;
+    width: 40%;
+}
+
+.item-bottom .countdown-for-start-time {
+    border-radius: 5px;
+    background-color: #FF9C28;
+    color:#fff;
+    padding: 0.1rem 0.5rem;
+}
+
+.item-bottom .countdown-for-end-time {
+    border-radius: 5px;
+    background-color: #999;
+    color:#fff;
+    padding: 0.1rem 0.5rem;
+}

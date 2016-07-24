@@ -1,0 +1,208 @@
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+#{extends 'common/frontMain.html' /}
+#{set title:currBackstageSet.seoTitle +'| 债权转让  |' +debt?.title+'债权标详情'/}
+		<!-- 内容区域 start -->
+			<div class="xf_con_box">
+			
+				<!-- 借款标详情 -->
+							<div class="xf_con_wyjk_nav"><a href="@{debtHome()}">债权转让</a><span class="sf_con_wyjk_gtnav">&gt;</span><span class="sf_con_wyjk_dq">${debt?.title}</span></div>
+				<!-- 借款详细区域 -->
+				<div class="xf_wylc_view_content content_view clr">
+				 #{include 'front/debt/DebtAction/debtDetailsUserInfo.control' /}
+				  #{include 'front/debt/DebtAction/debtDetailsBidInfo.control' /}
+				  #{include 'front/debt/DebtAction/debtDetailsAuction.control' /}
+
+	
+				</div>	
+					 #{include 'front/debt/DebtAction/debtDetailsRecords.control' /}
+				<!-- 我要投标 -->
+				<div class="xf_wylc_fbjkb clr">
+					<div class="xf_wylc_fbjkb_l">
+						<ul class="xf_wylc_fbjkb_ull xf_zqzr_fbjkb_ull clr">                  
+							<li>竞拍状态：
+							#{if debt?.status == 1}
+							竞拍中
+						#{/if}
+						#{if debt?.status == 2}
+							等待认购
+						#{/if}
+						#{if debt?.status == 3}
+							已成功
+						#{/if}
+						#{if debt?.status == -2}
+							流拍
+						#{/if}
+						#{if debt?.status == -3}
+							流拍
+						#{/if}
+						#{if debt?.status == -5}
+							流拍
+						#{/if}
+							
+							</li>
+							<li>本息合计：#{format money:debt.debtAmount}#{/format}元</li>
+							<li>拍卖底价：#{format money:debt.transferPrice}#{/format}元</li>
+							<li>目前拍价：<span class="xf_zqzr_jpjg">#{format money:debt.maxOfferPrice}#{/format}</span>元</li>
+						</ul>
+					</div>
+					<div class="xf_wylc_fbjkb_r">
+					#{if debt.status == 1 && new java.util.Date() < debt?.endTime}
+						<a  class="xf_con_inputfbjk" onclick="showDivDebt();">我要竞拍</a>
+					#{/if}
+					</div>
+				</div>
+			</div>
+		<!-- 内容区域 end -->
+		
+		<!-- 确认竞拍 -->
+		#{form @front.debt.debtAction.auction(debt?.id), method:'POST', id:'auction'}
+		<div class="xf_wyjkfb_4_window_debt" id="xf_wyjkfb_4_window_debt" >
+			<div class="xf_wyjkfb_4_windowInner xf_wylcfb_4_windowInner">
+				<div class="xf_wyjkfb_4_windowClose"></div>
+				<div class="xf_wyjkfb_4_windowColName">
+					我要竞拍<span class="xf_zqzr_jpbh">${debt?.no}号债权转让</span>
+				</div>
+				<div class="xf_zqzrtb_4_windowCot">
+					<div class="xf_wyjkfb_4_windowCol">转让人：  <span class="xf_wyjkfb_4_windowNo">${debt?.invest?.user?.name}</span></div>
+					<div class="xf_wyjkfb_4_windowCol">本息合计：#{format money:debt.debtAmount}#{/format}元 <span class="xf_zqzr_pmdj">拍卖底价：</span>#{format money:debt.transferPrice}#{/format}元</div>
+					<div class="xf_wyjkfb_4_windowCol">目前最高拍价：<span class="xf_wyjkfb_4_windowNum"></span>#{format money:debt.maxOfferPrice}#{/format}元</div>
+					<div class="xf_zqzrtb_4_windowCol">我的出价：<input class="xf_zqzrtb_input" name="offerPrice" id="offerPrice"></input> 元</div>
+					
+					 #{if debt?.invest?.bid?.product?.isDealPassword == true}
+					 <div class="xf_zqzrtb_4_windowCol">交易密码：<input type="password" class="xf_zqzrtb_input" name="dealpwd" id="dealpwd" onMouseOver="checkPwdDel();"></input> </div>
+				       #{if user != null && user.payPassword == null}
+				      <a href="@{front.account.BasicInformation.modifyPassword()}" class="xf_ta_onclick">您未设置交易密码！点击此处设置交易密码</a>
+				     #{/if}
+				     #{/if}
+					<div class="xf_zqzrtb_4_windowCol xf_zqzrtb_4_windowgo">
+						<a class="xf_con_inputfbjk" id="xf_con_inputfbjk" >确 定</a> 	
+						<a class="xf_con_inputfbqux" id="xf_con_inputfbqux">取 消</a> 	
+					</div>
+				</div>
+			</div>
+		</div>
+		#{/form}
+		<!-- 竞拍成功 -->
+#{if success > 0}
+		
+		
+		<div class="xf_zqzrtb_4_window" id="success">
+			<div class="xf_zqzrtb_4_windowInner">
+				<div class="xf_zqzr_4_windowClose"></div>
+				<h2 class="xf_zqzrh2_titl">恭喜您，竞拍成功！</h2>
+			</div>
+		</div>
+	#{/if}	
+	#{if success < 0}
+	<script type="text/javascript">
+	alert('${descrption}');
+	</script>
+	#{/if}
+	</body>
+	
+	
+	<!-- *{登录弹框层}* -->	
+#{include 'front/debt/DebtAction/login.control'/}		
+	
+ *{激活弹框层}* 
+#{include 'front/debt/DebtAction/activeEmail.control'/}	
+	</html>
+	
+	<script type="text/javascript">
+		$(function(){
+
+			$(".xf_zqzr_4_windowClose").click(function(){				
+				$("#success").hide();
+			});	
+			
+			$(".xf_wyjkfb_4_windowClose,#xf_wyjkfb_4_windowCancle,#xf_con_inputfbqux").click(function(){				
+				$("#xf_wyjkfb_4_window_debt").hide();
+			});
+			
+			$("#xf_wyjkfb_4_window_debt").center();
+			$("#success").center();
+			
+			$("#xf_con_inputfbjk").click(function(){				
+					var maxOfferPrice = ${debt?.maxOfferPrice};
+					var  transferPrice = ${debt?.transferPrice};
+					var debtAmount = ${debt?.debtAmount};
+					var offerPrice = $("#offerPrice").val();
+
+					var patrn=/^\d+$/; 
+					var flag = patrn.exec(offerPrice);
+	            	
+	            	if(offerPrice.replace(/\s+/g,"") == "" || null == offerPrice.replace(/\s+/g,"")){
+			             alert("对不起！竞拍出价不能为空！");
+			            return;
+		             }
+				    if(!flag){
+						alert("对不起！请您输入正整数！");
+					 	return;
+				   }
+					
+					if(offerPrice <= 0){
+						alert("对不起！您的出价不能小于0！");
+				 	    return;
+					}
+					if(offerPrice < transferPrice){
+						alert("对不起！您的出价不能低于债权拍卖底价！");
+				 	    return;
+					}
+					if(offerPrice > debtAmount){
+						alert("对不起！您的出价不能高于债权总额！");
+				 	    return;
+					}
+					if(offerPrice <= maxOfferPrice){
+						alert("对不起！您的出价应该高于目前竞拍最高价！");
+				 	    return;
+					}
+					$("#auction").submit();
+					
+			});
+			$(".xf_zqzr_4_windowClose").click(function(){
+				$("#xf_wyjkfb_4_window_debt").hide();
+			});
+		});
+
+
+	
+
+	function showDivDebt(){
+		var listAction = #{jsAction @front.bid.BidAction.checkUserStatus() /};
+		$.post(listAction(), function(data) {
+			switch(data.status * 1){
+				case -3:
+				case 1:
+					$("#xf_wyjkfb_4_window_debt").show();
+					return;
+				/* 未登录 */
+				case -1: 
+					showDiv($("#xf_logintcc_box"));
+					 return;
+				/* 未激活 */
+				case -2: 
+					$("#userName1").html(data.userName);
+					$("#userName2").html(data.userName);
+					$("#email").html(data.email);
+					showDiv($("#active"));
+					return;
+			}
+		});	
+		
+	}
+
+	function checkPwdDel(){
+		var str = "请输入交易密码";
+		#{if debt?.invest?.bid?.product?.isDealPassword == true}	
+		
+			#{if user != null && user.payPassword == null}
+			 str = "您还未设置交易密码,请设置交易密码";
+        	#{/if}
+		#{/if}
+
+		$("#dealpwd").attr("title",str);
+	}
+	</script>
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_claim.js'}"></script>

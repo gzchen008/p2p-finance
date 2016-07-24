@@ -1,0 +1,118 @@
+			<div class="xf_mem_Account xf_mem_shzdjkb_box">
+					<h3 class="xf_mem_accout_title">
+						#{if user?.mobile == null || user?.mobile == '' || !user?.isMobileVerified}
+							绑定安全手机
+						#{/if}
+						#{else}
+							修改安全手机
+						#{/else}
+						
+					</h3>
+						<!-- 未激活 -->
+						<div class="xf_xgaq_email_two">
+							<div class="xf_xgaq_email_onebox">
+								安全手机 ：<input class="xf_email_youx" id="mobile"><span class="xf_xgaq_email_yx3">未校验，点击<a class="xf_xgaq_email_jh" id="test">校验手机</a></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="xf_zqzr_znx_window" id="xf_mem_szansj_tc">
+			<div class="xf_wyjkwszl_4_windowInner xf_mem_aqwtsz_tc">
+				<div class="xf_wyjkfb_4_windowClose"></div>
+				<div class="xf_wyjkfb_4_windowColName">
+					校验手机号码
+				</div>
+				<div class="xf_wyjkfb_aqwt_tclv">
+					系统已经向您下面的手机号码发送了安全校验码，请输入以便校验手机号码
+				</div>
+				<!-- 安全问题设置 -->
+				<div class="xf_mem_aqwtsz_qa">
+					<ul>
+						<li>
+							<div class="xf_mem_aqwtsz_qainput xf_mem_aqwtsz_qainput2">
+								<span class="xf_mem_aqwtsz_titlet">手机号码：</span>
+								<input class="xf_mem_aq_wtszinput" id="telephone" disabled="true" /></div>
+						</li>
+						<li>
+							<div class="xf_mem_aqwtsz_qainput xf_mem_aqwtsz_qainput2">
+								<span class="xf_mem_aqwtsz_titlet">请输入手机校验码：</span>
+								<input class="xf_mem_aq_wtszinput" id="code" /></div>
+						</li>
+						<li class="xf_mem_aqwtsz_lalt2">
+							<a class="xf_con_inputfbjk" id="binding">确认绑定</a>
+							<a class="xf_con_inputfbqux" id = "cBinding">取 消</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+				
+<script type="text/javascript">
+     $(function(){
+         $("#cBinding").click(function(){
+         	 $("#xf_mem_szansj_tc").hide();
+         }); 
+          
+         $("#test").click(function(){
+         	
+         	 if($("#mobile").val().trim() == ''){
+	      		 alert("请输入手机号码");
+	       		return;
+	   		 }
+	    
+	    	if(!$("#mobile").val().trim().isMobileNum()){
+	      		 alert("请输入正确的手机号码");
+	       		return;
+	    	}
+	    	
+	    	var verifyMobile = #{jsAction @front.account.LoginAndRegisterAction.verifyMobile(':mobile')/}
+			$.post(verifyMobile({mobile:$("#mobile").val()}),function(data){
+		    	var arr = eval(data);
+		      
+		    	if(arr.error.code < 0){
+		        	alert(arr.error.msg);
+		        	return;
+		   	 	}else{
+		   	 	
+		   	 	$("#xf_mem_szansj_tc").center(); 
+             	$("#xf_mem_szansj_tc").show();
+             	$("#telephone").val($("#mobile").val());
+             	
+		   	 	}
+			});
+			
+         });
+         
+         $("#binding").click(function(){
+            if($("#telephone").val().trim() == ''){
+	      		 alert("请输入手机号码");
+	       		return;
+	   		 }
+	    
+	    	if(!$("#telephone").val().trim().isMobileNum()){
+	      		 alert("请输入正确的手机号码");
+	       		return;
+	    	}
+	    	
+	    	if($("#code").val().trim() == ''){
+	      		 alert("请输入验证码");
+	       		return;
+	    	}
+         
+            var saveMobile = #{jsAction @saveMobile(':code', ':mobile')/}
+			$.post(saveMobile({code:$("#code").val(), mobile:$("#telephone").val()}),function(data){
+				
+			var arr=eval(data);
+			if(arr.error.code < 0){
+			     alert(arr.error.msg);
+			     return;
+			}
+            alert(arr.error.msg);
+            $("#xf_mem_szansj_tc").hide();
+            window.location.href="@{front.account.BasicInformation.modifyMobile()}"            
+          });
+        });
+         
+     })
+</script>

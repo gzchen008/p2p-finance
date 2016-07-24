@@ -1,0 +1,127 @@
+#{extends 'common/frontMain.html' /}
+%{
+business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+String AGREEMENT_URL = constants.Constants.FP_AGREEMENT_URL;
+}%
+#{set title:currBackstageSet.seoTitle + '--注册' /}
+<head>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/new_css/register.css'}">
+</head>
+<div id="main">
+    <hr class="top-cutting-line" size="3">
+    <div class="register-container">
+        <div class="header">
+            <span class="company-name">注册P2P理财</span>
+            <span class="note">如果您已拥有理财账号，可点击此</span>
+            <a href="@{front.account.loginAndRegisterAction.login()}">登录</a>
+        </div>
+        <div class="body clearfix">
+            <div class="advertisement">
+
+            </div>
+            <div class="form">
+            #{form @front.account.loginAndRegisterAction.registering(), id:'submit'}
+                <div>
+                        <label for="userName">手机号码</label>
+                        <input type="text" value="${flash?.userName}" name="userName" id="userName" placeholder="请输入手机号码"/>
+                    </div>
+
+                    <div class="security-code">
+                        <label for="securityCode">验证码</label>
+                        <input type="text" id="verifyCode" name="code" value="${flash?.code}" placeholder="请输入验证码"/>
+                        <input type="button" onClick="getVerifyCode()" id="verifyCode_btn" value="获取验证码"/>
+                    </div>
+
+                    <div>
+                        <label for="password">设置密码</label>
+                        <input type="password" name="password" id="password" value="${flash?.password}" placeholder="请输入登录密码 6-20位字符组成"/>
+                    </div>
+                    <div>
+                        <label for="password">确认密码</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword" value="${flash?.confirmPassword}" placeholder="重复输入密码"/>
+                    </div>
+
+                    <div>
+                        <label for="invitaionCode">邀请码</label>
+                        <input type="text" id="recommended" name="recommended" value="${flash?.recommendUserName}" placeholder="请输入邀请码（推荐人手机号）"/>
+                    </div>
+
+                    <div class="agreed-deal">
+                        <input class="check-box" id="agreement" name="agreement" type="checkbox" checked="true"  />
+                        <span>我已阅读并同意<a id="agreementButton" onclick="showProtocol()">《${currBackstageSet?.platformName}用户注册协议》</a></span>
+                    </div>
+                    <div class="submit-btn-container">
+                        <input class="submit-btn" type="submit" value="注册"/>
+                    </div>
+                #{/form}
+            </div>
+        </div>
+    </div>
+</div>
+#{include "front/account/LoginAndRegisterAction/register.control"/}
+
+<script type="text/javascript">
+    $(function () {
+        findRegisterAgreement();
+    });
+
+    function showProtocol() {
+        showDiv($("#xf_mem_zc_xytc"));
+    }
+
+    function findRegisterAgreement() {
+        $.ajax({
+            url: '${AGREEMENT_URL}',
+            type: 'POST',
+            data: 'code=0001',
+            success: function (data) {
+                if ('0000' == data.message.code) {
+                    console.info(data.value);
+                    $("#agreementButton").html('《${currBackstageSet?.platformName} ').append(data.value.title).append('》');
+                    showAgreementDetail(data.value.title, data.value.link)
+                } else {
+                    console.info(data.message);
+                }
+            },
+            error: function () {
+                console.info('获取注册协议失败');
+            }
+        });
+    }
+
+    function showAgreementDetail(title, link) {
+        $('#agreementTitle').val(title);
+        $('#agreementContent').attr('src', link);
+    }
+
+    function getVerifyCode() {
+        var verifyCodeRoute = #{jsRoute @front.account.LoginAndRegisterAction.getVerifyCode() /} ;
+        var mobile = $("#userName").val();
+        if ('' == mobile || '手机号码即为用户名' == mobile) {
+            alert("手机号不能为空");
+        } else {
+            $.ajax({
+                url: verifyCodeRoute.url(),
+                type: verifyCodeRoute.method,
+                data: 'userName=' + mobile,
+                success: function (data) {
+                    if (0 == data.code) {
+                        teleCodeTimer("verifyCode_btn");
+                        alert(data.msg);
+                    } else {
+                        alert('验证码发送失败：' + data.msg);
+                    }
+                },
+                error: function () {
+                    alert("对不起，出现错误!");
+                }
+            });
+        }
+
+    }
+
+    function register() {
+        $("#submit").submit();
+    }
+</script>
+

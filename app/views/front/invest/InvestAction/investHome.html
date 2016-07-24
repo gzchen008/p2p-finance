@@ -1,0 +1,42 @@
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+	double activeApr= constants.Constants.BIDS_ACTIVE_APR;
+}%
+<head>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/new_css/product-list.css'}" />
+</head>
+#{extends 'common/frontMain.html' /}
+#{set title:currBackstageSet.seoTitle+'| 我要理财' /}
+
+<div id="main">
+    <hr class="top-cutting-line" size="3">
+    <div class="main-path">
+        <div class="path-container">
+            首页>我要投资>产品列表
+        </div>
+    </div>
+	#{include "front/invest/InvestAction/filter.control"/}
+    <div class="note">
+        <p>
+            温馨提示：近期工作日固定发标时间在11:30、13：30、17:00，其余时间于周末随机发标
+        </p>
+    </div>
+    <div class="prod-list-container">
+		#{include "front/invest/InvestAction/sort.control"/}
+        #{include "front/invest/InvestAction/products.control"/}
+    </div>
+
+	#{page currPage:pageBean.currPage,totalCount:pageBean.totalCount,pageSize:pageBean.pageSize,theme:1,style:5,funMethod:'selectPage'}#{/page}
+</div>
+
+<!-- 财富理财说明 -->
+
+
+
+<!-- *{登录弹框层}* -->	
+#{include 'front/invest/InvestAction/login.control'/}		
+	
+ *{激活弹框层}* 
+#{include 'front/invest/InvestAction/activeEmail.control'/}	
+
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_invest.js'}"></script>

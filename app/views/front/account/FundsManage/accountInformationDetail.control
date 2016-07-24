@@ -1,0 +1,71 @@
+	<!-- 账户信息 -->
+	<div class="xf_mem_Account xf_mem_passage">
+		#{if isIps}
+		<h3 class="xf_mem_accout_title">账户信息<a href="@{front.account.FundsManage.recharge()}" class="cz-btn">在线充值</a></h3>
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" class="xf_mem_zjgl_viewzhxx s_newtab">
+			<tbody>
+				<td align="left" valign="middle" width="250"><span
+						class="xf_zjgl_zhxx_span">账户余额：</span>
+						 <input class="xf_zjgl_zhxx_text" type="text" value="${(accountInfo?.user_account-accountInfo?.freeze+accountInfo?.user_account2)?.format('###,##0.00')}" disabled>
+						  <spanclass="xf_zjgl_zhxx_yuan">元</span></td>
+					<td align="left" valign="middle" width="300"><span
+						class="xf_zjgl_zhxx_span1">托管账户可用余额：</span>
+						 <input class="xf_zjgl_zhxx_text" type="text" value="${(accountInfo?.user_account-accountInfo?.freeze)?.format('###,##0.00')}" disabled>
+						  <spanclass="xf_zjgl_zhxx_yuan">元</span></td>
+					<td align="left" valign="middle" width="300"><span
+						class="xf_zjgl_zhxx_span1">平台账户可用余额：</span>
+						 <input class="xf_zjgl_zhxx_text" type="text" value="${accountInfo?.user_account2?.format('###,##0.00')}" disabled>
+						  <spanclass="xf_zjgl_zhxx_yuan">元</span></td>	  
+		#{/if}
+		#{else}
+		<h3 class="xf_mem_accout_title">账户信息</h3>
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" class="xf_mem_zjgl_viewzhxx">
+			<tbody>
+				<tr>
+					<td align="left" valign="middle" width="290"><span
+						class="xf_zjgl_zhxx_span">可用余额：</span>
+						 <input class="xf_zjgl_zhxx_text" type="text" value="${(accountInfo?.user_account-accountInfo?.freeze)?.format('###,##0.00')}" disabled>
+						  <spanclass="xf_zjgl_zhxx_yuan">元</span></td>
+					<td colspan="2"><a href="@{front.account.FundsManage.recharge()}" class="xf_membill_cza">在线充值</a></td>
+				</tr>
+		#{/else}
+				<tr>
+					<td align="left" valign="middle"><span
+						class="xf_zjgl_zhxx_span">账户总额：</span> <input
+						class="xf_zjgl_zhxx_text" type="text" value="${accountInfo?.user_account?.format('###,##0.00')}" disabled> 
+						<span class="xf_zjgl_zhxx_yuan">元</span></td>
+					<td colspan="2"><span class="xf_zjgl_zhxx_span">冻结金额：</span> 
+						<input class="xf_zjgl_zhxx_text" type="text" value="${accountInfo?.freeze?.format('###,##0.00')}" disabled> 
+						<span class="xf_zjgl_zhxx_yuan">元</span></td>
+				</tr>
+				<tr>
+					<td align="left" valign="middle"><span
+						class="xf_zjgl_zhxx_span">投标总额：</span> <input
+						class="xf_zjgl_zhxx_text" type="text" value="${accountInfo?.invest_amount?.format('###,##0.00')}" disabled> 
+						<span class="xf_zjgl_zhxx_yuan">元</span></td>
+					<td width="180"><span class="xf_zjgl_zhxx_span">投标数量：</span> 
+						<input class="xf_zjgl_zhxx_text2" type="text" value="${accountInfo?.invest_count}" disabled> 
+						<span class="xf_zjgl_zhxx_yuan">个</span></td>
+					<td>
+						<span class="xf_zjgl_zhxx_span">应收账款：</span> 
+						<input class="xf_zjgl_zhxx_text" type="text" value="${accountInfo?.receive_amount?.format('###,##0.00')}" disabled> 
+						<span class="xf_zjgl_zhxx_yuan">元</span></td>
+				</tr>
+				<!--
+				<tr>
+					<td align="left" valign="middle"><span
+						class="xf_zjgl_zhxx_span">借款总额：</span> 
+						<input class="xf_zjgl_zhxx_text" type="text" value="${accountInfo?.bid_amount.format('###,##0.00')}" disabled> 
+						<span class="xf_zjgl_zhxx_yuan">元</span></td>
+					<td>
+						<span class="xf_zjgl_zhxx_span">借款标数量：</span> 
+						<input class="xf_zjgl_zhxx_text2" type="text" value="${accountInfo?.bid_count}" disabled> 
+						<span class="xf_zjgl_zhxx_yuan">个</span></td>
+					<td><span class="xf_zjgl_zhxx_span">应还账款：</span> <input
+						class="xf_zjgl_zhxx_text" type="text" value="${accountInfo?.repayment_amount?.format('###,##0.00')}" disabled> 
+						<span class="xf_zjgl_zhxx_yuan">元</span></td>
+				</tr>
+				-->
+			</tbody>
+		</table>
+	</div>

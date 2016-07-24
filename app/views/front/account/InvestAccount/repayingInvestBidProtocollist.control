@@ -1,0 +1,49 @@
+<div class="xf_wyjkwszl_4_windowInner xf_ckht_znxback_window">
+	<div class="xf_wyjkfb_4_windowClose"></div>
+	<div class="xf_wyjkfb_4_windowColName">
+		查看合同
+	</div>
+	<div class="xf_zqzr_znx_windowCot">
+		<table border="0" cellpadding="0" cellspacing="0" width="240" class="xf_zqzr_znx_teot">
+			<tr>
+				<td width="70">
+					<input type = "hidden" id = "investSign" />
+					<input type = "hidden" id = "type" />
+					<a class="xf_membill_cza" id="ht_id" target="_blank" onclick="pact();">理财合同</a></br>
+					<a id="jj_id" class="xf_membill_cza" target="_blank" onclick="intermediaryAgreement();">居间服务协议</a></br>
+					<div id="guarantee" >
+					<a class="xf_membill_cza" id="bz_id" target="_blank" onclick="guaranteeBid();">保障函</a></br>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+ <script type="text/javascript">
+ 	$(function(){
+ 	
+ 		$("#xf_mem_protocolistwindow").center();
+ 		
+ 		$(".xf_wyjkfb_4_windowClose").click(function(){
+ 			$("#xf_mem_protocolistwindow").hide();
+ 		})
+ 	})
+ 	
+ 	function pact(){
+ 		var type = $("#type").val();
+ 		var sign = $("#investSign").val();
+ 		window.open('@{front.account.InvestAccount.investPact()}?sign=' + sign + '&type=' + type);
+ 	}
+ 	function intermediaryAgreement(){
+ 		var type = $("#type").val();
+ 		var sign = $("#investSign").val();
+ 		window.open('@{front.account.InvestAccount.intermediaryAgreement()}?sign=' + sign + '&type=' + type);
+ 	}
+ 	function guaranteeBid(){
+ 		var type = $("#type").val();
+ 		var sign = $("#investSign").val();
+ 		window.open('@{front.account.InvestAccount.guaranteeBid()}?sign=' + sign + '&type=' + type);
+ 	}
+ 		
+ </script>

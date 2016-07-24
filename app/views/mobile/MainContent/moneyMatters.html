@@ -1,0 +1,101 @@
+#{extends 'mobile/common/frmMain.html'/}
+#{set title:'理财' /}
+
+<div class="mm_all_bg">
+    <div class="mm_hd_bd">
+        <ul class="mm_title_cn">
+            <li>
+                预期年化
+            </li>
+            <li>
+                项目期限
+            </li>
+            <li>
+                融资进度
+            </li>
+        </ul>
+    </div>
+
+        #{list items:pageBean.page, as:'bid'}
+        <div class="white_box_pdr"
+             style="background:#fff url(/public/images/ad.png) no-repeat 99% 2px; background-size:34px;"
+             id="${bid?.id}">
+
+            <div class="productListBox">
+                <div class="productBox_l">
+                    <div class="titleBox">
+                        <div class="title"><h1>${bid?.title}</h1></div>
+                    </div>
+
+
+                    <div class="table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="productListBox_font_apr">${bid?.apr}%</th>
+                                    <th class="second-column">
+                                        <sapn>${bid?.period}</sapn>
+                                        #{if bid?.period_unit == 0}个月#{/if} #{if bid?.period_unit == 1}天#{/if} #{if bid?.period_unit == -1}年#{/if}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>免手续费</th>
+                                    <th class="second-column">${bid?.min_invest_amount}元起购</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="productBox_r">
+                    <canvas id="product_canvas${bid?.id}" width="64" height="64">您的浏览器不支持HTML5 canvas，请换用现代浏览器。</canvas>
+                </div>
+            </div>
+        </div>
+        #{/list}
+    <div class="oa_er_bk">
+        <div class="oa_error">
+            <h3>提示</h3>
+            <p class="error_content" id="error_content"></p>
+            <button data-role="button" id="close" class="os_cf" onclick="closeErrorTips();">确定</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+    var bind='${openid}'
+    if(bind=="2"){
+$(".oa_er_bk").css("display","block");
+       $("#error_content").html("恭喜您绑定成功!");
+    }
+    /*
+     错误弹窗关闭
+     */
+    function closeErrorTips(){
+        $(".oa_er_bk").css("display","none");
+    }
+
+    #{list items:pageBean.page, as:'bid'}
+        var hasInvestAmount = '${bid?.has_invested_amount}';
+        var amount = '${bid?.amount}';
+        var percent=hasInvestAmount/amount;
+        drawPercent_small("product_canvas${bid?.id}",percent,0.85,0.85);
+        $("#${bid?.id}").click(function(){
+            window.location.href="/mobile/product/detail?bidId=${bid?.id}"
+        });
+    #{/list}
+
+
+    $(document).ajaxStop(function() {
+        $("#productList div.white_box_pdr:not('#notAnyMore')").on("click",function(){
+            setSessionData("productId",$(this).attr("id"));
+            setSessionData("productName",$(this).find(".title h1").text());
+        });
+    });
+
+</script>
+
+

@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>推荐好友注册</title>
+    <meta name="description" content="金豆荚理财">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    *{<link rel="apple-touch-icon" href="../../apple-touch-icon.png">}*
+    <!-- Place favicon.ico in the root directory -->
+    <!-- build:css ../resources/css/minqrredirect.css -->
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap.min.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/main.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/qrredirect.css'}">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/small.css'}"/>
+    <script>
+        baseUrl = '${fpHots}';
+    </script>
+    <!-- endbuild -->
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<input type="hidden" id="mobile"/>
+    <!-- Add your site or application content here -->
+    <div class="app__wrapper">
+   <div id="container"class="container-fluid inner-padding">
+       <div id="header" class="row-fluid padding-bottom1 back-image position-center">
+           <div class="span4 col-ipad-4 right-pos right-center"><img src="@{'/public/images/h5icon/navlogo.png'}" class="heigh-width"/></div>
+           <div class="span8 col-ipad-6 row-height margin-init">
+               <div class="height-70percent padding-bottom margin-left4" ><img src="@{'/public/images/h5icon/title.png'}" class="title-size margin-bottom margin-top" /></div>
+           </div>
+       </div>
+       <div id="content" class="row-fluid back-color">
+           <div class="row-fluid">
+           <div class="span4 col-ipad-4  right-pos">
+               <img src="@{'/public/images/h5icon/benefit.png'}" class="image-scala"/>
+           </div>
+           <div class="span8 col-ipad-6 row-height padding-left padding-top padding-right">
+               <ol class="dl-back-red">
+                  <li>汇集稳建的理财产品供您选购</li>
+                   <li>收益高达活期存款的<i class="font-big">10-20</i>倍</li>
+                   <li>随时取现,实时到账</li>
+               </ol>
+           </div>
+         </div>
+           <div class="row-fluid">
+               <div class="span4 col-ipad-4 right-pos">
+                   <img src="@{'/public/images/h5icon/investment.png'}"  class="image-scala"/>
+               </div>
+               <div class="span8 col-ipad-6 row-height padding-left padding-top padding-right">
+                   <ol class="dl-back-yellow">
+                       <li>5秒开通账户, 7X24小时在线下单</li>
+                       <li>每日推 "金品" , 好收益天天见</li>
+                       <li>vip级理财服务, 赚钱还能赚金豆</li>
+                   </ol>
+               </div>
+           </div>
+           <div class="row-fluid">
+               <div class="span4 col-ipad-4 right-pos">
+                   <img src="@{'/public/images/h5icon/makemoney.png'}"  class="image-scala"/>
+               </div>
+               <div class="span8 col-ipad-6 row-height padding-left padding-top padding-right">
+                   <ol class="dl-back-green">
+                       <li>实名认证, 银行级加密系统</li>
+                       <li>资金同卡进出, 短信同步确认</li>
+                       <li>交易资金由浦发银行全程监管</li>
+                   </ol>
+               </div>
+           </div>
+       </div>
+       <div id="section" class="row-fluid">
+           <div id="parentcont" class="position-center qr-scala padding-top2 margin-left2">
+               <img id="qrlogo" src="@{'/public/images/h5icon/qrlogo.png'}"  class="qr-height">
+           </div>
+       </div>
+       <div id="foot" class="row-fluid padding-top4 ">
+           <p style="text-align: left;padding-left: 2em;">【金豆荚】是由上海展义金融信息服务有限公司精心打造的一款个人理财服务应用</p>
+           <p style="text-align: left;padding-left: 2em;">【金豆荚】拥有一支在互联网和金融领域卓有成就和经验的专家团队,以领先的移动互联网技术，丰富的理财产品和专业的投顾服务
+           ,以及严谨的风险控制体系,为您带来便捷的理财体验和丰富的投资回报!</p>
+
+       </div>
+   </div>
+
+<div id="pop"class="display-none">
+    <img id="image-pop" src="@{'/public/images/h5icon/qrlogo.png'}"   class="image-scala pop-pos pop-height"/>
+</div>
+</div>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/bootstrap.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/button.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jqueryextend.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/defaultshare.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/qrredirect.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/sha.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/sign.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/jweixin-1.0.0.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/share/weixin.js'}"></script>
+</body>
+
+</html>

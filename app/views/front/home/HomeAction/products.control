@@ -1,0 +1,30 @@
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+	String mobile = constants.Constants.BIDS_MOBILE;
+	String bidsCreateTime = constants.Constants.BIDS_CREATETIME;
+	boolean is_bids_need_filter = constants.Constants.IS_BIDS_NEED_FILTER;
+	java.util.Date currentDate = utils.DateUtil.currentDate();
+}%
+<ul class="clearfix">
+    #{list items:bidList , as:'bid'}
+    <li class="${bid_index%4 == 0 ? 'border-li' : ''}">
+        #{if bid?.statusType == 2}
+            #{if bid.time > currentDate}
+                #{include "front/home/HomeAction/prepareBid.control"/}
+            #{/if}
+            #{elseif bid.amount == bid.has_invested_amount}
+                #{include "front/home/HomeAction/sellOutBid.control"/}
+            #{/elseif}
+            #{else}
+                #{include "front/home/HomeAction/fundraisingBid.control"/}
+            #{/else}
+        #{/if}
+        #{if bid?.statusType == 4}
+            #{include "front/home/HomeAction/repaymentBid.control"/}
+        #{/if}
+        #{if bid?.statusType == 5}
+             <span class="text-panel"><a class="bids-btn" href="@{front.invest.InvestAction.invest(bid?.id)}" target="_blank">已还款...</a></span>
+        #{/if}
+    </li>
+    #{/list}
+</ul>

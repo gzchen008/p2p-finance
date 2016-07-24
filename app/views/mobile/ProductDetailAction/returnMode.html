@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <meta charset="utf-8">
+    <title>收益方式</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}" />
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+<style>
+#ui-block-a, 
+#ui-block-b, 
+#ui-block-c 
+{
+height: 60px;
+font-weight: bold;
+text-align: center;
+
+}
+
+</style>
+</head>
+<body>
+
+
+<div data-role="page" id="bind_swipe">
+
+    <div data-role="navbar" >
+      <ul>
+              <li><a href="#" id="detailtwo" >项目详情</a></li>
+              <li><a href="#" id="fundSecurity" >资金安全</a></li>
+              <li><a href="#" id="bidrecords" >投标记录</a></li>
+              <li><a href="#" id="returnMode" class="ui-btn-active">收益方式</a></li>
+      </ul>
+    </div>
+	<br>
+	<div>
+    #{list items:jsonMap?.timeNodeList , as: 'map'}
+		<div class="ui-grid-b">
+			<div class="ui-block-a" id="ui-block-a"><span><br>${map?.nodeTime}</span></div>
+               <div class="ui-block-b" id="ui-block-b">
+                        <img src="${map?.imgUrl}">
+               </div>
+			<div class="ui-block-c" id="ui-block-c"><span><br>${map?.nodeName}</span></div>
+			
+		</div>
+    #{/list}
+
+	<br><br>
+	
+	</div>
+	<div class="ui-grid-a">
+		 <div class="ui-block-a" ><span><Strong>&nbsp;&nbsp;还款方式</Strong></span></div>
+		 <div class="ui-block-b" ><span>${jsonMap?.paymentMode}</span></div>
+		 <br><hr>
+	</div>
+	<div class="ui-grid-a">
+		 <div class="ui-block-a" ><span><Strong>&nbsp;&nbsp;还款提示</Strong></span></div>
+		 <div class="ui-block-b" ><span>${jsonMap?.repayment_tips}</span></div>
+		 <br><hr>
+	</div>
+	<div class="ui-grid-a">
+		 <div class="ui-block-a" ><span><Strong>&nbsp;&nbsp;手续费</Strong></span></div>
+		 <div class="ui-block-b" ><span>${jsonMap?.feeType}</span></div>
+		 <br>
+	</div>
+</div>
+<input type="hidden" value="${jsonMap?.borrowId}" id="bid_Id">
+</body>
+</html>
+<script>
+    $(function () {
+        $("#bind_swipe").bind("swipeleft",function(){
+            window.location.href="/mobile/product/bidRecords?bidId="+$("#bid_Id").val();
+        });
+        $("#bind_swipe").bind("swiperight",function(){
+            window.location.href="/mobile/product/detailtwo?borrowId="+$("#bid_Id").val();
+        })
+    });
+    $("#bidrecords").click(function(){
+        window.location.href="/mobile/product/bidRecords?bidId="+$("#bid_Id").val();
+    });
+    $("#detailtwo").click(function(){
+        window.location.href="/mobile/product/detailtwo?borrowId="+$("#bid_Id").val();
+    });
+    $("#fundSecurity").click(function(){
+        window.location.href="/mobile/product/fundSecurity?borrowId="+$("#bid_Id").val();
+    });
+    $("#returnMode").click(function(){
+        window.location.href="/mobile/product/returnMode?borrowId="+$("#bid_Id").val();
+    });
+</script>

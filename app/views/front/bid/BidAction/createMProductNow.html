@@ -1,0 +1,29 @@
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+#{extends 'common/frontMain.html' /} 
+#{set title:currBackstageSet.seoTitle + '|新增母产品' /}
+
+	
+<div class="xf_c_wyjkfb_1_wrap">
+	<div class="xf_c_wyjkfb_1_location">
+		<a href="@{index()}">我要借款 </a> ><span class="xf_c_wyjkfb_1_locNow">新增母产品</span>
+	</div>
+	<div class="xf_c_wyjkfb_2_aside">
+		#{include 'front/bid/BidAction/applyNowLeft.control'/}
+		<!--侧边栏结束-->
+	</div>
+	<div class="xf_c_wyjkfb_3_content">
+		<!--内容区开始-->
+		<div class="xf_c_wyjkfb_3_colName">
+			新增
+		</div> 
+		<div class="xf_c_wyjkfb_3_cont">
+			#{include 'front/bid/BidAction/applyNowWriteMProducts.html'/}
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>	
+#{if code > 0}
+	#{include 'front/bid/BidAction/createMProductSucceed.control'/}
+#{/if}

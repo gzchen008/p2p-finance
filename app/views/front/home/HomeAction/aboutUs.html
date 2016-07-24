@@ -1,0 +1,15 @@
+#{extends 'common/frontMain.html' /} 
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+#{set title:currBackstageSet.seoTitle+'|关于我们' /}
+
+
+<div class="xf_con_box">
+<!--侧边导航栏-->
+#{include "front/home/HomeAction/aboutUsLeft.html"/}
+#{include "front/home/HomeAction/aboutUsContent.control"/}
+</div>
+<!-- 财富理财说明 -->
+
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_index.js'}"></script>

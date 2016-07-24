@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap.min.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/main.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/simpleregist.css'}" />
+
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/bootstrap.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/verification.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/mobileCommon.js'}"></script>
+<style>
+    html,body{
+        width:100%;
+  background-color: rgb(230, 230, 230);
+    }
+</style>
+</head>
+<body >
+        <div id="top" class="row-fluid" style="display: inline-block">
+            <div id="phone" class="row-fluid content_pos">
+                <img src="@{'/public/images/h5icon/rgbnaner_02.jpg'}" style="min-height: 80px;" >
+            </div>
+        </div>
+
+        <div class="row-fluid content" >
+    <form method="post" id="submit" data-ajax="false" action="/mobile/weixin/quickLogin">
+        <input type="hidden" id="openId" name="openId" value="${openId}">
+        <div>
+            <div class="row-fluid-width ">
+                <div class="row-width">
+                    <label class="field" style="display: block;"></label>
+                    <input type="tel" class="input-text-user input-click" maxlength="11" placeholder="请输入手机号" id="name" name="name">
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <div class="row-fluid-width">
+                <div class="row-width rel-pos">
+                    <label class="field" style="display: block;"></label>
+                    <input type="password" class="input-text-pwd input-click"  name="password" id="password" placeholder="请输入密码" maxlength="20" autocomplete="off" >
+                    <b class="eye"></b>
+                </div>
+            </div>
+
+        </div>
+        <div style=" width:100%;text-align: center;margin-top: 15px">
+        <button type="submit" id="loginSub" class='btn-height  button-font' onclick="login()">立即登录</button>
+            </div>
+    </form>
+            <div style="clear:both;width:289px;margin-top: 20px;"></div>
+
+          <a id="register" href="javascript:void(0);"style="float:left;">立即注册</a>
+           <a id="changePwd" href="javascript:void(0);"style="float:right;" >忘记密码</a>
+
+
+        <div class="oa_er_bk">
+            <div class="oa_error">
+                <h3>错误提示</h3>
+                <p class="error_content" id="error_content"></p>
+                <button data-role="button" id="close" class="os_cf" onclick="closeErrorTips();">确定</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+//
+$(".eye").click(
+        function(){
+            if( $("#password").attr("type")=="password"){
+                $(".eye").css("backgroundPosition","0 0px");
+                $(".eye").css("background-size","100%");
+                $("#password").attr("type","text");
+            }else
+            if( $("#password").attr("type")=="text"){
+                $(".eye").css("backgroundPosition","0 -59px");
+                $(".eye").css("background-size","100%");
+                $("#password").attr("type","password");
+            }
+
+        }
+)
+
+    $(document).ready(function(){
+        veriChangeVal("submit","#name","#password");
+
+        var error = '${flash?.error}';
+        if (error == null || error == undefined || error == '') {
+            $(".oa_er_bk").hide();
+        }else{
+            $(".oa_er_bk").show();
+            $("#error_content").text(error);
+        }
+    });
+
+    $("#register").click(function(){
+        window.location.href="/mobile/quickRegister";
+    });
+    $("#changePwd").click(function(){
+        window.location.href="/mobile/me/changepwd?name="+$("#name").val();
+    });
+
+
+    function login(){
+        var PhoneNumber = veriPhoneNumber($("#name").val());
+        if (PhoneNumber != true) {
+            $(".oa_er_bk").show();
+            $("#error_content").text(PhoneNumber);
+            return;
+        }
+
+        var password = veriPassword($("#password").val());
+        if (password != true) {
+            $(".oa_er_bk").show();
+            $("#error_content").text(password);
+            return;
+        }
+        $("#submit").submit();
+    }
+
+</script>

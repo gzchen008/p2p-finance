@@ -1,0 +1,76 @@
+ %{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+#{extends 'common/frontMain.html' /} 
+#{set title:currBackstageSet.seoTitle + ' | 我的账户   | 理财子账户  | 理财子账户首页'/}
+<!-- 内容区域 start -->
+<div class="xf_con_box">
+<div class="xf_con_mem_nav"></div>
+<!-- 左边导航区域 -->
+#{include "front/account/AccountHome/homeLeft.control"/}
+<!-- 右侧内容区域 -->
+	<div class="xf_mem_Account">
+		<h3 class="xf_mem_accout_title">理财子账户</h3>
+		<div class="xf_mem_accout_cont clr">
+			#{include "front/account/InvestAccount/investAccountPhoto.control"/}
+			#{include "front/account/InvestAccount/investAccountInfo.control"/}
+			<div class="clear"></div>
+		</div>
+	</div>
+	
+	<!-- 理财秘书 -->
+	#{include "front/account/InvestAccount/investAccountSecretary.control"/}
+	<!-- 转让和借款标详情 -->
+		<div class="clear"></div>
+	
+
+</div>
+
+<!-- 清除浮动 -->
+<div class="clear"></div>
+<div id="show"></div>
+
+
+				
+<!-- vip弹出层  -->
+#{include "front/account/AccountHome/homeVipApply.control"/}
+#{include "front/account/AccountHome/homeVipContent.control"/}
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_usr.js'}"></script>
+
+<script>
+	$(function(){
+		/* 高亮显示 */
+		showHighLightFront(14);
+		showHighLightFront2(7, 4);
+
+		$("#qualityDebts").hide();
+	})
+		
+	/* 优质标 */	
+	function showQualityBids(){
+		$("#qualityDebts").hide();
+		$("#qualityBids").show();
+	}
+
+	/* 优质债权 */
+	function showQualityDebts(){
+		$("#qualityBids").hide();
+		$("#qualityDebts").show();
+	}
+	
+	//function showQualityBids(){
+	//	$("#qualityDebts").hide();
+	//	var listAction = #{jsAction @front.account.InvestAccount.queryQualityBid() /};
+	//	$.post(listAction({}), function(data) {
+	//		$("#qualityBids").html(data).show();
+	//	});		
+	//}
+
+	//function showQualityDebts(){
+	//	$("#qualityBids").hide();
+	//	var listAction = #{jsAction @queryQualityDebt() /};
+	//	$.post(listAction({}), function(data) {
+	//		$("#qualityDebts").html(data).show();
+	//	});		
+	//}
+</script>

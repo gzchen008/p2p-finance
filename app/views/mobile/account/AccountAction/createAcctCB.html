@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>开通成功</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}"/>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+</head>
+
+<body>
+<div data-role="page" id="index">
+<div class="ds_cn_po">
+<p><span class="ds_sp"><label class="ds_lb_bm"></label>恭喜您,成功开通资金托管!</span></p>
+    <p class="ds_p_des">进入我要理财开始理财吧!</p>
+</div>
+    <div  data-role="content" class="ds_ft_dv">
+        <a id="moneyMatters" href="#" class="ui-btn ui-btn-inline ui-corner-all">我要理财</a>
+        <a id="property" href="#" class="ui-btn ui-btn-inline ui-corner-all">我的财富</a>
+    </div>
+    <a id="bestProduct" href="#" class="ds_bc">返回首页</a>
+</div>
+<script>
+    function bindEvent(o,event,fun){
+        return o.bind(event,fun);
+    }
+    bindEvent($("#moneyMatters"),"click",function(){
+        window.location.href="/mobile/content/moneyMatters";
+    })
+    bindEvent($("#property"),"click",function(){
+        window.location.href="/mobile/content/property";
+    })
+    bindEvent($("#bestProduct"),"click",function(){
+        window.location.href="/mobile/content/bestProduct";
+    })
+</script>
+</body>
+</html>

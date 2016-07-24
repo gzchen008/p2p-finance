@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	%{
+		business.User currUser = business.User.currUser();
+		business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+		String platUrl = constants.Constants.BASE_URL;
+		java.util.Map<String,java.util.List<business.BottomLinks>> bottomLinks = business.BottomLinks.currentBottomlinks();
+		boolean ipsEnable = constants.Constants.IPS_ENABLE;
+		boolean debtUse = constants.Constants.DEBT_USE;
+		String mobile = constants.Constants.BIDS_MOBILE;
+		java.util.Date currentDate = utils.DateUtil.currentDate();
+	}%
+	<title>#{get 'title' /}</title>
+	<meta name="keywords" content="${currBackstageSet?.seoKeywords}" />
+	<meta name="description" content="${currBackstageSet?.seoDescription}" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta property="qc:admins" content="133011667666155146375" />
+	<meta property="wb:webmaster" content="6582954f8f7d9e1d" />
+	<meta name="description" itemporp="description" content="金豆荚首支理财产品展义宝发售,3个月年化收益在8.5%以上.5月1日前投资10万元以上送APPLEWATCH"/>
+	<meta itemprop="name" content="展义宝线上正式发布"/>
+	<meta itemprop="image" content="@{'//public/images/logo300.jpg'}"/>
+	<link rel="shortcut icon" type="image/png" href="@{'//public/images/favicon.ico'}">
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/site.css'}" />
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}" />
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/temp.css'}" />
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/new_css/common.css'}" />
+	<script type="text/javascript" src="@{'/public/javascripts/koala.min.1.5.js'}"></script>
+	<script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+	<script type="text/javascript" src="@{'/public/javascripts/jquery.json-2.4.min.js'}"></script>
+	<script type="text/javascript" src="@{'/public/javascripts/xf_front.js'}"></script>
+	<script charset="utf-8" src="@{'public/javascripts/ajaxfileupload.js'}"></script>
+	<script type="text/javascript" src="@{'/public/javascripts/common.js'}"></script>
+	<script type="text/javascript" src="@{'/public/javascripts/jquery.lazyload.min.js'}"></script>
+
+
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?8caceb74848a1d15e0bb773231c35a38";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	<!--
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.placeholder.min.js'}"></script>
+    -->
+</head>
+<body>
+<div id="header">
+    <div class="top">
+        <div class="content clearfix">
+                <span class="float-left">
+                    <span>移动客户端</span>
+                    <span class="announcement"><a href="@{front.wealthinfomation.WealthInfomationAction.newsList(7)}" target="_blank">公告</a></span>
+                </span>
+                <span class="float-right">
+                    <span>
+						#{if currUser == null}
+                            <a href="@{front.account.loginAndRegisterAction.login()}">登入</a>&nbsp;|&nbsp;
+							<a href="@{front.account.LoginAndRegisterAction.register()}">注册</a>
+						#{/if}
+						#{else}
+                            <span>您好，【<a href="@{front.account.AccountHome.home()}">${currUser?.name}</a>】，</span>
+							<a href="@{front.account.loginAndRegisterAction.logout()}">退出</a>
+						#{/else}
+					</span>
+                    <span class="help-center"><a href="@{front.help.HelpCenterAction.index(13)}">帮助中心</a></span>
+                    <span class="contect-us">
+                        <span class="tag">联系我们</span>
+                        <div class="contect-us-popup-detail">
+                            <table>
+                                <tr>
+                                    <td><img src="/public/images/new/code-img.png" class="code-img-style" alt="" width="80" height="80"></td>
+                                    <td class="cutline" style="width: 70%;">
+                                        <div class="right-detail-info">
+                                            <span class="work-time">客服热线（工作日9:00-18:00）</span>
+                                            <img class="hotline"  src="/public/images/new/hotline.png" width="175" height="22"/>
+                                            <div class="contect-us-icon">
+                                                <img src="/public/images/new/weibo_dark.png" width="34" height="34">
+                                                <img src="/public/images/new/qq_dark.png" width="34" height="34">
+                                                <img src="/public/images/new/wechat_dark.png" width="34" height="34">
+                                                <img src="/public/images/new/email_dark.png" width="34" height="34">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                     </span>
+                </span>
+        </div>
+    </div>
+    <div id="nav-container" class="clearfix">
+        <span class="float-left">
+				<a href="@{front.home.HomeAction.home}">#{img src:"${currBackstageSet.platformLogoFilename}",width:"150",height:"50"}#{/img}</a>
+		</span>
+            <span class="nav float-right">
+                <ul>
+                    <li><a href="@{front.home.HomeAction.home()}">首&nbsp;&nbsp;页</a></li>
+                    <li>新手引导</li>
+                    <li><a href="@{front.principal.PrincipalGuaranteeAction.principalGuaranteeHome()}">安全保障</a></li>
+                    <li><a href="@{front.home.HomeAction.aboutUs(-1004)}">关于我们</a></li>
+                    #{if currUser?.name == mobile}
+						<li><a href="@{front.bid.bidAction.index()}" >我要借款</a></li>
+					#{/if}
+                    <li class="highlight-item"><a class="a-link" href="@{front.invest.InvestAction.investHome()}">我要理财</a></li>
+                    <li class="highlight-item"><a class="a-link" href="@{front.account.accountHome.home()}">我的财富</a></li>
+
+				</ul>
+            </span>
+    </div>
+</div>
+#{doLayout /}
+<div id="footer">
+    <div class="company-info clearfix">
+		<div class="company-detail  float-left">
+			<div>
+				<ul>
+					<li><a href="@{front.home.HomeAction.aboutUs(-1004)}">关于我们</a></li>
+					<li>|</li>
+					<li>新手指引</li>
+					<li>|</li>
+					<li><a href="@{front.help.HelpCenterAction.index(13)}">帮助中心</a></li>
+					<li>|</li>
+					<li><a href="@{front.principal.PrincipalGuaranteeAction.principalGuaranteeHome()}">安全保障</a></li>
+					<li>|</li>
+					<li><a href="@{front.home.HomeAction.aboutUs(-1007)}">加入我们</a></li>
+					<li>|</li>
+					<li>联系我们</li>
+					<li>|</li>
+					<li><a href="http://www.chanewm.com/" target="_blank">集团公司</a></li>
+				</ul>
+			</div>
+			<div class="site-info">
+				<span>上海展义金融信息服务有限公司</span>
+				<span>沪ICP备14043505号</span>
+			</div>
+			<p>
+				总部地址：上海市徐汇区瑞宁路899号上海阳光滨江中心6楼
+			</p>
+		</div>
+		<div class="customer-service float-right">
+			<div class="right-detail-info">
+				<div class="work-time">客服热线（工作日9:00-18:00）</div>
+				<img class="hotline"  src="/public/images/new/hotline.png" width="175" height="22"/>
+				<div class="contect-us-icon">
+					<img src="/public/images/new/weibo_dark.png" width="34" height="34">
+					<img src="/public/images/new/qq_dark.png" width="34" height="34">
+					<img src="/public/images/new/wechat_dark.png" width="34" height="34">
+					<img src="/public/images/new/email_dark.png" width="34" height="34">
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="security-background">
+        <div class="security-container clearfix" style="">
+            <div class="float-left copyright">
+                <img src="/public/images/new/police-icon.png" class="float-left" width="34" height="34"/>
+                <div class="float-left" style="display: inline;">
+                    <p>沪ICP备14043505号</p>
+                    <p>Copyright © 2015 展义金融 All rights reserved</p>
+                </div>
+            </div>
+            <div class="float-right verify-img">
+                <img src="/public/images/new/security-icons/credit_web.png" width="90" height="32">
+                <img src="/public/images/new/security-icons/norton.png" width="90" height="32">
+                <img src="/public/images/new/security-icons/chinese_internet.png" width="90" height="32">
+                <img src="/public/images/new/security-icons/chinese_IQNET.png" width="90" height="32">
+                <img src="/public/images/new/security-icons/trusted_web.png" width="90" height="32">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="safe-icon">
+
+</div>
+#{include "front/account/AccountHome/overBorrowIps.control"/}
+#{include "common/homeVipApply2.control"/}
+#{include 'common/acitveEmail.control'/}
+</body>
+<script type="text/javascript">
+	$(document).keyup(function(event){
+		if(event.keyCode == 13){
+			if(document.activeElement.id == 'code'){
+				login();
+			}
+		}
+	});
+	function vipApply(){
+		if('${currUser?.isEmailVerified}' == 'false') {
+			showDiv($("#email_box"));
+			return;
+		}
+		showDiv($("#xf_mem_acc_sjvip_tcc"));
+	}
+
+	function login(){
+		var name = $("#name").val();
+
+		if(name == ''){
+			alert("请输入用户名或邮箱");
+			return;
+		}
+
+		if($("#password").val() == ''){
+			alert("请输入密码");
+			return;
+		}
+
+		if($("#code").val() == ''){
+			alert("请输入验证码");
+			return;
+		}
+		$("#submit").submit();
+	}
+
+	$(function(){
+		$('img.lazy').lazyload({
+			//effect:'fadeIn'
+		});
+		$("#xf_h_idx_1_hydjfdgdf").limit();
+
+		/* 所有继承页面flash.error的值弹框,被继承页面则无需再写 */
+		if('${flash.error}' !='') {
+			alert('${flash?.error}');
+			if('${flash?.emailUrl}' !='') {
+				window.open('${flash?.emailUrl}');
+			}
+		}
+		/*与重复提交冲突，注释，如功能发生冲突，请更改其他处
+		 if('${flash.success}' != ''){
+		 alert('${flash?.success}');
+		 }
+		 */
+		//获取图片验证码
+		if('${currUser?.name}' == '' && '${loginOrRegister}' == '') {
+			var setCode = #{jsAction @front.account.LoginAndRegisterAction.setCode()/}
+					$.post(setCode({}),function(data){
+						var arr=eval(data);
+						var img = arr.img;
+						$("#img").attr("src","@{front.account.LoginAndRegisterAction.getImg()}?id="+img)
+						$("#randomID").val(img);
+					});
+		}
+	})
+
+	function change(){
+		var setCode = #{jsAction @front.account.LoginAndRegisterAction.setCode()/}
+				$.post(setCode({}),function(data){
+					var arr=eval(data);
+					var img = arr.img;
+					$("#img").attr("src","@{front.account.LoginAndRegisterAction.getImg()}?id="+img);
+					$("#randomID").val(img);
+				});
+	}
+	function AddFavorite(url,title) {
+		var ua = navigator.userAgent.toLowerCase();
+		if(ua.indexOf("msie 8")>-1){
+			external.AddToFavoritesBar(url,title,'');//IE8
+		}else{
+			try {
+				window.external.addFavorite(url, title);
+			} catch(e) {
+				try {
+					window.sidebar.addPanel(title, url, "");//firefox
+				} catch(e) {
+					alert("加入收藏失败，请使用Ctrl+D进行添加");
+				}
+			}
+		}
+	}
+</script>
+</html>

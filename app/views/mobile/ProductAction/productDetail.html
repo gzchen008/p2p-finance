@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>${bid?.title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/product.css'}"/>
+
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.tmpl.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/kindeditor-4.1.7/examples/jquery-ui/js/jquery-ui-1.9.2.custom.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/verification.js'}"></script>
+
+</head>
+<body>
+
+    <div class="productDetail_div" id="${bid?.id}" >
+        <div id="productDetailMsg" class="productDetail_msg">
+            <div class="productDetail_profit">
+                <p>年化收益</p>
+                <p class="productDetail_profit_front">${bid?.apr}%</p>
+            </div>
+            <div class="productDetail_bids">
+                <p>项目期限</p>
+                <sapn>${bid?.period}</sapn>
+                 #{if bid?.periodUnit == 0}个月#{/if} #{if bid?.periodUnit == 1}天#{/if} #{if bid?.periodUnit == -1}年#{/if}
+            </div>
+            <div class="productDetail_bids">
+                <p>起购金额</p>
+                <span >${bid?.minInvestAmount?.format('###,##0.00')}</span>元
+            </div>
+        </div>
+        <div class="productDetail_msg" id="product_status_div">
+            #{if bid?.status == 2}
+            <div id="progressbar" class="fundraising_progressbar" ></div>
+            #{/if}
+        </div>
+    </div>
+
+    <div class="productDetail_ref">
+        <input type="hidden" value="${bid?.id}" id="bid_Id">
+        <a href="#" id="detailtwo" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-right ">项目详情</a>
+        <span>${jsonMap?.project_introduction_short}</span>
+        <a href="#" id="fundSecurity" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-right ">资金安全</a>
+        <span>${jsonMap?.repayment_res_short}</span>
+        <a href="#" id="bidrecords" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-right ">投标记录</a>
+        <span>已投标人数：${bid?.investCount}人</span>
+        <a href="#" id="returnMode" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-right ">收益方式</a>
+        <span>${bid?.repayment?.name}</span>
+    </div>
+
+    <hr/>
+
+    <div class="bp_sec_icon">
+        <img  src="@{'/public/images/h5icon/safe.png'}">
+        <span class="bp_fix_font">中信银行全程保证资金安全</span>
+    </div>
+
+    <hr/>
+
+    <button class="ui-btn ui-corner-all ui-shadow ui-btn-b oa_btn_bk" id="confirmInvestBtn" type="submit" >购买</button>
+
+</body>
+</html>
+<script>
+    $("#bidrecords").click(function(){
+        window.location.href="/mobile/product/bidRecords?bidId="+$("#bid_Id").val();
+    });
+    $("#detailtwo").click(function(){
+        window.location.href="/mobile/product/detailtwo?borrowId="+$("#bid_Id").val();
+    });
+    $("#fundSecurity").click(function(){
+        window.location.href="/mobile/product/fundSecurity?borrowId="+$("#bid_Id").val();
+    });
+    $("#returnMode").click(function(){
+        window.location.href="/mobile/product/returnMode?borrowId="+$("#bid_Id").val();
+    });
+    $("#confirmInvestBtn").click(function(){
+        window.location.href="/mobile/product/productBid?bidId=${bid?.id}";
+    });
+</script>
+
+<script id="refund" type="text/x-jquery-tmpl">
+    <div class="productDetail_refund">
+        <img  src="@{'/public/images/ad.png'}" style="width: 80px;">
+    </div>
+    <div class="productDetail_refund_font">
+        <li>
+            <ui>最近还款日:</ui>
+            <ui>${bid?.repaymentTime?.format('yyyy-MM-dd')}</ui>
+        </li>
+        <li>
+            <ui>融资总额:</ui>
+            <ui class="bp_font_red">
+                ${bid?.amount?.format('###,##0')}元
+            </ui>
+        </li>
+    </div>
+</script>
+<script id="fundraising" type="text/x-jquery-tmpl">
+
+
+    <div class="ui-grid-a fundraising_grid">
+        <div class="ui-block-a">
+            融资金额：${bid.amount?.format('###,##0')}元
+        </div>
+        <div class="ui-block-b" style="text-align: right;">已融资：<span>${bid?.loanSchedule}</span>%</div>
+    </div>
+    <div class="ui-grid-a">距离购买结束：
+		<span id="day${bid?.id}"></span>天
+		<span id="hours${bid?.id}"></span>小时
+		<span id="minutes${bid?.id}"></span>分
+		<span id="seconds${bid?.id}"></span>秒
+    </div>
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        if (!${jsonMap?.bidCanBuyFlag}) {
+            $("#confirmInvestBtn").addClass("oa_btn_disable_bk");
+            $("#confirmInvestBtn").attr("disabled","disabled");
+        }
+    });
+
+    if ('${bid?.status}' == '4') {
+        //还款中4
+    　  $("#refund").tmpl('${bid}').appendTo('#product_status_div');
+    }else if('${bid?.status}' == '2' || '${bid?.status}' == '1'){
+        //筹款中2  两种 预售及售中
+
+        $("#fundraising").tmpl('${bid}').appendTo('#product_status_div');
+            $("#progressbar").progressbar({
+                value: ${bid?.loanSchedule}
+            });
+    }else  {
+        $(function() {
+            $( "#progressbar_sellout" ).progressbar({
+                value: 100
+            });
+
+        });
+    }
+
+</script>
+
+<script>
+    var i = '${bid.id}';
+    showTime('${jsonMap?.balanceTime}', $("#day"+i),$("#hours"+i), $("#minutes"+i), $("#seconds"+i));
+</script>

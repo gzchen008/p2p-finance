@@ -1,0 +1,84 @@
+#{extends 'common/frontMain.html' /} 
+%{
+	business.BackstageSet  currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+}%
+#{set title:currBackstageSet.seoTitle+'|帮助中心' /}
+
+<div class="xf_con_box">
+	<div class="xf_con_mem_nav"></div>
+	<!-- 左边导航区域 -->
+	<div class="xf_con_wyjk_left">
+		<h2 class="xf_con_mem_lefth2">帮助中心</h2>
+		<ul class="xf_con_wyjk_leftul xf_con_suba_leftul">
+			#{list types}
+				#{if _?.id != 14}
+					<li id="bzzx${_?.id}">
+					<a class="xf_mem_l_title" href="javascript:list('${_?.id}');">${_?.name}【${_?.counts}】</a><a
+						class="xf_mem_r_more xf_mem_r_ishot2"></a>
+					</li>
+				#{/if}
+			#{/list}
+		</ul>
+	</div>
+	<!-- 右侧内容区域 -->
+	<div class="xf_bzzx_home">
+		<div class="xf_bzzx_home_ss">
+			<div class="xf_bzzx_home_input">
+				<input id="keyword" placeholder="请输入关键词" type="text" value="${pageBean.conditions.keyword}" class="xf_bzzx_home_input_l">
+				<a href="javascript:search();" class="xf_bzzx_home_input_r">搜索</a>
+			</div>
+		</div>
+		<div class="xf_bzzx_home_list">
+			<div class="xf_bzzx_home_list_t">
+				${type?.name}<span class="xf_bzzx_home_list_span"></span>
+			</div>
+			<ul class="xf_bzzx_home_list_ul">
+				#{list pageBean?.page}
+				<li>
+					<div class="xf_bzzx_home_list_ul_t">
+						<a href="javascript:detail(${_?.id});">${_?.title}</a>
+					</div>
+					<div class="xf_bzzx_home_list_ul_c" limit="135">
+						<a href="javascript:detail(${_?.id});">
+							${_?.content?.raw()}
+						</a>
+					</div>
+					<div class="xf_bzzx_home_list_ul_d">
+						<a href="javascript:detail(${_?.id});">查看详细&gt;</a>
+					</div>
+				</li>
+				#{/list}
+			</ul>
+		</div>
+		<!-- 分页器 -->
+		<div class="xf_wylc_page xf_membill_view_page1" style="width:100%">
+		#{page pageTitle:"条",currPage:pageBean.currPage,pageSize:pageBean.pageSize,totalCount:pageBean.totalCount,theme:1,style:2}
+		typeId=${pageBean?.conditions?.typeId}&keyword=${pageBean?.conditions?.keyword}
+		#{/page}
+		</div>
+	</div>
+	<!-- 清除浮动 -->
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+	$(function() {
+	    $(".xf_bzzx_home_list_ul_c").limit();
+	    $("#bzzx" + ${typeId}).addClass("xf_con_wyjk_leftliisshow");
+	})
+	
+	function list(typeId) {
+		window.location=("index?typeId=" + typeId);
+	}
+	
+	function detail(newsId) {
+		var keyword = encodeURIComponent($("#keyword").val());
+		window.open("detail?newsId=" + newsId + "&keyword=" + keyword);
+	}
+	
+	function search() {
+		var keyword = encodeURIComponent($("#keyword").val());
+		window.open("index?typeId=" + ${pageBean?.conditions?.typeId} + "&keyword=" + keyword);
+	}
+	
+</script>
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_help.js'}"></script>

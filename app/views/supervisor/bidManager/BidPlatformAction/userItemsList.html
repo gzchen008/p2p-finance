@@ -1,0 +1,148 @@
+#{table class:"xf_con_mem_r_b_table", cellspacing:"0", cellpadding:"0", border:"0", width:"100%", tr_class_odd:"xn_tr_bj"}
+  #{tr}
+  	#{th colspan:"8"}风控审核管理#{/th}
+  #{/tr}
+  #{tr}
+    #{th}序号#{/th}
+    #{th}科目#{/th}
+    #{th}格式#{/th}
+    #{th}是否必审#{/th}
+    #{th}提交时间#{/th}
+    #{th}状态#{/th}
+    #{th}审核时间#{/th}
+    #{th}操作#{/th}
+  #{/tr}
+  #{list items}
+  #{tr}
+  	#{td}${_index}#{/td}
+    #{td}${_?.name}#{/td}
+    #{td}
+      #{if _?.type == 1}
+		图片文件
+	  #{/if}
+	  #{elseif _?.type == 2}
+		文本文件
+	  #{/elseif}
+	  #{elseif  _?.type == 3}
+		视频文件
+	  #{/elseif}
+	  #{elseif  _?.type == 4}
+		音频文件
+	  #{/elseif}
+	  #{else}
+		表格文件
+	  #{/else}
+    #{/td}
+    #{td}
+      %{ boolean falg = false; }%
+	  #{list items: requiredAuditItem, as : 'ritem'}
+		#{if ritem?.auditItem?.id == _?.audit_item_id}
+			%{ 
+				falg = true;
+				break; 
+			}%
+		#{/if}
+	  #{/list}
+      %{ if(falg){ }%
+   		<font color="red">必须</font>
+   	  %{ }else{ }%
+   		可选
+      %{ } }%
+    #{/td}
+    #{td}${_?.time?.format('yyyy-MM-dd')}#{/td}
+    #{td}${ _?.strStatus}#{/td}
+    #{td}#{if _?.status != 1 && _?.status != 4}${_?.audit_time?.format('yyyy-MM-dd')}#{/if}#{/td}
+    #{td}
+      *{ 状态为0,1,2的时候才能审核资料(屏蔽其它页面嵌套过来) }*
+      #{if status == 0 || status == 1 || status == 2}
+        #{if _?.status == 1}
+          <a class="xf_ta_onclick" style="cursor: pointer;" onclick="showaudititem('${_?.mark}', '${_?.signUserId}');">审核</a>
+        #{/if}
+        #{elseif _?.status == 0}
+			---
+		#{/elseif}
+		#{else}
+		  <a class="xf_ta_onclick" style="cursor: pointer;" onclick="showitem('${_?.mark}', '${_?.signUserId}');">查看</a>
+		#{/else}
+		#{if _?.status == 0}
+			---
+		#{/if}
+		#{else}
+		  <a class="xf_ta_onclick" style="cursor: pointer;" href="@{Application.downloadFiles(_?.images, _?.type)}">下载</a>
+		#{/else}
+      #{/if}
+      #{else}
+      	#{if _?.status == 0}
+			---
+		#{/if}
+		#{else}
+		   <a class="xf_ta_onclick" style="cursor: pointer;" onclick="showitem('${_?.mark}', '${_?.signUserId}');">查看</a>
+		#{/else}
+		#{if _?.status == 0}
+			---
+		#{/if}
+		#{else}
+		  <a class="xf_ta_onclick" style="cursor: pointer;" href="@{Application.downloadFiles(_?.images, _?.type)}">下载</a>
+		#{/else}
+	  #{/else}
+    #{/td}
+  #{/tr}
+  #{/list}
+#{/table}             
+<!-- 查看资料弹出层 -->
+<div id="showitem" class="xn_c_ban_jox xn_c_ban_jox_ptsh" style="height: 400px; overflow: auto; display: none;"></div>
+<!-- 审核资料弹出层 -->
+<div id="audititem" class="xn_c_ban_jox xn_c_ban_jox_ptsh" style="height: 400px; overflow: auto; display: none;"></div>
+<script type="text/javascript">
+<!--
+	// 详情页折叠
+    var tabH = $(".xf_con_mem_r_bottom").height();
+    
+    $(".xf_mem_r_b_title_x").click(function(){
+      if ( $(this).parents(".xf_con_mem_r_bottom").height() > 45 ) {
+        $(this).addClass("xf_mem_r_b_title_x2");
+        $(this).parents(".xf_mem_r_b_title_th").addClass("xf_mem_r_b_title_th2");
+        $(this).parents(".xf_con_mem_r_bottom").animate({height:"45px"});
+      } else{
+        $(this).removeClass("xf_mem_r_b_title_x2");
+        $(this).parents(".xf_con_mem_r_bottom").animate({height:tabH});
+      };
+    });
+
+    $('#bgTab').find('tr:odd').find('td').css('background-color', '#f4f4f4');
+
+    /* 查看弹出层 */
+	function showitem(mark, signUserId){
+		var action = #{jsAction @supervisor.bidManager.UserAuditItemAction.showitem(':mark',':signUserId') /};
+		$.post(action({mark:mark, signUserId:signUserId}), function(data) {
+			var audititem = $("#audititem");
+			if(audititem.is(":visible"))
+				audititem.hide();
+			$("#showitem").html(data);
+	        $.layer({
+	          type: 1,
+	          area: ['608', 'auto'],
+	          title: '查看资料',
+	          page: {dom : '#showitem'}
+	        });
+		});		
+	}
+
+	/* 审核弹出层 */
+	function showaudititem(mark, signUserId){
+		var action = #{jsAction @supervisor.bidManager.UserAuditItemAction.audititem(':mark',':signUserId') /};
+		$.post(action({mark:mark, signUserId:signUserId}), function(data) {
+			var showitem = $("#showitem");
+			if(showitem.is(":visible"))
+				showitem.hide();
+			$("#audititem").html(data);
+	        $.layer({
+	          type: 1,
+	          area: ['608', 'auto'],
+	          title: '审核资料',
+	          page: {dom : '#audititem'}
+	        });
+		});	
+	}
+//-->
+</script>

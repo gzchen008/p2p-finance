@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <meta charset="utf-8">
+    <title>资金安全</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}" />
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+</head>
+<body>
+
+<div data-role="page" id="bind_swipe">
+    <div data-role="navbar" >
+      <ul>
+          <li><a href="#" id="detailtwo" >项目详情</a></li>
+          <li><a href="#" id="fundSecurity" class="ui-btn-active">资金安全</a></li>
+          <li><a href="#" id="bidrecords" >投标记录</a></li>
+          <li><a href="#" id="returnMode">收益方式</a></li>
+      </ul>
+    </div>
+
+<div style="background:#EDEDED" ><strong > &nbsp;资金安全</strong></div>
+  <div data-role="content" >
+  #{if jsonMap?.repayment_res!=null }
+      #{if jsonMap?.repayment_res.length()>100 }
+          <div  id="smallContent" style="display:block">
+              <p>${jsonMap?.repayment_res_short}</p>
+              <p align="right"><a style="text-decoration:none" href="javascript:" onclick="document.getElementById('fullContent').style.display=(document.getElementById('fullContent').style.display=='none')?'':'none';document.getElementById('smallContent').style.display=(document.getElementById('smallContent').style.display=='none')?'':'none'" > 更多 </a></p>
+          </div>
+          <div  id="fullContent" style="display:none;">
+              <p>${jsonMap?.repayment_res}</p>
+              <p align="right"><a style="text-decoration:none" href="javascript:" onclick="document.getElementById('fullContent').style.display=(document.getElementById('fullContent').style.display=='none')?'':'none';document.getElementById('smallContent').style.display=(document.getElementById('smallContent').style.display=='none')?'':'none'" > 收起 </a></p>
+          </div>
+      #{/if}
+      #{else }
+          <div  id="fullContent">
+              <p>${jsonMap?.repayment_res}</p>
+          </div>
+      #{/else}
+
+  #{/if}
+ </div>
+<div style="background:#EDEDED" ><strong >&nbsp;报告截图</strong></div>
+ <div>
+    <ul >
+    #{list items:jsonMap?.userAuditList , as: 'records'}
+      <li>
+		<h3  style="color:#000000">${records?.name}</h3>
+		    <a href="#" data-rel="popup" data-position-to="window" data-transition="fade" >
+			    <img src="${records?.image_file_name}" class="pophoto" style="width:50%;" />
+		    </a>
+          *{<div data-role="popup" id="${records?.name}">}*
+              *{<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">close</a>}*
+                  *{<img src="${records?.image_file_name}" class="pophoto"  style="width:100%;" />}*
+          *{</div>}*
+      </li>
+    #{/list}
+    </ul>
+
+  </div>
+    <input type="hidden" value="${jsonMap?.borrowId}" id="bid_Id">
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+        $("#bind_swipe").bind("swipeleft",function(){
+            window.location.href="/mobile/product/detailtwo?borrowId="+$("#bid_Id").val();
+        });
+        $("#bind_swipe").bind("swiperight",function(){
+            window.location.href="/mobile/product/bidRecords?bidId="+$("#bid_Id").val();
+        })
+    });
+    $("#bidrecords").click(function(){
+        window.location.href="/mobile/product/bidRecords?bidId="+$("#bid_Id").val();
+    });
+    $("#detailtwo").click(function(){
+        window.location.href="/mobile/product/detailtwo?borrowId="+$("#bid_Id").val();
+    });
+    $("#fundSecurity").click(function(){
+        window.location.href="/mobile/product/fundSecurity?borrowId="+$("#bid_Id").val();
+    });
+    $("#returnMode").click(function(){
+        window.location.href="/mobile/product/returnMode?borrowId="+$("#bid_Id").val();
+    });
+</script>

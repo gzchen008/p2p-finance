@@ -1,0 +1,21 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+validation.min=%s不能小于%d
+validation.max=%s不能大于%d
+validation.required=%s不能为空
+validation.email=请输入正确的邮箱地址
+realityName=真实姓名
+idNumber=身份证
+email=邮箱
+actName=活动名称
+content=活动内容
+total=红包总金额
+minValue=红包最小金额
+maxValue=红包最大金额
+totalNum=红包发送总人数
+couple=红包领取次数
+failure=失败
+
+
+

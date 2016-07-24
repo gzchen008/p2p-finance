@@ -1,0 +1,19 @@
+<div class="xn_c_content_left">
+  <div class="xn_c_content_leftul">
+    <ul>
+      <li>
+        <div class="xn_c_li_head_one">
+          <div class="xn_c_li_bg" id="lab_1"></div>微信送红包
+        </div>
+        <div class="xn_c_li_head_two" id="hi_1">
+          <a id="mg_1" class="xn_c_li_head_twoli" href="@{supervisor.activity.RedPacketController.index()}">微信送红包</a>
+          <a id="mg_1" class="xn_c_li_head_twoli" href="@{supervisor.activity.RedPacketBillController.index()}">红包记录</a>
+        </div>
+      </li>
+     </ul>
+   </div>
+   <div class="xn_c_con_leftbutton">
+     <div class="xn_c_con_enimg">导航点击</div>
+   </div>
+</div>
+<script type="text/javascript" src="@{'/public/javascripts/tab/tab_mg_bid.js'}"></script>

@@ -1,0 +1,37 @@
+.bill-detail-middle {
+    margin: 1rem;
+}
+
+.bill-detail-middle div {
+    margin-bottom: 1rem;
+    color: #9c9c9c;
+    font-weight: 600;
+}
+
+.bill-detail-middle .prod-name {
+    font-size: 1.2rem;
+    color: #E95E50;
+    font-weight: 600;
+}
+
+.input-container{}
+
+.input-container span {
+    width: 40%;
+}
+
+.input-container input{
+    line-height: 2.5rem;
+    border: solid 1px #9c9c9c;;
+    border-radius: 3px;
+    width: 70%;
+}
+
+.btn-container {
+    margin: 1rem;
+}
+
+#confirmRechargeBtn {
+    background-color: #E95E50;
+    color: #fff;
+}

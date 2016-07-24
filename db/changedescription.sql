@@ -1,0 +1,1 @@
+ALTER TABLE t_bids MODIFY description VARCHAR(4000) NULL; 

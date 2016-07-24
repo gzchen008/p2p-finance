@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+%{
+business.BackstageSet currBackstageSet = business.BackstageSet.getCurrentBackstageSet();
+String AGREEMENT_URL = constants.Constants.FP_AGREEMENT_URL;
+}%
+<head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/login.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobileCommon.css'}"/>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+
+    <script type="text/javascript" src="@{'/public/javascripts/verification.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/mobileCommon.js'}"></script>
+
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+    <style>
+        .eye{
+            position: absolute;
+            display: block;
+            top: 12px;
+            right: 10px;
+            width: 33px;
+            height: 20px;
+            background: url(/public/images/h5icon/eyes_closed.png) no-repeat center right #FFFFFF;
+            background-size: 100%;
+        }
+        .row-width{
+            width:100%;
+            text-align: left;
+        }
+        .rel-pos{
+            position: relative;
+        }
+        .mobile_login_shurk{ height: 45px; line-height: 28px; font-size: 15px; color: #969696; padding:0 0 0 5px;}
+    </style>
+</head>
+
+<body>
+
+
+<div data-role="page" id="index">
+
+    <div data-role="content " class="ui-content">
+        <input  type="hidden"id="openId" name="openId" value="${jsonOne?.openId}">
+        <input  type="hidden" id="queryname" name="queryname" value="${jsonOne?.name}">
+        <div class="ui-field-contain">
+            <input type="tel" class="mobile_login_shurk" id="name" name="name" value="${flash?.name}" maxlength="11"
+                   placeholder="请输入您的手机号">
+            <p id="errorLogMsg" class="error-msg"></p>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <input type="text" class="mobile_login_shurk" id="verifyCode" name="verifyCode"
+                           value="${flash?.verifyCode}" placeholder="请输入您的验证码">
+                    <p id="errorVerfiyCode" class="error-msg"></p>
+                </div>
+                <div class="ui-block-b">
+                    <button id="btn_getVerifyCode">获取验证码</button>
+                </div>
+            </div>
+            <div class="row-width rel-pos">
+                <input type="password" class="mobile_login_shurk" id="password" data-icon="grid" data-iconpos="right"  maxlength="20"
+                   name="password" value="${flash?.password}" placeholder="请设置登录密码"><b class="eye"></b>
+                <p id="errorPwdMsg" class="error-msg"></p>
+            </div>
+            <div data-role="collapsible" data-mini="true" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+                <h4>推荐人的手机号或者推荐码（选填）</h4>
+                <input type="text" id="recommended" name="recommended" data-inset="false" value="${flash?.recommended}"
+                       placeholder="请输入手机号或者推荐码（选填）">
+            </div>
+
+
+            <fieldset data-role="controlgroup" data-type="horizontal">
+                <input type="checkbox" name="agreement" data-role="none" id="agreement" data-mini="true" checked>同意
+                <a id="agreementLink" href="#" target="_self">《加薪猫注册协议》</a>
+            </fieldset>
+
+            <a class="ui-btn ui-corner-all ui-shadow ui-btn-b oa_btn_bk" id="submit" type="submit" disabled="disabled">注册完成</a>
+            <div>
+                <a href="/mobile/login">
+                    已有账号，登录
+                </a>
+            </div>
+        </div>
+
+        <div class="oa_er_bk">
+            <div class="oa_error">
+                <h3>错误提示</h3>
+
+                <p class="error_content" id="error_content"></p>
+                <button data-role="button" id="close" class="os_cf" onclick="closeErrorTips();">确定</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        veriChangeVal("submit", "#name", "#password", "#agreement");
+        findRegisterAgreement();
+    });
+
+    $(".eye").click(
+            function(){
+                if( $("#password").attr("type")=="password"){
+                    $(".eye").css("background","url(/public/images/h5icon/eyes_opened.png) no-repeat center right #FFFFFF");
+                    $(".eye").css("background-size","100%");
+                    $("#password").attr("type","text");
+                }else
+                if( $("#password").attr("type")=="text"){
+                    $(".eye").css("background","url(/public/images/h5icon/eyes_closed.png) no-repeat center right #FFFFFF");
+                    $(".eye").css("background-size","100%");
+                    $("#password").attr("type","password");
+                }
+            }
+    );
+
+    $("#agreement").on("click", function (event) {
+        if (!$(this).is(":checked")){
+            $("#submit").addClass("disable-status");
+        }
+        else {
+            $("#submit").removeClass("disable-status");
+        }
+    });
+
+    $("#submit").on("click", function () {
+        $("#errorLogMsg").css({
+            "display":"none"
+        });
+        var mobile = veriPhoneNumber($("#name").val());
+        if (mobile != true) {
+            $("#errorLogMsg").html(mobile).css({
+                "display":"block"
+            });
+            return;
+        }
+        $("#errorVerfiyCode").css({
+            "display":"none"
+        });
+        var verifyCode = veriValCode($("#verifyCode").val());
+        if (verifyCode != true) {
+            $("#errorLogMsg").html(verifyCode
+            ).css({
+                "display":"block"
+            });
+            return;
+        }
+
+
+        $("#errorPwdMsg").css({
+            "display":"none"
+        });
+        var password = veriPassword($("#password").val());
+        if (password != true) {
+            $("#errorPwdMsg").html(password).css({
+                "display":"block"
+            });
+            return;
+        }
+
+//        var agreement = veriCheckBox($("#agreement"));
+//        if (agreement != true) {
+//            $(".oa_er_bk").show();
+//            $("#error_content").text(agreement)
+//            return;
+//        }
+
+        try {
+            $.ajax({
+                type: "POST",
+                url: "/mobile/register",
+                data: {
+                    name: $("#name").val(),
+                    password: $("#password").val(),
+                    verifyCode: $("#verifyCode").val(),
+                    recommended: $("#recommended").val(),
+                    openId: $("#openId").val(),
+                    queryName:$("#queryname").val()
+                },
+                success: function (data) {
+                    if (0 == data.error.code) {
+                        window.location.href = "/mobile/content/moneyMatters"
+                    } else {
+                        $(".oa_er_bk").show();
+                        $("#error_content").text(data.error.msg)
+                    }
+                },
+                error: function (XMLHttpRequest) {
+                    $(".oa_er_bk").show();
+                    $("#error_content").text("网络错误，请稍后再试", XMLHttpRequest)
+                }
+            });
+        } catch (err) {
+            showErr(err);
+        }
+    });
+
+    $("#btn_getVerifyCode").on("click", function () {
+        $("#errorLogMsg").css({
+            "display":"none"
+        });
+        var mobile = veriPhoneNumber($("#name").val());
+        if (mobile != true) {
+            $("#errorLogMsg").html(mobile).css({
+                "display":"block"
+            });
+            return;
+        }
+        try {
+            $("#btn_getVerifyCode").attr("disabled", "disabled");
+            $.ajax({
+                type: "GET",
+                url: "/mobile/verifyCode",
+                data: {"mobile": $("#name").val(),"type":"0"},
+                success: function (data) {
+                    if (0 == data.error.code) {
+                        getValCodeTimeout(60, "btn_getVerifyCode");
+                    } else {
+                        $("#btn_getVerifyCode").removeAttr("disabled");
+                        $(".oa_er_bk").show();
+                        $("#error_content").text(data.error.msg)
+                    }
+                },
+                error : function(XMLHttpRequest) {
+                    $("#btn_getVerifyCode").removeAttr("disabled");
+                    $(".oa_er_bk").show();
+                    $("#error_content").text("网络错误，请稍后再试",XMLHttpRequest)
+                }
+            });
+        }catch(err){
+            showErr(err);
+        }
+    });
+
+    function findRegisterAgreement() {
+        $.ajax({
+            url: '${AGREEMENT_URL}',
+            type: 'POST',
+            data: 'code=0001',
+            success: function (data) {
+                if ('0000' == data.message.code) {
+                    var agreement = $("#agreementLink");
+                    agreement.html('《${currBackstageSet?.platformName} ').append(data.value.title).append('》');
+                    agreement.attr("href", data.value.link);
+                } else {
+                    console.info(data.message);
+                }
+            },
+            error: function () {
+                console.info('获取注册协议失败');
+            }
+        });
+    }
+
+</script>

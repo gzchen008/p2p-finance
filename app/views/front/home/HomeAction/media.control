@@ -1,0 +1,16 @@
+<div class="info-panel-container float-left">
+    <div class="title-header clearfix">
+        <span class="title-name float-left">媒体报道</span>
+        <span class="more-info float-right"><a href="@{front.home.HomeAction.aboutUs(-1009)}" target="_blank">更多</a></span>
+    </div>
+    <div class="info-list">
+        <ul>
+        #{list items:mediaReportNews , as:'mediaReport'}
+            <li>
+                <a class="news-title" href="${mediaReport?.content}" target="_blank">${mediaReport?.title}</a>
+                <span class="publish-date">${mediaReport.time?.format('yyyy-MM-dd')}</span>
+            </li>
+        #{/list}
+        </ul>
+    </div>
+</div>

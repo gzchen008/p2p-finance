@@ -1,0 +1,17 @@
+<div class="xf_wyjkfb_4_window" id="xf_wyjkfb_4_window">
+	<div class="xf_wyjkfb_4_windowInner xf_wyjkfb_4_wInnertwo_m">
+		<div class="xf_wyjkfb_4_windowClose"></div>
+		<div class="xf_wyjkfb_4_windowColName">
+			新增母产品成功 !
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$("#xf_wyjkfb_4_window").center().show();
+		
+		$(".xf_wyjkfb_4_windowClose,#xf_wyjkfb_4_windowCancle").click(function(){
+			$("#xf_wyjkfb_4_window").hide(500);
+		});
+	})
+</script>

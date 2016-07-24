@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/reset.css'}" />
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/jquery.mobile-1.4.3.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/login.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobileCommon.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/mobile/mobile.css'}"/>
+
+    <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.mobile-1.4.3.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/verification.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/mobileCommon.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/mobile/common/maskPopupWindow.js'}"></script>
+</head>
+<body>
+
+
+<div data-role="page">
+    <div data-role="content " class="ui-content">
+
+    <form method="post" id="submit" data-ajax="false" action="/mobile/login">
+        <div class="ui-field-contain">
+            <input type="tel" class="mobile_login_shurk" id="name" name="name" maxlength="11" value="${flash?.name}" placeholder="请输入您的手机号" >
+            <p id="errorLogMsg" class="error-msg"></p>
+            <input type="password" class="mobile_login_shurk" id="password" maxlength="20" name="password" value="${flash?.password}" placeholder="请输入登录密码">
+            <p id="errorPwdMsg" class="error-msg"></p>
+        </div>
+        <input  type="hidden" id="openId" name="openId" value="${paramsJson?.openId}">
+        <a class="ui-btn ui-corner-all ui-shadow ui-btn-b oa_btn_bk"  type="submit" onclick="login()" >立即登录</a>
+    </form>
+
+        <div class="ui-field-contain ui-grid-a">
+            <div class="ui-block-a"><a id="register" href="#">立即注册</a></div>
+            <div class="ui-block-b text-right"><a id="changePwd" href="#">忘记密码</a></div>
+        </div>
+
+        <div class="oa_er_bk">
+            <div class="oa_error">
+                <h3>错误提示</h3>
+                <p class="error_content" id="error_content"></p>
+                <button data-role="button" id="close" class="os_cf" onclick="closeErrorTips();">确定</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        veriChangeVal("submit","#name","#password");
+
+        var error = '${flash?.error}';
+        if (error == null || error == undefined || error == '') {
+            $("#error_tips").hide();
+        }else{
+//            $(".oa_er_bk").show();
+//            $("#error_content").text(error);
+            $.alertWindow.show(error);
+        }
+    });
+
+    $("#register").click(function(){
+        window.location.href="/mobile/register";
+    });
+    $("#changePwd").click(function(){
+        window.location.href="/mobile/me/changepwd?name="+$("#name").val();
+    });
+
+
+    function login(){
+        $("#errorLogMsg").css({
+            "display":"none"
+        });
+        var PhoneNumber = veriPhoneNumber($("#name").val());
+        if (PhoneNumber != true) {
+            $("#errorLogMsg").html(PhoneNumber).css({
+                "display":"block"
+            });
+            return;
+        }
+
+        $("#errorPwdMsg").css({
+            "display":"none"
+        });
+        var password = veriPassword($("#password").val());
+        if (password != true) {
+            $("#errorPwdMsg").html(password).css({
+                "display":"block"
+            });
+            return;
+        }
+        $("#submit").submit();
+    }
+
+</script>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Servlet AccountServlet</title>
+</head>
+<body>
+	<form action="${args.action}" id="frm1" method="post">
+		<input type="hidden" name="version" value="${args.version}">
+		<input type="hidden" name="type" value="${args.type}">
+		<input type="hidden" name="domain" value="${args.domain}">
+		<input type="hidden" name="platform" value="${args.platform}">
+		<input type="hidden" name="memberId" value="${args.memberId}">
+		<input type="hidden" name="argMerCode" value="${args.argMerCode}">
+		<input type="hidden" name="arg3DesXmlPara" value="${args.arg3DesXmlPara}"> \
+		<input type="hidden" name="argeXtraPara" value="${args.argeXtraPara}">
+		<input type="hidden" name="argSign" value="${args.argSign}">
+	</form>
+	
+	<script language="javascript">
+		document.getElementById("frm1").submit();
+	</script>
+</body>
+</html>

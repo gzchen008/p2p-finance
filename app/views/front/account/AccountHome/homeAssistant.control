@@ -1,0 +1,11 @@
+        <!--
+             <div class="xf_mem_Account xf_mem_passage">
+
+					<h3 class="xf_mem_accout_title">借款小助手 <span class="xf_mem_jkxzs_exp">&mdash;&mdash; 借钱更快，财富更多</span></h3>
+					<div class="xf_mem_Explanation clr">
+					#{list items:news, as:'news'}
+					<a href="@{front.wealthinfomation.WealthInfomationAction.newDetails(news.id)}" target="_blank">${news_index}、${news?.title} (${news?.read_count})</a><br />
+					#{/list}
+					</div>
+				
+				</div>

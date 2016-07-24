@@ -1,0 +1,68 @@
+	<!--
+	<div class="xf_mem_Account xf_mem_passage">
+		<h3 class="xf_mem_accout_title">银行卡管理</h3>
+		<div class="xf_mem_xydj_search_zh">
+			<table border="0" cellpadding="0" cellspacing="0" width="735"
+				class="xf_mem_xydj_viewcpms xf_mem_zhxx_viewcpms">
+				<tbody>
+					<tr>
+						<th align="center" width="74">序号</th>
+						<th width="192">开户银行</th>
+						<th align="center" width="207">帐号</th>
+						<th width="119">收款人</th>
+						<th width="139">操作</th>
+					</tr>
+					#{if userBanks.size() != 0}
+					#{list items:userBanks, as:'userBanks'}
+					<tr>
+						<td align="center">${userBanks_index}</td>
+						<td align="left">${userBanks?.bankName}</td>
+						<td align="left">${userBanks?.account}</td>
+						<td align="center">${userBanks?.accountName}</td>
+						<td align="center"><a class="xf_srje_yuan_lan" onClick="editBank('${userBanks?.id}','${userBanks?.bankName}','${userBanks?.account}','${userBanks?.accountName}','')">编辑</a>
+							<span class="xf_srje_yuan_lan">|</span> <a
+							class="xf_srje_yuan_lan" onClick="deleteBank('${userBanks?.id}')">删除</a>
+						</td>
+					</tr>
+					#{/list}
+					#{/if}
+					<tr><td colspan="5" align="center">
+					<a style="color: #24b3ea;" onClick="editBank('','','','','1')">增加银行账号</a>
+					</td></tr>
+				</tbody>
+			</table>
+		</div>
+</div>
+
+<script type="text/javascript">
+      function editBank(id, bankName, account, accountName, value){
+           $("#bankName").val(bankName);
+           $("#bankNumber").val(account);
+           $("#receiver").val(accountName);
+           $("#bank").val(id);
+           $("#flag").val(value);
+           if(value == 1){
+              $("#changeFont").html("");
+              $("#changeFont").html("增加银行账号");
+           }
+           showDiv($("#xf_mem_zjyhzh_window"));
+      }
+      
+      function deleteBank(id){
+          if(confirm("确定要删除吗？")){
+	          var deleteBank = #{jsAction @deleteBank(':id')/}
+			  $.post(deleteBank({id:id}),function(data){
+			  var arr=eval(data);
+			  
+			  if(arr.error.code < 0){
+			      alert(arr.error.msg);
+			      return;
+			  }
+			  
+			  alert(arr.error.msg);
+			  location.reload();
+		});
+	  }
+     }
+</script>
+-->
