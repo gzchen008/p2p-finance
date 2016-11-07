@@ -47,7 +47,7 @@ public class Payment implements Serializable {
     public String pSign;
 
 
-    public JSONObject getJsonPara() {
+    /*public JSONObject getJsonPara() {
         String xmlPara = Encrypt.decrypt3DES(this.p3DesXmlPara, Constants.ENCRYPTION_KEY);
 
         if (StringUtils.isBlank(xmlPara))
@@ -58,7 +58,7 @@ public class Payment implements Serializable {
         }
 
         return (JSONObject) Converter.xmlToObj(xmlPara);
-    }
+    }*/
 
     public boolean checkSign() {
         if (StringUtils.isBlank(pMerCode) || StringUtils.isBlank(pSign)) {
@@ -170,6 +170,7 @@ public class Payment implements Serializable {
      */
     public void createAcctCB(ErrorInfo error) {
         error.clear();
+        Logger.info("here is createAcctCB");
         Logger.info("jsonPara:" + jsonPara.toString());
         if (!Payment.checkSign(this.pMerCode + this.pErrCode + this.pErrMsg + this.p3DesXmlPara, this.pSign)) {
             error.code = -1;
@@ -177,8 +178,8 @@ public class Payment implements Serializable {
             Logger.info("无效签名");
             return;
         }
-
-        if (!"MG00000F".equals(this.pErrCode)) {
+        Logger.info("jsonPara2:" + jsonPara.toString());
+        /*if (!"MG00000F".equals(this.pErrCode)) {
             error.code = IPSConstants.FAIL_CODE;
             error.msg = this.pErrMsg;
 
@@ -190,12 +191,13 @@ public class Payment implements Serializable {
             error.msg = this.pErrMsg;
 
             return;
-        }
+        }*/
 
-        String pIpsAcctNo = this.jsonPara.getString("pIpsAcctNo");
+
+        String ipsAcctNo = this.jsonPara.getString("ipsAcctNo");
 
         User user = new User();
-        user.ipsAcctNo = pIpsAcctNo;
+        user.ipsAcctNo = ipsAcctNo;
         user.updateIpsAcctNo(this.jsonPara.getLong("pMemo1"), error);
     }
 

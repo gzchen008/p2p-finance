@@ -11847,6 +11847,7 @@ public class User extends UserBase implements Serializable {
         int rows = 0;
 
         try {
+            Logger.info("user update:" + userId + "ipsAcctNo:" + this.ipsAcctNo);
             rows = JpaHelper.execute(sql, this.ipsAcctNo, userId).executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

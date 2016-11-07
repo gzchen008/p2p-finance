@@ -329,7 +329,8 @@ public class PlatformAccountManager extends SupervisorController {
 	 * @param name
 	 * @param amount
 	 */
-	@Check(Constants.TRUST_FUNDS)
+	// TODO
+	//@Check(Constants.TRUST_FUNDS)
 	public static void rechargeByHand(String name, double amount) {
 		ErrorInfo error = new ErrorInfo();
 		long supervisorId = Supervisor.currSupervisor().id;

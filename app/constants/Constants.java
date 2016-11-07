@@ -50,7 +50,7 @@ public class Constants {
 	public static final boolean IS_BIDS_NEED_FILTER =Convert.strToBoolean(Play.configuration.getProperty("is.bids.need.filter"), true); //是否需要过滤标的 
 	
 	
-	public static final String TRUST_FUNDS = "true";			//资金托管模式
+	public static final String TRUST_FUNDS = "false";			//资金托管模式 TODO 关闭资金托管模式
 	public static final boolean IPS_ENABLE = Convert.strToBoolean(Play.configuration.getProperty("pay.trustFunds"), false);	//是否开启资金托管模式
 	public static final boolean IS_MSG = Convert.strToBoolean(Play.configuration.getProperty("createBid_isMsg"), false);	//是否需要发送短信(针对环迅)
 	public static final boolean IS_STINT_OF = Convert.strToBoolean(Play.configuration.getProperty("is_stint_of"), true); // 是否限制逾期总费

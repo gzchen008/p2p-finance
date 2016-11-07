@@ -68,10 +68,10 @@ public class PaymentAction extends BaseController {
     /**
      * 开户回调
      */
-    public static void createAcctCB(String pMerCode, String pErrCode, String pErrMsg, String p3DesXmlPara, String pSign) {
+    public static void createAcctCB(Long memberId, String pMerCode, String pErrCode, String pErrMsg, String p3DesXmlPara, String pSign,String ipsAcctNo) {
         ErrorInfo error = new ErrorInfo();
 
-        Logger.info("createAcctCB exec：" + pMerCode);
+        Logger.info("createAcctCB exec ipsAcctNo：" + ipsAcctNo);
         Payment pay = new Payment();
         pay.pMerCode = pMerCode;
         pay.pErrCode = pErrCode;
@@ -80,6 +80,9 @@ public class PaymentAction extends BaseController {
         pay.pSign = pSign;
 
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pStatus","10");
+        jsonObject.put("ipsAcctNo",ipsAcctNo);
+        jsonObject.put("pMemo1",memberId);
         pay.jsonPara = jsonObject;
 
         pay.createAcctCB(error);
